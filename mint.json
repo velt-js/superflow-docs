@@ -223,6 +223,7 @@
       "pages": [
         "product-features/what-is-guest-mode",
         "product-features/what-are-private-comments",
+        "product-features/what-are-custom-statuses",
         "product-features/how-secure-is-Superflow",
         "product-features/which-parts-of-the-site-would-I-be-able-to-custom-brand"
       ]
@@ -254,6 +255,8 @@
         "how-to-guides/how-to-attach-files",
         "how-to-guides/how-to-add-a-priority",
         "how-to-guides/how-to-change-status",
+        "how-to-guides/how-to-add-a-custom-status",
+        "how-to-guides/how-to-delete-a-custom-status",
         "how-to-guides/how-to-search-comments",
         "how-to-guides/how-to-delete-comments",
         "how-to-guides/how-to-enter-the-review-mode",
