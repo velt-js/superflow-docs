@@ -1,0 +1,65 @@
+---
+title: "How to integrate with Vercel"
+description: "How to connect your Vercel deployments to Superflow's AI review agents"
+---
+
+## How to Integrate with Vercel
+
+In this article, you will learn how to install the **Superflow AI** integration from the Vercel Marketplace and connect your Vercel deployments to Superflow's review agents.
+
+Superflow AI connects your Vercel deployments to Superflow's review agents. Whenever a new change is pushed, Superflow agents open the rendered site, review it, and leave contextual comments pinned to the elements they refer to.
+
+> **Note**: You'll need a Vercel account with permission to install integrations on the team that owns your projects, and a Superflow workspace. If you don't have one yet, you can create it during the connect step.
+
+## 1) Install Superflow AI from the Vercel Marketplace
+
+Go to the [Superflow AI listing on the Vercel Marketplace](https://vercel.com/marketplace/superflow) and click **Install**.
+
+## 2) Select the Vercel team and projects to review
+
+Choose the Vercel team you want to install into, then authorize the projects you want reviewed.
+
+You can grant access to all projects, or pick specific projects. Only the projects you authorize will trigger Superflow reviews — you can change this selection later from your Vercel integration settings.
+
+## 3) Sign in to your Superflow workspace
+
+After authorizing, you'll be redirected to Superflow. Sign in to your Superflow workspace to finish connecting the integration.
+
+If you don't have a workspace yet, create one at this step. Once the connection completes, your authorized Vercel projects will be linked to your Superflow workspace.
+
+## 4) Create your review agents
+
+Create the review agents you want to run against your deployments. You can:
+
+- **Start from a preset** — visual QA, copy, or accessibility.
+- **Build a custom agent** — write your own instructions describing exactly what the agent should look for. If your team already has a QA checklist, paste it in and turn it into an agent.
+
+Enable the agents you want to run. Only enabled agents are triggered on a deployment.
+
+## 5) Push a change and let the agents review it
+
+Each time a new change is pushed and the deployment succeeds, Superflow triggers the agents you enabled against the rendered deployment URL. Agents open the live page, review it, and leave contextual comments pinned to the relevant elements.
+
+Findings show up as comment threads in your Superflow workspace, and on the deployed site itself when you open it in Review Mode.
+
+## 6) Managing reviews
+
+Open any thread in Superflow to reply, assign it, or resolve it.
+
+Comments stay linked to the deployment they were created on, so you can compare feedback across pushes. Threads can also be tracked on the [Kanban board](/dashboard/how-to-use-the-kanban-board), or pushed into your task tracker using the [Monday](/Integrations/how-to-integrate-with-monday), [Asana](/Integrations/how-to-integrate-with-asana), or [ClickUp](/Integrations/how-to-integrate-with-clickup) integrations.
+
+## 7) Troubleshooting
+
+Not seeing any review comments after a deployment? Here are the most common causes:
+
+- **The deployment didn't succeed.** Agents only run after a successful deployment. Check the deployment status in Vercel first.
+- **The project isn't authorized.** Open the Superflow AI integration in your Vercel dashboard and confirm the project is in the authorized list.
+- **No agents are enabled.** Agents that exist but aren't enabled won't run. Enable at least one agent in your Superflow workspace.
+- **The deployment URL isn't publicly reachable.** If Vercel Deployment Protection (for example, Vercel Authentication or password protection) is enabled for the environment, the rendered page can't be loaded for review. Disable protection for the environments you want reviewed, or configure a protection bypass.
+- **The connection was never completed.** Installing from the Marketplace is only the first half — you also have to sign in to your Superflow workspace to finish connecting.
+
+## 8) Managing or removing the integration
+
+To change which projects are reviewed, or to remove the integration entirely, go to your Vercel dashboard, open **Integrations**, and select **Superflow AI**.
+
+Removing the integration stops new deployments from triggering reviews. Comments that were already created remain in your Superflow workspace.
