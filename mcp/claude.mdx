@@ -1,0 +1,79 @@
+---
+title: "Connect to Claude"
+description: "Add Superflow to claude.ai, Claude Code, or the Claude API as a custom connector."
+---
+
+Superflow works with Claude as a **custom connector**. You paste the server URL, sign in to Superflow, and approve the scopes. Nothing to install, and no waiting on a review or an admin — you can do it right now.
+
+## claude.ai
+
+<Note>
+  Custom connectors are available on Claude Pro and Max, and on Team and
+  Enterprise where an admin has enabled connectors. Free plans can't add remote
+  connectors — use the [demo endpoint](/mcp/overview#try-it-without-an-account)
+  instead.
+</Note>
+
+<Steps>
+  <Step title="Open connector settings">
+    In claude.ai, go to **Settings**, then **Connectors**.
+  </Step>
+  <Step title="Add a custom connector">
+    Click **Add custom connector** and paste the Superflow server URL:
+
+    ```
+    https://mcp.usesuperflow.ai/mcp
+    ```
+  </Step>
+  <Step title="Sign in to Superflow">
+    Claude opens the Superflow sign-in page. Sign in and pick the workspace you
+    want Claude to work in.
+  </Step>
+  <Step title="Approve the scopes">
+    Review the permissions on the Superflow consent screen and approve. Claude
+    can now use the Superflow tools in any conversation.
+  </Step>
+</Steps>
+
+Ask Claude something like *"list my Superflow projects"* to confirm the connection is live.
+
+## Claude Code
+
+Add the server from your terminal:
+
+```bash
+claude mcp add --transport http superflow https://mcp.usesuperflow.ai/mcp
+```
+
+The first time a Superflow tool is used, Claude Code prompts you to sign in and approve scopes in your browser. Run `/mcp` inside Claude Code to check connection status or re-authenticate.
+
+## Claude API
+
+Pass the server in the `mcp_servers` block of your request:
+
+```json
+{
+  "model": "claude-opus-4-5",
+  "max_tokens": 1024,
+  "mcp_servers": [
+    {
+      "type": "url",
+      "name": "superflow",
+      "url": "https://mcp.usesuperflow.ai/mcp",
+      "authorization_token": "YOUR_ACCESS_TOKEN"
+    }
+  ],
+  "messages": [
+    { "role": "user", "content": "Run the accessibility agent on acme.com." }
+  ]
+}
+```
+
+Two things to note:
+
+- **The MCP connector is behind a beta header.** Check the current header value in Anthropic's [MCP connector documentation](https://docs.claude.com/en/docs/agents-and-tools/mcp-connector) before you send the request.
+- **The API can't run an interactive sign-in.** There's no browser in the loop, so you supply a token yourself in `authorization_token` rather than going through the OAuth prompt. Generate one from the MCP settings in your [Superflow dashboard](https://app.usesuperflow.com).
+
+## Managing the connection
+
+Open **Settings**, then **Connectors** in claude.ai to see Superflow's granted scopes, reconnect it, or remove it. Removing the connector revokes Claude's access immediately; comments and agent runs it created stay in your workspace.

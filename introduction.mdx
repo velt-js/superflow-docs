@@ -1,71 +1,125 @@
 ---
-title: Introduction
-description: "Welcome to the home of your new documentation"
+title: "Introduction"
+description: "Superflow is a review tool for live websites and creative assets. Comment in place, let AI agents run your QA checklist, and get sign-off without chasing anyone."
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
-  alt="Hero Dark"
-/>
+Superflow is where your team, your clients, and your AI agents review work.
 
-## Setting up
+Add Superflow to a website and anyone can leave feedback directly on the page — pinned to the element, the text, or the region it refers to. No screenshots, no spreadsheets of "the button on the pricing page is 2px off". The same review flow works on the files you ship alongside the site: PDFs, images, videos, and Lottie animations.
 
-The first step to world-class documentation is setting up your editing environnments.
+On top of that, Superflow runs **AI review agents**. Paste in the QA checklist your team already uses, and agents open every new build, check it, and leave contextual comments the same way a human reviewer would.
+
+<Frame>
+![](/images/demo.gif)
+</Frame>
+
+## What you can do
 
 <CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
+  <Card title="Review live websites" icon="browser" href="/how-to-guides/how-to-enter-the-review-mode">
+    Turn on Review Mode on any page — production, staging, or a preview deploy —
+    and comment on the real thing.
   </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
+  <Card title="Review files" icon="file-lines" href="/files/how-to-upload-a-file">
+    Upload PDFs, images, videos, and Lottie files and collect feedback on them
+    in the same workspace.
+  </Card>
+  <Card title="Run AI review agents" icon="robot" href="/Integrations/how-to-integrate-with-vercel">
+    Accessibility, copy, broken links, visual QA, or your own custom checklist —
+    run automatically on every deployment.
+  </Card>
+  <Card title="Close the loop" icon="list-check" href="/dashboard/how-to-use-the-kanban-board">
+    Assign, prioritise, and resolve threads on a Kanban board, or push them into
+    Asana, ClickUp, Monday, or Slack.
   </Card>
 </CardGroup>
 
-## Make it yours
+## How it works
 
-Update your docs to your brand and add valuable content for the best user conversion.
+<Steps>
+  <Step title="Create a project">
+    A project is one site or one set of files. Create one from the
+    [dashboard](/dashboard/how-create-a-new-project) and Superflow gives you a
+    unique install snippet.
+  </Step>
+  <Step title="Install Superflow">
+    Paste the snippet into your site, or install the package if you're on a
+    framework. It takes a few minutes on every platform we support, and
+    Superflow verifies the install for you.
+  </Step>
+  <Step title="Review in place">
+    Add `?review=true` to your URL to enter
+    [Review Mode](/how-to-guides/how-to-enter-the-review-mode), then comment on
+    any element, text selection, or region. Add voice notes, screen recordings,
+    or file attachments to any thread.
+  </Step>
+  <Step title="Resolve and track">
+    Reply, assign, set a priority, and change status. Threads stay pinned to the
+    element they were left on, so a comment always keeps its context.
+  </Step>
+</Steps>
+
+## Install Superflow
 
 <CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
+  <Card title="No-code platforms" icon="wand-magic-sparkles" href="/no-code-platforms/webflow/setup">
+    Webflow, Wordpress, Wix, Squarespace, Shopify, Framer, Bubble, HubSpot,
+    Drupal, Typedream, and Google Tag Manager.
   </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/showcase"
-  >
-    Check out our showcase of our favorite documentation
+  <Card title="Web frameworks" icon="code" href="/web-frameworks/react/setup">
+    React, Next.js, Vue, Angular, and Svelte via the
+    `@usesuperflow/client` package.
   </Card>
 </CardGroup>
+
+## Connect the rest of your stack
+
+<CardGroup cols={2}>
+  <Card title="Superflow MCP" icon="plug" href="/mcp/overview">
+    Connect Superflow to Claude, ChatGPT, Cursor, and Gemini so your AI
+    assistant can run agents and read findings for you.
+  </Card>
+  <Card title="Integrations" icon="puzzle-piece" href="/Integrations/how-to-integrate-with-slack">
+    Two-way sync with Slack, Asana, ClickUp, Monday, and Vercel — plus
+    [webhooks](/Integrations/how-to-use-webhooks) for everything else.
+  </Card>
+  <Card title="REST API" icon="terminal" href="/rest-apis/projects/create-project">
+    Create projects programmatically with an
+    [auth token](/security/auth-tokens).
+  </Card>
+  <Card title="Security" icon="shield-check" href="/product-features/how-secure-is-Superflow">
+    How Superflow handles your data, and the
+    [CSP rules](/security/content-security-policy) to allow-list.
+  </Card>
+</CardGroup>
+
+## Key concepts
+
+| Term | What it means |
+| --- | --- |
+| **Workspace** | Your team's account. Holds every project, file, and member. |
+| **Project** | One website or file set being reviewed. Each project has its own install snippet, comments, and members. |
+| **Review Mode** | The state where the Superflow toolbar is active on your site and comments are visible. Enabled with `?review=true`. |
+| **Thread** | A comment and its replies, pinned to a specific element, text selection, or region of the page. |
+| **Agent** | An AI reviewer that opens a page and files findings as comment threads. Start from a preset or write your own instructions. |
+| **Guest mode** | Lets clients and stakeholders comment without a Superflow account. See [what guest mode is](/product-features/what-is-guest-mode). |
+| **Seat** | A member who can be assigned work in your workspace. See [what a seat is](/billing/what-is-a-seat). |
+
+## Where to go next
+
+<CardGroup cols={3}>
+  <Card title="Install on your site" icon="rocket" href="/no-code-platforms/webflow/setup">
+    Pick your platform and get Superflow running.
+  </Card>
+  <Card title="Learn the toolbar" icon="comment" href="/how-to-guides/how-to-sign-in-to-the-superflow-toolbar">
+    Step-by-step guides for every part of the review flow.
+  </Card>
+  <Card title="Bring your own AI" icon="sparkles" href="/mcp/overview">
+    Drive Superflow from Claude, ChatGPT, Cursor, or Gemini.
+  </Card>
+</CardGroup>
+
+<Note>
+  Need a hand? Reach us from the [support section](/dashboard/navigating-the-support-section)
+  in the dashboard.
+</Note>

@@ -1,0 +1,117 @@
+---
+title: "Superflow MCP"
+description: "Connect Superflow to Claude, ChatGPT, Cursor, Gemini, and any other MCP client through one remote server."
+---
+
+The Superflow MCP server lets an AI assistant work inside your Superflow workspace. Connect it once and you can ask Claude, ChatGPT, Cursor, or Gemini to run review agents on a page, read back the findings, create projects, verify installs, and summarise open comment threads — without leaving the chat.
+
+[Model Context Protocol](https://modelcontextprotocol.io) (MCP) is the open standard these clients use to talk to external tools. Superflow ships a single remote MCP server, so there is nothing to install and nothing to run locally.
+
+## Server details
+
+| | |
+| --- | --- |
+| **Server URL** | `https://mcp.usesuperflow.ai/mcp` |
+| **Transport** | Streamable HTTP |
+| **Authentication** | OAuth 2.1 (authorization code + PKCE) with dynamic client registration |
+| **Consent** | Per user, with individual scopes shown before you approve |
+| **Revocation** | From your client's connected apps screen, or from Superflow |
+
+The same URL works everywhere. Whichever client you use, you paste that one endpoint, sign in to Superflow in a browser window, and approve the scopes you want to grant.
+
+<Note>
+  Dynamic client registration means no client ID or secret to copy anywhere. If
+  a setup screen asks for one, leave it blank.
+</Note>
+
+## Connect your client
+
+<CardGroup cols={2}>
+  <Card title="Claude" icon="message" href="/mcp/claude">
+    claude.ai, Claude Code, and the Claude API.
+  </Card>
+  <Card title="ChatGPT" icon="comments" href="/mcp/chatgpt">
+    Custom connector on Plus, Pro, Business, Enterprise, and Edu.
+  </Card>
+  <Card title="Cursor" icon="code" href="/mcp/cursor">
+    One-click install button, or `mcp.json`.
+  </Card>
+  <Card title="Gemini" icon="gem" href="/mcp/gemini">
+    Gemini CLI via `settings.json`.
+  </Card>
+  <Card title="Other MCP clients" icon="plug" href="/mcp/other-clients">
+    Anything that supports remote MCP servers over HTTP.
+  </Card>
+  <Card title="Troubleshooting" icon="wrench" href="/mcp/troubleshooting">
+    Connection, sign-in, and permission problems.
+  </Card>
+</CardGroup>
+
+## What you can ask for
+
+The server exposes 22 tools. They're task-shaped rather than API-shaped: one tool does one thing an operator would actually ask for, so the assistant rarely needs to chain half a dozen calls to answer a question.
+
+These are the ones you'll reach for most:
+
+| Tool | What it does |
+| --- | --- |
+| `list_projects` | Lists the projects in your workspace. |
+| `create_web_project` | Creates a new website project and returns its install snippet. |
+| `verify_installation` | Checks whether Superflow is live on a project's URL. |
+| `update_project_status` | Archives or restores a project. |
+| `run_agents` | Runs one or more review agents against a page. |
+| `get_agent_run` | Checks the status of a run in progress. |
+| `get_agent_findings` | Reads the findings from a completed run. |
+| `get_team_analytics` | Pulls review activity and team analytics. |
+
+Alongside those, the server can read your open comment threads, list and create agents, read workspace details, and invite teammates. Your client lists every available tool once you connect.
+
+<Info>
+  Agent runs are asynchronous. `run_agents` starts a run and returns a run ID;
+  the assistant then polls `get_agent_run` until it finishes before calling
+  `get_agent_findings`. A full-page review usually takes a couple of minutes, so
+  expect the assistant to wait rather than answer instantly.
+</Info>
+
+### Example prompts
+
+Once you're connected, try:
+
+> Run the accessibility and broken links agents on acme.com and summarise what they found.
+
+> How many open comment threads does my team have this week?
+
+> Create a Superflow project for staging.acme.com, give me the install snippet, and verify it once I deploy.
+
+## Permissions
+
+Superflow asks for consent per user, and shows each scope on the approval screen before anything is granted:
+
+| Scope | Grants |
+| --- | --- |
+| Read workspace | Workspace name, plan, and members. |
+| Read projects | The list of projects and their details. |
+| Create and verify projects | Creating new projects and checking their install status. |
+| Read agents | The agents configured in your workspace. |
+| Create agents | Adding new agents. |
+| Run agents | Starting agent runs and reading their findings. |
+| Read analytics | Team and review analytics. |
+| Read comments | Comment threads and their status. |
+| Invite people | Sending workspace and project invitations. |
+
+Access is scoped to the workspace you pick during sign-in, and the assistant can only ever do what your own account can do. Revoke access at any time from your client's connected apps screen — the assistant loses access immediately.
+
+<Warning>
+  The invite tools send real email. Be specific about addresses when you ask an
+  assistant to invite someone.
+</Warning>
+
+## Try it without an account
+
+There's a read-only demo endpoint with sample data that needs no sign-in:
+
+```
+https://mcp.usesuperflow.ai/mcp/try
+```
+
+Add it the same way you'd add the main server. It's useful for seeing what the tools return before you connect a real workspace, and it's the option to point people at when their plan doesn't allow custom connectors.

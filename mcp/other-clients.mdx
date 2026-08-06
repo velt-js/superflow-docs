@@ -1,0 +1,54 @@
+---
+title: "Other MCP clients"
+description: "Connect Superflow to any client that supports remote MCP servers."
+---
+
+Superflow is a standard remote MCP server, so any client that speaks MCP over Streamable HTTP can use it. If your client isn't listed in these docs, the details below are everything it needs.
+
+## Connection details
+
+| | |
+| --- | --- |
+| **Server URL** | `https://mcp.usesuperflow.ai/mcp` |
+| **Transport** | Streamable HTTP (stateless JSON responses) |
+| **Authentication** | OAuth 2.1, authorization code with PKCE |
+| **Client registration** | Dynamic ([RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)) — no pre-issued client ID or secret |
+| **Discovery** | Protected resource metadata ([RFC 9728](https://datatracker.ietf.org/doc/html/rfc9728)) and authorization server metadata ([RFC 8414](https://datatracker.ietf.org/doc/html/rfc8414)) at the origin root |
+| **Revocation** | `POST https://mcp.usesuperflow.ai/oauth/revoke` |
+
+Because the server publishes discovery documents and supports dynamic client registration, a compliant client needs nothing from us in advance: point it at the URL and it will find the authorization server, register itself, and run the sign-in.
+
+## Typical config
+
+Most clients take the same shape as Cursor's:
+
+```json
+{
+  "mcpServers": {
+    "superflow": {
+      "url": "https://mcp.usesuperflow.ai/mcp"
+    }
+  }
+}
+```
+
+Some clients name the field `httpUrl`, `serverUrl`, or `endpoint`, and some ask for the transport (`http` or `streamable-http`) as a separate setting. Check your client's MCP documentation for the exact key.
+
+<Note>
+  Always use `https://mcp.usesuperflow.ai/mcp`. Sign-in depends on the discovery
+  documents served at that origin, so any other host will fail to authorize.
+</Note>
+
+## Clients without OAuth support
+
+A few clients can't run an interactive browser sign-in — CI jobs, server-side agents, and direct API calls, for example. For those, generate a token from the MCP settings in your [Superflow dashboard](https://app.usesuperflow.com) and send it as a bearer token on every request. Treat it like a password: it carries your account's access, so store it in a secret manager rather than in a config file you commit.
+
+## Testing without an account
+
+The demo endpoint needs no authentication and returns sample data, which makes it a quick way to check that a new client can reach the server at all:
+
+```
+https://mcp.usesuperflow.ai/mcp/try
+```
+
+If the demo endpoint works but the main one doesn't, the problem is in the sign-in flow rather than in the connection — see [troubleshooting](/mcp/troubleshooting).

@@ -14,6 +14,12 @@
         "tab": "Documentation",
         "groups": [
           {
+            "group": "Get Started",
+            "pages": [
+              "introduction"
+            ]
+          },
+          {
             "group": "No Code Platforms",
             "pages": [
               {
@@ -175,6 +181,18 @@
               "Integrations/how-to-integrate-with-clickup",
               "Integrations/how-to-integrate-with-vercel",
               "Integrations/how-to-use-webhooks"
+            ]
+          },
+          {
+            "group": "Superflow MCP",
+            "pages": [
+              "mcp/overview",
+              "mcp/claude",
+              "mcp/chatgpt",
+              "mcp/cursor",
+              "mcp/gemini",
+              "mcp/other-clients",
+              "mcp/troubleshooting"
             ]
           },
           {

@@ -1,0 +1,43 @@
+---
+title: "Connect to Cursor"
+description: "Add Superflow to Cursor with the install link or an mcp.json entry."
+---
+
+Cursor supports remote MCP servers natively, so Superflow is a few lines of config — or one click.
+
+## Install with one click
+
+Open this link to add Superflow to Cursor:
+
+[Add Superflow to Cursor](https://cursor.com/en/install-mcp?name=superflow&config=eyJ1cmwiOiJodHRwczovL21jcC51c2VzdXBlcmZsb3cuYWkvbWNwIn0=)
+
+Cursor asks you to confirm the server, then handles the Superflow sign-in the first time a tool runs.
+
+<Note>
+  The link above opens `cursor://anysphere.cursor-deeplink/mcp/install`, Cursor's
+  install deeplink. If your browser blocks it, use the manual setup below.
+</Note>
+
+## Manual setup
+
+Add Superflow to your MCP config. Use `.cursor/mcp.json` in a project to scope it to that project, or `~/.cursor/mcp.json` to make it available everywhere:
+
+```json .cursor/mcp.json
+{
+  "mcpServers": {
+    "superflow": {
+      "url": "https://mcp.usesuperflow.ai/mcp"
+    }
+  }
+}
+```
+
+Save the file and Cursor picks the server up. The first time it calls a Superflow tool it opens a browser window for you to sign in and approve the scopes.
+
+## Check it's working
+
+Open **Cursor Settings**, then **MCP**. Superflow should be listed with its tools, and the status should be green once you've signed in. Then ask the agent something like *"list my Superflow projects"*.
+
+## Managing the connection
+
+Remove the `superflow` entry from `mcp.json` to disconnect Cursor. To revoke the grant itself, disconnect Superflow from your [Superflow dashboard](https://app.usesuperflow.com) as well — removing the config stops Cursor from calling the server, but doesn't revoke the token it already holds.
