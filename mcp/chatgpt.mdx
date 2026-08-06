@@ -1,0 +1,46 @@
+---
+title: "Connect to ChatGPT"
+description: "Add Superflow to ChatGPT as a custom connector."
+---
+
+Superflow connects to ChatGPT as a **custom connector**. Paste the server URL, sign in to Superflow, approve the scopes, and the Superflow tools are available in your conversations.
+
+<Note>
+  Custom connectors are available on ChatGPT Plus, Pro, Business, Enterprise,
+  and Edu. On a managed workspace, an admin has to allow custom connectors
+  before you can add one.
+</Note>
+
+<Steps>
+  <Step title="Open connector settings">
+    In ChatGPT, go to **Settings**, then **Connectors**.
+  </Step>
+  <Step title="Enable developer mode if you're asked to">
+    Some workspaces require developer mode before custom MCP connectors can be
+    added. If you don't see an option to add one, enable it here.
+  </Step>
+  <Step title="Add the Superflow server">
+    Create a custom connector and paste the server URL:
+
+    ```
+    https://mcp.usesuperflow.ai/mcp
+    ```
+
+    Leave any client ID or client secret fields blank — Superflow registers your
+    client automatically.
+  </Step>
+  <Step title="Sign in and approve">
+    ChatGPT opens the Superflow sign-in page. Sign in, pick your workspace, and
+    approve the scopes on the consent screen.
+  </Step>
+</Steps>
+
+Ask *"list my Superflow projects"* to confirm it's connected.
+
+## Using it in a conversation
+
+ChatGPT decides when to call a connector, and it may ask you to confirm the first call in a conversation. If it doesn't reach for Superflow on its own, name it directly — *"using Superflow, run the broken links agent on acme.com"*.
+
+## Managing the connection
+
+Go back to **Settings**, then **Connectors** to view the granted scopes, reconnect, or delete the connector. Deleting it revokes ChatGPT's access to your workspace immediately.

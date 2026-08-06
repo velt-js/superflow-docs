@@ -1,0 +1,97 @@
+---
+title: "Troubleshooting"
+description: "Fixes for the common problems when connecting the Superflow MCP server."
+---
+
+## The client won't add the server
+
+<AccordionGroup>
+  <Accordion title="There's no option to add a custom connector">
+    Custom connectors are gated by plan. On claude.ai they need Pro or Max, or a
+    Team or Enterprise workspace where an admin has enabled connectors; on
+    ChatGPT they need Plus, Pro, Business, Enterprise, or Edu. On a managed
+    workspace an admin has to allow custom connectors first, and ChatGPT may
+    also require developer mode.
+
+    If you can't get that changed, point your client at the
+    [demo endpoint](/mcp/overview#try-it-without-an-account) instead. It's
+    read-only sample data, but it needs no sign-in and no plan upgrade.
+  </Accordion>
+  <Accordion title="The form is asking for a client ID and secret">
+    Leave them blank. Superflow supports dynamic client registration, so your
+    client registers itself when it connects. There are no credentials to copy.
+  </Accordion>
+  <Accordion title="The URL is rejected or the server never responds">
+    Check the URL is exactly `https://mcp.usesuperflow.ai/mcp` — including the
+    `/mcp` path. Some clients silently drop a trailing slash or a missing path
+    and then fail with a generic connection error.
+  </Accordion>
+</AccordionGroup>
+
+## Sign-in fails or keeps looping
+
+<AccordionGroup>
+  <Accordion title="The browser window opens and immediately closes">
+    Usually a blocked pop-up or a redirect the browser dropped. Allow pop-ups
+    for the client, then start the connection again. If your client opens the
+    sign-in in an embedded browser, try copying the URL into your normal browser.
+  </Accordion>
+  <Accordion title="Signed in, but the client still shows disconnected">
+    The consent screen has to be completed, not just the sign-in. If you closed
+    the window on the permissions step, no grant was created. Remove the server
+    from your client and add it again to restart the flow.
+  </Accordion>
+  <Accordion title="Wrong workspace">
+    The grant is scoped to the workspace you chose during sign-in. To switch,
+    revoke the connection and reconnect, then pick the right workspace on the
+    consent screen.
+  </Accordion>
+</AccordionGroup>
+
+## Tools are missing or failing
+
+<AccordionGroup>
+  <Accordion title="The assistant says it can't see any Superflow tools">
+    Restart the client after adding the server — most clients only read MCP
+    config at startup. Then check the client's MCP panel (`/mcp` in Claude Code
+    and the Gemini CLI, **Settings → MCP** in Cursor) to confirm Superflow is
+    listed and connected.
+  </Accordion>
+  <Accordion title="A tool returns a permission error">
+    You didn't grant that scope. Each capability — running agents, creating
+    projects, reading analytics, inviting people — is a separate scope on the
+    consent screen. Reconnect the server and approve the scopes you need.
+
+    Tools also can't exceed your own access. If your Superflow account can't do
+    something, neither can the assistant.
+  </Accordion>
+  <Accordion title="An agent run never finishes">
+    Runs are asynchronous, and a full-page review takes a couple of minutes.
+    The assistant polls `get_agent_run` until it completes, so give it time
+    before asking again.
+
+    If it fails outright, the usual causes are the same as for any agent run:
+    the page isn't publicly reachable, the project has no agents enabled, or the
+    workspace is out of AI credits.
+  </Accordion>
+  <Accordion title="verify_installation says a project isn't installed">
+    The snippet has to be live on the URL the project points at. Check that you
+    published the site after pasting the snippet, that the URL in the project
+    matches the environment you deployed to, and that the page isn't behind
+    authentication or deployment protection.
+
+    See the setup guide for your platform, and the
+    [CSP rules](/security/content-security-policy) if your site sets a strict
+    Content Security Policy.
+  </Accordion>
+</AccordionGroup>
+
+## Disconnecting
+
+Removing the server from your client's config stops it calling Superflow, but doesn't revoke the access token it already holds. To revoke the grant itself, disconnect Superflow from the client's connected apps screen, or from the MCP settings in your [Superflow dashboard](https://app.usesuperflow.com). Access dies immediately; anything the assistant already created stays in your workspace.
+
+<Note>
+  Still stuck? Reach us from the
+  [support section](/dashboard/navigating-the-support-section) in the dashboard
+  and include the client you're connecting from.
+</Note>

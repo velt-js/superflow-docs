@@ -1,0 +1,36 @@
+---
+title: "Connect to Gemini"
+description: "Add Superflow to the Gemini CLI as a remote MCP server."
+---
+
+The Gemini CLI supports remote MCP servers over HTTP, including the OAuth sign-in flow, so Superflow only needs a config entry.
+
+## Setup
+
+Add Superflow to `~/.gemini/settings.json`:
+
+```json ~/.gemini/settings.json
+{
+  "mcpServers": {
+    "superflow": {
+      "httpUrl": "https://mcp.usesuperflow.ai/mcp"
+    }
+  }
+}
+```
+
+Restart the CLI. The first time it calls a Superflow tool it opens your browser to sign in and approve the scopes.
+
+Run `/mcp` inside the CLI to list connected servers and their tools, then try *"list my Superflow projects"*.
+
+<Note>
+  Gemini's CLI has changed its config format across releases, and Google is
+  folding the Gemini CLI into the Antigravity CLI. The `mcpServers` block
+  carries over, but if the server doesn't show up in `/mcp`, check the key name
+  for remote HTTP servers in your version's documentation — some releases use
+  `url` rather than `httpUrl`.
+</Note>
+
+## Managing the connection
+
+Delete the `superflow` entry from `settings.json` to disconnect. To revoke the grant, also disconnect Superflow from your [Superflow dashboard](https://app.usesuperflow.com).
