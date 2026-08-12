@@ -246,32 +246,62 @@
           {
             "group": "How To Guides",
             "pages": [
-              "how-to-guides/how-to-sign-in-to-the-superflow-toolbar",
-              "how-to-guides/how-to-add-a-comment-on-an-element",
-              "how-to-guides/how-to-add-a-comment-to-a-text",
-              "how-to-guides/how-to-add-an-arrow-comment",
-              "how-to-guides/how-to-draw-a-box-comment-on-the-page",
-              "how-to-guides/how-to-enter-exit-comment-mode",
-              "how-to-guides/how-to-start-a-huddle",
-              "how-to-guides/how-to-open-the-comments-sidebar",
-              "how-to-guides/how-to-filter-comments-in-the-sidebar",
-              "how-to-guides/how-to-exit-the-review-mode",
-              "how-to-guides/how-to-switch-to-mobile-view",
-              "how-to-guides/how-to-record-voice-notes",
-              "how-to-guides/how-to-attach-files",
-              "how-to-guides/how-to-add-a-priority",
-              "how-to-guides/how-to-change-status",
-              "how-to-guides/how-to-search-comments",
-              "how-to-guides/how-to-delete-comments",
-              "how-to-guides/how-to-enter-the-review-mode",
-              "how-to-guides/how-to-view-the-project-dashboard",
-              "how-to-guides/how-to-use-the-AI-co-pilot",
-              "how-to-guides/how-can-I-export-comments",
-              "how-to-guides/how-to-use-guest-mode",
-              "how-to-guides/how-to-add-private-comments",
-              "how-to-guides/how-to-expand-the-superflow-toolbar",
-              "how-to-guides/how-to-record-screen-and-add-it-to-comments",
-              "how-to-guides/how-to-leave-video-comments"
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "how-to-guides/how-to-sign-in-to-the-superflow-toolbar",
+                  "how-to-guides/how-to-expand-the-superflow-toolbar",
+                  "how-to-guides/how-to-enter-exit-comment-mode",
+                  "how-to-guides/how-to-switch-to-mobile-view"
+                ]
+              },
+              {
+                "group": "Creating Comments",
+                "pages": [
+                  "how-to-guides/how-to-add-a-comment-on-an-element",
+                  "how-to-guides/how-to-add-a-comment-to-a-text",
+                  "how-to-guides/how-to-add-an-arrow-comment",
+                  "how-to-guides/how-to-draw-a-box-comment-on-the-page",
+                  "how-to-guides/how-to-add-private-comments"
+                ]
+              },
+              {
+                "group": "Adding Media to Comments",
+                "pages": [
+                  "how-to-guides/how-to-attach-files",
+                  "how-to-guides/how-to-record-voice-notes",
+                  "how-to-guides/how-to-record-screen-and-add-it-to-comments",
+                  "how-to-guides/how-to-leave-video-comments"
+                ]
+              },
+              {
+                "group": "Managing Comments",
+                "pages": [
+                  "how-to-guides/how-to-add-a-priority",
+                  "how-to-guides/how-to-change-status",
+                  "how-to-guides/how-to-delete-comments",
+                  "how-to-guides/how-can-I-export-comments",
+                  "how-to-guides/how-to-view-the-project-dashboard"
+                ]
+              },
+              {
+                "group": "Finding & Reviewing",
+                "pages": [
+                  "how-to-guides/how-to-open-the-comments-sidebar",
+                  "how-to-guides/how-to-filter-comments-in-the-sidebar",
+                  "how-to-guides/how-to-search-comments",
+                  "how-to-guides/how-to-enter-the-review-mode",
+                  "how-to-guides/how-to-exit-the-review-mode"
+                ]
+              },
+              {
+                "group": "Collaboration & AI",
+                "pages": [
+                  "how-to-guides/how-to-start-a-huddle",
+                  "how-to-guides/how-to-use-guest-mode",
+                  "how-to-guides/how-to-use-the-AI-co-pilot"
+                ]
+              }
             ]
           }
         ]
