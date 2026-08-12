@@ -1,0 +1,76 @@
+## How to Run Agent Pre-Checks on a New Project
+
+In this article, you will learn how to have agents review a website while you are still setting it up as a project. Superflow runs the agents you select against the URL as soon as you start, so by the time you finish installing the toolbar you already have an initial review of the site — without doing any manual QA yourself.
+
+<Frame>
+<video controls className="w-full aspect-video" src="/videos/agent-pre-checks.mp4"></video>
+</Frame>
+
+<Note>
+Agents are currently in **Beta**. Pre-checks run on the URL you enter, so the site needs to be reachable — the toolbar does not have to be installed yet.
+</Note>
+
+## Choosing the Agents
+
+1. On the Superflow Dashboard, click **Create Project** and paste your website URL into the **New Project** box. Below the URL field you will see the **Run Agents** option, already enabled with a few agents selected for you.
+
+<Frame>
+![](/images/how-to-guides/how-to-run-agent-pre-checks-on-a-new-project/01-new-project.png)
+</Frame>
+
+Two extra options sit underneath:
+
+* **Public Preview Link** — creates a link you can share with people outside your workspace.
+* **Run agents on every page** — checks every page it can reach instead of only the URL you entered.
+
+2. Click the **Run Agents** row to expand it and choose which agents to use. Search by name, clear the ones you do not need, and add any custom agents you have built.
+
+<Frame>
+![](/images/how-to-guides/how-to-run-agent-pre-checks-on-a-new-project/02-select-agents.png)
+</Frame>
+
+## Watching the Review Run
+
+3. Click **Start**. Superflow continues to the usual **Install** step, where you copy the script onto your site — but a live preview of your website now loads on the right, and the agents begin running against it at the same time. Expand **Reviewing your website** to watch their progress.
+
+<Frame>
+![](/images/how-to-guides/how-to-run-agent-pre-checks-on-a-new-project/03-agents-running.png)
+</Frame>
+
+<Tip>
+You do not have to wait on this screen. Copy the script, send it to a developer, or carry on to **Verify** — the agents keep running in the background.
+</Tip>
+
+4. Findings appear as each agent finishes rather than all at once, so the panel heading and the counts next to each agent keep climbing while the remaining agents are still marked **RUNNING**.
+
+<Frame>
+![](/images/how-to-guides/how-to-run-agent-pre-checks-on-a-new-project/04-findings-progress.png)
+</Frame>
+
+## Reviewing the Findings
+
+5. When the run completes, the panel shows the total number of issues with a breakdown per agent. Click an agent to expand its findings — each one explains the problem, and **Read More** opens the full detail.
+
+<Frame>
+![](/images/how-to-guides/how-to-run-agent-pre-checks-on-a-new-project/05-findings.png)
+</Frame>
+
+In this example the review found 8 issues before the site was even connected: one accessibility issue, two broken links, two Lighthouse issues, and three misspelled words — `Discovr`, `templte`, and `togther`.
+
+<Note>
+Install the Superflow toolbar on your site to open these findings in context on the page itself. The count also appears on the toolbar in the live preview.
+</Note>
+
+## Next Steps
+
+<CardGroup>
+
+<Card title="How to Create a New Agent" icon="plus" href="/how-to-guides/how-to-create-a-new-agent">
+  Build your own agent so it is available to select on your next project.
+</Card>
+
+<Card title="How to Run an Agent from the Agents Tab" icon="play" href="/how-to-guides/how-to-run-an-agent-from-the-agents-tab">
+  Run an agent against a project you have already created.
+</Card>
+
+</CardGroup>

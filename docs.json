@@ -301,6 +301,16 @@
                   "how-to-guides/how-to-use-guest-mode",
                   "how-to-guides/how-to-use-the-AI-co-pilot"
                 ]
+              },
+              {
+                "group": "Agents",
+                "pages": [
+                  "how-to-guides/how-to-create-a-new-agent",
+                  "how-to-guides/how-to-create-agents-from-a-checklist",
+                  "how-to-guides/how-to-create-and-run-an-agent-group",
+                  "how-to-guides/how-to-run-an-agent-from-the-agents-tab",
+                  "how-to-guides/how-to-run-agent-pre-checks-on-a-new-project"
+                ]
               }
             ]
           }
