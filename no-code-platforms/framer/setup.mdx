@@ -1,112 +1,111 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Framer"
+title: "Framer"
+sidebarTitle: "Framer"
+description: "Install Superflow on Framer — video walkthrough and step-by-step screenshots."
+icon: "browser"
 ---
 
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full Framer walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/8Ft7_kMGvC4?si=7_5X9EkERgKmiBeZ"
+    title="Install Superflow on Framer"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
+
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
+
+    <Frame>
+    ![Framer — Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select Framer from the list of Platforms">
+    Choose Framer from the list of options to install Superflow with Framer.
+
+    <Frame>
+    ![Framer — Select Framer from the list of Platforms](/images/select-framer-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow code">
+    You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
+
+    <Frame>
+    ![Framer — Copy your unique Superflow code](/images/copy-code-final.png)
+    </Frame>
+  </Step>
+  <Step title="Go to Settings on your Framer site, then scroll down to Custom Code to add your unique Superflow code">
+    You can get to Settings by clicking the gear icon on the top right.
+
+    Then scroll down to Custom Code and add your unique Superflow code in the End of Body section. Be sure to save.
 
 
-## 2) Select Framer from the list of Platforms
+    <Frame>
+    ![Framer — Go to Settings on your Framer site, then scroll down to Custom Code to add your unique…](/images/code-framer-final.png)
+    </Frame>
+  </Step>
+  <Step title="Publish your Framer site">
+    Click the publish button in the top right to publish your Framer site.
 
-Choose Framer from the list of options to install Superflow with Framer.
+    <Frame>
+    ![Framer — Publish your Framer site](/images/publish-framer-final.png)
+    </Frame>
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-<Frame>
-![](/images/select-framer-final.png)
-</Frame>
+    <Frame>
+    ![Framer — Verify your Installation](/images/verify-final.png)
+    </Frame>
 
+    If successful, you should be redirected to your published Framer site and see the following success message:
 
-## 3) Copy your unique Superflow code
+    <Frame>
+    ![Framer — Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your Framer site">
+    Now that you have verified that Superflow has been installed on your Framer site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-<Frame>
-![](/images/copy-code-final.png)
-</Frame>
+    `Example: mywebsite.framer.com/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-## 4) Go to Settings on your Framer site, then scroll down to Custom Code to add your unique Superflow code
+    <Frame>
+    ![Framer — Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
-You can get to Settings by clicking the gear icon on the top right.
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
-Then scroll down to Custom Code and add your unique Superflow code in the End of Body section. Be sure to save.
+    You can also leave voice and screen recordings in your comments as well!
 
-
-<Frame>
-![](/images/code-framer-final.png)
-</Frame>
-
-
-
-## 5) Publish your Framer site
-
-Click the publish button in the top right to publish your Framer site.
-
-<Frame>
-![](/images/publish-framer-final.png)
-</Frame>
-
-
-## 6) Verify your Installation
-
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
-
-<Frame>
-![](/images/verify-final.png)
-</Frame>
-
-If successful, you should be redirected to your published Framer site and see the following success message:
-
-<Frame>
-![](/images/verified-final.png)
-</Frame>
-
-## 7) Troubleshooting
-
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
-
-
-## 8) Navigate to your Framer site 
-
-Now that you have verified that Superflow has been installed on your Framer site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.framer.com/?review=true`
-
-
-## 9) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
-
-
-
-
-## 10) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
+    <Frame>
+    ![Framer — Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

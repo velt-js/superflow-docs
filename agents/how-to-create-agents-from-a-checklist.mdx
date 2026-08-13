@@ -1,0 +1,110 @@
+---
+title: "How to Create Agents from a Checklist"
+description: "Learn how to turn an existing QA checklist into a set of agents."
+icon: "list-check"
+---
+
+In this article, you will learn how to turn an existing QA checklist into a set of agents. Instead of writing each agent by hand, you can upload the checklist you already use and Superflow will read every task in it, group related tasks together, and propose a set of agents that cover them.
+
+<Frame>
+<video controls className="w-full aspect-video" src="/videos/checklist-import.mp4"></video>
+</Frame>
+
+<Note>
+Agents are currently in **Beta**. Importing a checklist supports **PDF**, **CSV**, **Excel**, and plain text files.
+</Note>
+
+## Uploading Your Checklist
+
+<Steps>
+  <Step title="On the Superflow Dashboard, click Agents in the left sidebar to open the All Agents page">
+    Click the **Import** button on the upper right side.
+
+    <Frame>
+    ![On the Superflow Dashboard, click Agents in the left sidebar to open the All Agents page](/images/how-to-guides/how-to-create-agents-from-a-checklist/01-import-button.png)
+    </Frame>
+  </Step>
+  <Step title="The upload screen will appear">
+    Drag your checklist onto the drop area, or click **Browse Files** to select it from your computer.
+
+    <Frame>
+    ![The upload screen will appear](/images/how-to-guides/how-to-create-agents-from-a-checklist/02-drop-zone.png)
+    </Frame>
+  </Step>
+  <Step title="Superflow will analyze the file, read the tasks inside it…">
+    Superflow will analyze the file, read the tasks inside it, and work out which of them can be turned into agents.
+
+    <Frame>
+    ![Superflow will analyze the file, read the tasks inside it…](/images/how-to-guides/how-to-create-agents-from-a-checklist/03-analyzing.png)
+    </Frame>
+
+    <Tip>
+    This step can take several minutes for a long checklist. You can leave the page open while it works.
+    </Tip>
+  </Step>
+</Steps>
+
+## Reviewing the Proposed Agents
+
+<Steps>
+  <Step title="When the analysis finishes, Superflow shows how many agents it extracted along with the tasks…">
+    When the analysis finishes, Superflow shows how many agents it extracted along with the tasks it grouped into each one. In this example, a checklist produced **7 agents**. Every agent is selected by default — clear the checkbox on any agent you do not want to create.
+
+    <Frame>
+    ![When the analysis finishes, Superflow shows how many agents it extracted along with the tasks…](/images/how-to-guides/how-to-create-agents-from-a-checklist/04-extracted-agents.png)
+    </Frame>
+  </Step>
+</Steps>
+
+Each agent card tells you three things:
+
+| On the card | What it means |
+| --- | --- |
+| **Description** | What the agent checks, for example "Validates page titles, meta descriptions…". |
+| **Requires N answers to run** | The agent needs answers to some questions before it can run. Agents that need no input show **Runs instantly** instead. |
+| **N Source Tasks** | How many tasks from your checklist were combined into this agent. Click it to see exactly which ones. |
+
+<Steps>
+  <Step title="Click the Excluded Tasks tab to see the tasks Superflow could not turn into agents">
+    Hover any card to see the reason it was excluded.
+
+    <Frame>
+    ![Click the Excluded Tasks tab to see the tasks Superflow could not turn into agents](/images/how-to-guides/how-to-create-agents-from-a-checklist/05-excluded-tasks.png)
+    </Frame>
+  </Step>
+</Steps>
+
+These are usually tasks that cannot be verified from a rendered page — settings inside your CMS or platform admin, or actions in a tool Superflow cannot reach. For example, "Disable Webflow Subdomain Indexing" is a toggle inside Webflow, so it is not verifiable in the rendered HTML. Checks that *can* be done on the page itself, such as SEO tags, broken links, and image assets, become agents.
+
+## Creating the Agents
+
+<Steps>
+  <Step title="Once you are happy with the selection, click Create">
+    The button shows how many agents will be created. Superflow validates each one before creating it, so this takes a little time.
+
+    <Frame>
+    ![Once you are happy with the selection, click Create](/images/how-to-guides/how-to-create-agents-from-a-checklist/06-validating.png)
+    </Frame>
+  </Step>
+  <Step title="When validation finishes, your new agents appear in the All Agents list…">
+    When validation finishes, your new agents appear in the **All Agents** list, each marked with a **NEW** badge, ready to run.
+
+    <Frame>
+    ![When validation finishes, your new agents appear in the All Agents list…](/images/how-to-guides/how-to-create-agents-from-a-checklist/07-agent-list.png)
+    </Frame>
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup>
+
+<Card title="How to Run an Agent from the Agents Tab" icon="play" href="/agents/how-to-run-an-agent-from-the-agents-tab">
+  Run any of your new agents against a project and review its findings.
+</Card>
+
+<Card title="How to Create a New Agent" icon="plus" href="/agents/how-to-create-a-new-agent">
+  Build a single agent from scratch by describing the check in your own words.
+</Card>
+
+</CardGroup>

@@ -1,151 +1,152 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with React.js"
+title: "React"
+sidebarTitle: "React"
+description: "Install Superflow on React — video walkthrough and step-by-step screenshots."
+icon: "react"
 ---
+
+<Frame caption="Watch the full React walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/J9LwQWBAO6E?si=ijsA6gl2a__iM6B-"
+    title="Install Superflow on React"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
+</Frame>
+
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
 [Github Repo](https://github.com/benjvelt/superflow-react)
 
 [Demo](https://superflow-react.vercel.app/?review=true)
 
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-## 1) Enter Your Site URL
+    <Frame>
+    ![React — Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select NPM from the list of Platforms">
+    Choose NPM from the list of options to install Superflow with React.js.
 
-Enter the site URL you want Superflow to be installed in.
+    <Frame>
+    ![React — Select NPM from the list of Platforms](/images/select-npm-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow Code">
+    Copy the code from the section "Initialize Superflow"
 
-<Frame>
-![](/images/enter-url-final.png)
-</Frame>
+    <Frame>
+    ![React — Copy your unique Superflow Code](/images/copy-npm-final.png)
+    </Frame>
+  </Step>
+  <Step title="Install the Superflow NPM package">
+    Install the Superflow NPM package with:
 
+    ```
+    npm i @usesuperflow/client
+    ```
+  </Step>
+  <Step title="Import Superflow into your App.js file">
+    Import the Superflow NPM package with:
 
-## 2) Select NPM from the list of Platforms
+    ```
+    import { initSuperflow } from '@usesuperflow/client'
+    ```
+  </Step>
+  <Step title="Initialize Superflow within App.js">
+    Import `initSuperflow` from the NPM package and use it to initialize Superflow.
 
-Choose NPM from the list of options to install Superflow with React.js.
-
-<Frame>
-![](/images/select-npm-final.png)
-</Frame>
-
-
-## 3) Copy your unique Superflow Code
-
-Copy the code from the section "Initialize Superflow"
-
-<Frame>
-![](/images/copy-npm-final.png)
-</Frame>
-
-## 4) Install the Superflow NPM package
-
-Install the Superflow NPM package with:
-
-```
-npm i @usesuperflow/client
-```
-
-## 5) Import Superflow into your `App.js` file
-
-Import the Superflow NPM package with:
-
-```
-import { initSuperflow } from '@usesuperflow/client'
-```
-
-## 6) Initialize Superflow within `App.js`
-
-Import `initSuperflow` from the NPM package and use it to initialize Superflow.
-
-Create a `useEffect` hook and paste in the unique Superflow code you copied earlier.
+    Create a `useEffect` hook and paste in the unique Superflow code you copied earlier.
 
 
-```js
-import './App.css';
-import logo from './logo.svg';
+    ```js
+    import './App.css';
+    import logo from './logo.svg';
 
-import { initSuperflow } from '@usesuperflow/client';
-import { useEffect } from 'react';
-
-
-function App() {
-
-  useEffect( () => {
-    //initialize Superflow
-    initSuperflow('YOUR_API_KEY', {
-      projectId: 'YOUR_PROJECT_ID'
-    });
-  })
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-          <p>Test out Superflow by highlighting this text.</p>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+    import { initSuperflow } from '@usesuperflow/client';
+    import { useEffect } from 'react';
 
 
-```
-## 7) Deploy your React app with your changes.
+    function App() {
 
-Deploy your React app with your new changes.
+      useEffect( () => {
+        //initialize Superflow
+        initSuperflow('YOUR_API_KEY', {
+          projectId: 'YOUR_PROJECT_ID'
+        });
+      })
+      return (
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+              <p>Test out Superflow by highlighting this text.</p>
+          </header>
+        </div>
+      );
+    }
 
-## 8) Verify your Installation
-
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
-
-<Frame>
-![](/images/verify-final.png)
-</Frame>
-
-If successful, you should be redirected to your published React site and see the following success message:
-
-<Frame>
-![](/images/verified-final.png)
-</Frame>
-
-## 9) Troubleshooting
-
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
+    export default App;
 
 
-## 10) Navigate to your React site 
+    ```
+  </Step>
+  <Step title="Deploy your React app with your changes.">
+    Deploy your React app with your new changes.
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-Now that you have verified that Superflow has been installed on your React site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
+    <Frame>
+    ![React — Verify your Installation](/images/verify-final.png)
+    </Frame>
 
-`Example: mywebsite.com/?review=true`
+    If successful, you should be redirected to your published React site and see the following success message:
 
+    <Frame>
+    ![React — Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-## 11) Test out Superflow
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your React site">
+    Now that you have verified that Superflow has been installed on your React site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-You should now see a Superflow toolbar on the bottom right of your screen.
+    `Example: mywebsite.com/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of your screen.
 
-<Frame>
-![](/images/react-toolbar-final.png)
-</Frame>
+    <Frame>
+    ![React — Test out Superflow](/images/react-toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
+    You can also leave voice and screen recordings in your comments as well!
 
-
-## 12) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
+    <Frame>
+    ![React — Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

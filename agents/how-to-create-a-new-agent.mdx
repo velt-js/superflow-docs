@@ -1,0 +1,115 @@
+---
+title: "How to Create a New Agent"
+description: "Learn how to create a new agent in Superflow."
+icon: "wand-magic-sparkles"
+---
+
+In this article, you will learn how to create a new agent in Superflow. An agent is a reusable check that you describe in plain English, which Superflow then runs against your projects to find issues automatically. Before the agent is saved, Superflow stress-tests your instructions against sample cases so you can confirm it behaves the way you expect.
+
+In this example, we will build a **Spell Check** agent that looks for spelling mistakes in a page.
+
+<Frame>
+<video controls className="w-full aspect-video" src="/videos/create-an-agent.mp4"></video>
+</Frame>
+
+<Note>
+Agents are currently in **Beta**. Each run consumes credits from your workspace balance, and the exact cost is shown before you confirm a run.
+</Note>
+
+## Creating the Agent
+
+<Steps>
+  <Step title="On the Superflow Dashboard, click Agents in the left sidebar">
+    The **All Agents** page will open. Click the **New Agent** button on the upper right side.
+
+    <Frame>
+    ![On the Superflow Dashboard, click Agents in the left sidebar](/images/how-to-guides/how-to-create-a-new-agent/01-agents-new-agent.png)
+    </Frame>
+  </Step>
+  <Step title="The Basics step will appear">
+    Enter a **Name** for your agent, then add an optional **Description** to explain what it does. A live preview of the agent card is shown on the right side. Click **Next**.
+
+    <Frame>
+    ![The Basics step will appear](/images/how-to-guides/how-to-create-a-new-agent/02-basics.png)
+    </Frame>
+
+    <Tip>
+    **Auto Credits** calculates credits at run time.
+    </Tip>
+  </Step>
+  <Step title="The Prompt step will appear">
+    In the **Prompt** field, describe what the agent should check for. In this example, we will use `Make sure all the spellings in the HTML body is correct`. Click **Next**.
+
+    <Frame>
+    ![The Prompt step will appear](/images/how-to-guides/how-to-create-a-new-agent/03-prompt.png)
+    </Frame>
+  </Step>
+</Steps>
+
+There are two optional controls on this step:
+
+* **Refine prompt** — rewrites your instruction into a clearer, more specific version.
+* **Questions** — click **Add Question** to add questions the agent should ask at run time.
+
+## Reviewing the Test Results
+
+<Steps>
+  <Step title="The Test step will begin automatically">
+    Superflow analyzes your instructions, stress-tests the prompt, generates test scenarios, and builds live previews. This is the longest step, so allow it a moment to finish.
+
+    <Frame>
+    ![The Test step will begin automatically](/images/how-to-guides/how-to-create-a-new-agent/04-testing.png)
+    </Frame>
+  </Step>
+  <Step title="When testing completes, the generated scenarios are listed as numbered tabs">
+    Click any tab to inspect that scenario. Each one shows a live preview of the sample case, the **Expected Output**, and the **Reason** behind it.
+
+    <Frame>
+    ![When testing completes, the generated scenarios are listed as numbered tabs](/images/how-to-guides/how-to-create-a-new-agent/05-test-results.png)
+    </Frame>
+  </Step>
+</Steps>
+
+Each scenario is labelled so you can see the kind of case it covers, for example:
+
+| Label | What it means |
+| --- | --- |
+| **Obvious Match** | A clear-cut issue the agent should always catch, such as `Submite Changes` on a button. |
+| **Subtle Match** | A harder case that is easy to miss, such as a misspelling inside a placeholder attribute. |
+| **Expected: Should detect** | The agent is expected to raise a finding for this scenario. |
+
+Reviewing these scenarios is the point of this step. It shows you where your check will succeed and where it may produce a false positive, before the agent runs against real projects.
+
+<Steps>
+  <Step title="If a scenario's result looks wrong, click Wrong Output?">
+    Tell us Why** and explain the problem. Superflow will rebuild the prompt using your feedback and test it again.
+
+    <Frame>
+    ![If a scenario's result looks wrong, click Wrong Output?](/images/how-to-guides/how-to-create-a-new-agent/06-feedback.png)
+    </Frame>
+  </Step>
+  <Step title="Once you are satisfied with the results, click Create">
+    Superflow will configure the agent and lock in the prompt along with the edge cases it learned during testing.
+
+    <Frame>
+    ![Once you are satisfied with the results, click Create](/images/how-to-guides/how-to-create-a-new-agent/07-creating.png)
+    </Frame>
+  </Step>
+  <Step title="Your new agent will appear in the All Agents list, marked with a NEW badge">
+    <Frame>
+    ![Your new agent will appear in the All Agents list, marked with a NEW badge](/images/how-to-guides/how-to-create-a-new-agent/09-agent-list.png)
+    </Frame>
+  </Step>
+</Steps>
+
+## Next Steps
+
+Your agent is ready to use. The next step is to run it against a project and review what it finds.
+
+<CardGroup>
+
+<Card title="How to Run an Agent from the Agents Tab" icon="play" href="/agents/how-to-run-an-agent-from-the-agents-tab">
+  Run your new agent against a project, choose a device, and review its findings.
+</Card>
+
+</CardGroup>

@@ -1,0 +1,55 @@
+---
+title: "How to Run an Agent from the Agents Tab"
+description: "Learn how to run an agent from the Agents tab against one of your projects, and review its findings."
+icon: "play"
+---
+
+In this article, you will learn how to run an agent from the **Agents** tab against one of your projects, and review its findings. If you have not built an agent yet, start with [How to Create a New Agent](/agents/how-to-create-a-new-agent).
+
+<Note>
+Agents are currently in **Beta**. Each run consumes credits from your workspace balance, and the exact cost is shown before you confirm the run.
+</Note>
+
+<Steps>
+  <Step title="On the Superflow Dashboard, click Agents in the left sidebar to open the All Agents page">
+    Find the agent you want to run and click the **Play** icon on the right side of its row.
+
+    <Frame>
+    ![On the Superflow Dashboard, click Agents in the left sidebar to open the All Agents page](/images/how-to-guides/how-to-run-an-agent-from-the-agents-tab/01-agent-list-play.png)
+    </Frame>
+
+    <Tip>
+    Use the **Search Agents** field or the group filters above it — **All**, **Default**, **Pre Launch Check**, and so on — to find an agent quickly.
+    </Tip>
+  </Step>
+  <Step title="The Run dialog will appear, named after the agent you selected">
+    Configure the run using the options below, then click **Run Agent**.
+
+    | Option | What it does |
+    | --- | --- |
+    | **Project** | The project to run the agent against. Use the **Website**, **PDF**, **Video**, **Image**, and **Lottie** filters to narrow the list. |
+    | **Path** | The path to check, for example `/`. |
+    | **Device** | Run the check as **Desktop** or **Mobile**. |
+    | **Run only for main URL** | Leave this checked to check only the main URL instead of crawling the whole project. |
+
+    <Frame>
+    ![The Run dialog will appear, named after the agent you selected](/images/how-to-guides/how-to-run-an-agent-from-the-agents-tab/02-run-modal.png)
+    </Frame>
+  </Step>
+</Steps>
+
+The cost of the run is shown just above the buttons, along with your remaining balance, so you can confirm it before spending credits.
+
+<Steps>
+  <Step title="When the run finishes, the results panel opens on the right side…">
+    When the run finishes, the results panel opens on the right side, named after your agent — in this example, **Spell Check Results**. Each entry is a single run, showing the project it ran against, when it ran, the device used, who triggered it, and the number of findings. Click an entry to expand it and review the findings.
+
+    <Frame>
+    ![When the run finishes, the results panel opens on the right side…](/images/how-to-guides/how-to-run-an-agent-from-the-agents-tab/03-execution-history.png)
+    </Frame>
+
+    <Note>
+    The panel keeps the history of every run for that agent, so you can compare a new run against earlier ones. If a run could not complete, it is listed with an error instead of a findings count.
+    </Note>
+  </Step>
+</Steps>

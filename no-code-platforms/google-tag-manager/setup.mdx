@@ -1,120 +1,121 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Google Tag Manager"
+title: "Google Tag Manager"
+sidebarTitle: "Google Tag Manager"
+description: "Install Superflow on Google Tag Manager — video walkthrough and step-by-step screenshots."
+icon: "google"
 ---
 
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full Google Tag Manager walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/rA7P0bCEa78?si=MM-TKd7Nv2zlGMFJ"
+    title="Install Superflow on Google Tag Manager"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
-## 2) Set Up with Google Tag Manager
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-If Google Tag Manager is detected with the site URL you entered, you will see a banner at the top recommending that you install with Google Tag Manager.
+    <Frame>
+    ![Google Tag Manager — Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Set Up with Google Tag Manager">
+    If Google Tag Manager is detected with the site URL you entered, you will see a banner at the top recommending that you install with Google Tag Manager.
 
-Click Start Setup inside the banner to install Superflow with Google Tag Manager.
+    Click Start Setup inside the banner to install Superflow with Google Tag Manager.
 
-<Frame>
-![](/images/gtm1.png)
-</Frame>
+    <Frame>
+    ![Google Tag Manager — Set Up with Google Tag Manager](/images/gtm1.png)
+    </Frame>
+  </Step>
+  <Step title="Authenticate with your Google Tag Manager account">
+    You will be asked to authenticate with the email associated with your Google Tag Manager account.
 
-## 3) Authenticate with your Google Tag Manager account
+    <Frame>
+    ![Google Tag Manager — Authenticate with your Google Tag Manager account](/images/gtm2.png)
+    </Frame>
 
-You will be asked to authenticate with the email associated with your Google Tag Manager account.
+    Once you choose your email, you should see this loading screen.
 
-<Frame>
-![](/images/gtm2.png)
-</Frame>
+    <Frame>
+    ![Google Tag Manager — Authenticate with your Google Tag Manager account](/images/gtm3.png)
+    </Frame>
+  </Step>
+  <Step title="Choose the Account and Tag Container from your Google Tag Manager account.">
+    Choose the Google Tag Manager Account and Tag Container that you will be using to install Superflow within.
 
-Once you choose your email, you should see this loading screen.
+    <Frame>
+    ![Google Tag Manager — Choose the Account and Tag Container from your Google Tag Manager account](/images/gtm4.png)
+    </Frame>
+  </Step>
+  <Step title="Create and Publish Tag">
+    We will now create and publish a tag on your Google Tag Manager Account and Tag Container.
 
-<Frame>
-![](/images/gtm3.png)
-</Frame>
+    Click on Create and Publish Tag to authorize this.
 
-## 4) Choose the Account and Tag Container from your Google Tag Manager account.
-
-Choose the Google Tag Manager Account and Tag Container that you will be using to install Superflow within.
-
-<Frame>
-![](/images/gtm4.png)
-</Frame>
-
-
-## 5) Create and Publish Tag
-
-We will now create and publish a tag on your Google Tag Manager Account and Tag Container.
-
-Click on Create and Publish Tag to authorize this.
-
-<Info>This will also publish any unpublished changes you have on your GTM workspace</Info>
-
-
-<Frame>
-![](/images/gtm5.png)
-</Frame>
-
-
-
-## 6) Verify your Installation
-
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
-
-<Frame>
-![](/images/gtm6.png)
-</Frame>
-
-If successful, you should be redirected to your published site and see the following success message:
-
-<Frame>
-![](/images/verified-final.png)
-</Frame>
-
-## 7) Troubleshooting
-
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
+    <Info>This will also publish any unpublished changes you have on your GTM workspace</Info>
 
 
-## 8) Navigate to your site 
+    <Frame>
+    ![Google Tag Manager — Create and Publish Tag](/images/gtm5.png)
+    </Frame>
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-Now that you have verified that Superflow has been installed on your site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
+    <Frame>
+    ![Google Tag Manager — Verify your Installation](/images/gtm6.png)
+    </Frame>
 
-`Example: mywebsite.yoursite.com/?review=true`
+    If successful, you should be redirected to your published site and see the following success message:
 
+    <Frame>
+    ![Google Tag Manager — Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-## 9) Test out Superflow
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your site">
+    Now that you have verified that Superflow has been installed on your site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-You should now see a Superflow toolbar on the bottom right of you screen.
+    `Example: mywebsite.yoursite.com/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
+    <Frame>
+    ![Google Tag Manager — Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
+    You can also leave voice and screen recordings in your comments as well!
 
-
-## 10) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
+    <Frame>
+    ![Google Tag Manager — Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

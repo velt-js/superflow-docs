@@ -1,0 +1,83 @@
+---
+title: "How to Create and Run an Agent Group"
+description: "Learn how to bundle several agents into a group and run them together against a project."
+icon: "layer-group"
+---
+
+In this article, you will learn how to bundle several agents into a group and run them together against a project. Groups are useful when you always run the same set of checks — a pre-launch checklist, for example — so you can trigger them all at once instead of running each agent one at a time.
+
+<Frame>
+<video controls className="w-full aspect-video" src="/videos/agent-groups.mp4"></video>
+</Frame>
+
+<Note>
+Agents are currently in **Beta**. Running a group charges credits for every agent in it, and the total is shown before you confirm the run.
+</Note>
+
+## Creating the Group
+
+<Steps>
+  <Step title="On the Superflow Dashboard, click Agents in the left sidebar to open the All Agents page">
+    Click the **New Group** button on the upper right side.
+
+    <Frame>
+    ![On the Superflow Dashboard, click Agents in the left sidebar to open the All Agents page](/images/how-to-guides/how-to-create-and-run-an-agent-group/01-new-group.png)
+    </Frame>
+  </Step>
+  <Step title="The Create Agent Group dialog will appear">
+    Enter a **Group Name**, then tick the agents you want in the group. Use the **Search** field to find agents by name, or click **Select all** to add every agent. A counter below the list shows how many you have selected. Click **Create Group**.
+
+    <Frame>
+    ![The Create Agent Group dialog will appear](/images/how-to-guides/how-to-create-and-run-an-agent-group/02-create-group.png)
+    </Frame>
+  </Step>
+  <Step title="The group is created and opens straight away, showing only the agents it contains">
+    It is also added to the filter row beneath the page title, so you can jump back to it at any time.
+
+    <Frame>
+    ![The group is created and opens straight away, showing only the agents it contains](/images/how-to-guides/how-to-create-and-run-an-agent-group/03-group-created.png)
+    </Frame>
+
+    <Tip>
+    Use the pencil icon next to the group title to rename the group or change which agents belong to it.
+    </Tip>
+  </Step>
+</Steps>
+
+## Running the Group
+
+<Steps>
+  <Step title="With the group open, click Run All Agents">
+    The run dialog will appear, titled with the number of agents in the group. Select the project to run against, then set the **Path**, choose **Desktop** or **Mobile**, and leave **Run only for main URL** checked to check just the main URL.
+
+    <Frame>
+    ![With the group open, click Run All Agents](/images/how-to-guides/how-to-create-and-run-an-agent-group/04-run-group.png)
+    </Frame>
+  </Step>
+</Steps>
+
+The total cost is shown above the buttons along with your remaining balance — each agent in the group counts as one review, so a group of four costs 40 credits. Click **Run agents** to start.
+
+<Steps>
+  <Step title="Every agent in the group starts at once, and each row shows a running status while it works">
+    Click an agent's name to open its results panel on the right and follow that agent's progress and past runs.
+
+    <Frame>
+    ![Every agent in the group starts at once, and each row shows a running status while it works](/images/how-to-guides/how-to-create-and-run-an-agent-group/05-progress.png)
+    </Frame>
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup>
+
+<Card title="How to Create a New Agent" icon="plus" href="/agents/how-to-create-a-new-agent">
+  Build a new agent so you can add it to a group.
+</Card>
+
+<Card title="How to Run an Agent from the Agents Tab" icon="play" href="/agents/how-to-run-an-agent-from-the-agents-tab">
+  Run a single agent instead of a whole group.
+</Card>
+
+</CardGroup>
