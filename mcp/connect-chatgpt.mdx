@@ -1,0 +1,25 @@
+---
+title: "Connect ChatGPT"
+description: "Add the Superflow MCP connector to ChatGPT as a custom connector."
+icon: "comments"
+---
+
+Custom connectors are available to ChatGPT users on Pro, Plus, Business, Enterprise and Edu plans. On managed workspaces, an admin must allow custom connectors.
+
+<Steps>
+  <Step title="Open Settings, then Connectors">
+    If your workspace requires it for custom MCP connectors, enable **Developer mode** first.
+  </Step>
+  <Step title="Add a custom connector">
+    Use the server URL:
+
+    ```
+    https://mcp.usesuperflow.ai/mcp
+    ```
+  </Step>
+  <Step title="Sign in and approve">
+    ChatGPT sends you to Superflow's consent screen. Sign in, pick the workspace to connect, review the [permissions](/mcp/overview#permissions), and click **Approve**.
+  </Step>
+</Steps>
+
+Then ask things like: "How many open comment threads does my team have this week?" or "Create a Superflow project for staging.acme.com and give me the install snippet."

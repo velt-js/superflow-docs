@@ -1,0 +1,56 @@
+---
+title: "REST API Overview"
+sidebarTitle: "Overview"
+description: "Authenticate to the Superflow REST API and understand its request and response conventions."
+icon: "code"
+---
+
+The Superflow REST API lets your own systems automate Superflow, for example creating a project automatically whenever your pipeline deploys a new client site.
+
+<Tip>
+If your goal is to let an AI tool work with Superflow, the [MCP connector](/mcp/overview) is the better fit: per-user sign-in, no tokens to manage, and a much wider set of capabilities.
+</Tip>
+
+## Authentication
+
+Every request carries two headers:
+
+<ParamField header="x-superflow-api-key" type="string" required>
+  Your workspace API key.
+</ParamField>
+
+<ParamField header="x-superflow-auth-token" type="string" required>
+  Your workspace [auth token](/security/auth-tokens).
+</ParamField>
+
+Both values are on the Superflow Dashboard under **Settings**, then **Integrations**, then **REST API**. Keep them server-side; anyone holding both can act on your workspace.
+
+## Conventions
+
+- Requests are `POST` with `Content-Type: application/json`, and the payload wrapped in a `data` object:
+
+  ```json
+  { "data": { "projectUrl": "https://example.com", "projectName": "Example" } }
+  ```
+
+- Successful responses arrive wrapped in `result`:
+
+  ```json
+  { "result": { "status": "success", "message": "...", "data": { } } }
+  ```
+
+- Failures arrive wrapped in `error`, with a message and a status code such as `INVALID_ARGUMENT`, `ALREADY_EXISTS`, or `RESOURCE_EXHAUSTED`:
+
+  ```json
+  { "error": { "message": "Invalid Auth token.", "status": "INVALID_ARGUMENT" } }
+  ```
+
+- Requests are rate limited per caller and workspace. Space out bursts rather than retrying failures in a tight loop.
+
+## Endpoints
+
+<Card title="Create Project" icon="folder-plus" href="/rest-apis/projects/create-project">
+  Create a website project, optionally mark it as already installed, and optionally kick off agent checks in the same call.
+</Card>
+
+More endpoints are on the way. If you need one that is not here yet, tell us at hello@usesuperflow.com, or use the [MCP connector](/mcp/overview), which already covers projects, agents, comments, analytics and invitations.

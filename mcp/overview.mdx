@@ -1,0 +1,90 @@
+---
+title: "MCP Overview"
+sidebarTitle: "Overview"
+description: "Connect Superflow to Claude, ChatGPT, Cursor, Gemini and other AI tools using the Model Context Protocol, and let them run agents, manage projects and read findings for you."
+icon: "robot"
+---
+
+The Superflow MCP connector lets AI tools act on your Superflow workspace directly. Once connected, you can ask Claude, ChatGPT, Cursor or any MCP-capable client to run review agents on your sites, read the findings, create and verify projects, pull analytics, summarize open comments, and invite teammates.
+
+One server, one URL, in every client:
+
+```
+https://mcp.usesuperflow.ai/mcp
+```
+
+## What you can ask for
+
+- "Run the accessibility and broken links agents on acme.com and summarize what they found."
+- "How many open comment threads does my team have this week?"
+- "Create a Superflow project for staging.acme.com, give me the install snippet, and verify it once I deploy."
+- "List my projects and archive the ones with no comments."
+
+## Set up your client
+
+<CardGroup cols={2}>
+  <Card title="Claude" icon="message-bot" href="/mcp/connect-claude">
+    claude.ai, Claude Code, and the Claude API.
+  </Card>
+  <Card title="ChatGPT" icon="comments" href="/mcp/connect-chatgpt">
+    Custom connector on Pro, Plus, Business, Enterprise and Edu.
+  </Card>
+  <Card title="Cursor" icon="arrow-pointer" href="/mcp/connect-cursor">
+    One-click install, or a small config file.
+  </Card>
+  <Card title="Gemini and others" icon="diamond" href="/mcp/connect-gemini">
+    Gemini CLI and any Streamable HTTP MCP client.
+  </Card>
+</CardGroup>
+
+For the full list of what the connector can do, see the [tool reference](/mcp/tools).
+
+## How access works
+
+Access is granted per user, not per workspace. When you add the connector, your AI tool sends you to Superflow's consent screen, where you sign in, pick which workspace to connect, and review the permissions before approving. Each person sees only what their own Superflow account allows.
+
+### Permissions
+
+These are the permissions shown on the consent screen. You can untick any you do not want to grant; tools that need an unticked permission simply will not work.
+
+| Permission | What it allows |
+| --- | --- |
+| Read workspace | See workspace details like name, plan, and members. |
+| Read projects | See your projects and their settings. |
+| Create and update projects | Create projects, change their settings and status, and verify installs. |
+| Read agents | See your agents and how they are configured. |
+| Run agents | Run agents on your sites and read the results. |
+| Create and edit agents | Create agents and change how they are configured. |
+| Read analytics | See usage and engagement data for your workspace. |
+| Read comments | See comments and replies left on your projects. |
+| Invite people | Invite workspace admins and project guests by email. |
+
+<Note>
+Running agents through the connector spends [AI credits](/billing/ai-credits) exactly like running them in the portal: 10 credits per agent per page. The default suite of five agents on one page costs 50 credits.
+</Note>
+
+### Revoking access
+
+Revoke the connection at any time from your AI tool's own connector settings. Removing a user from a workspace also cuts off their connector access immediately.
+
+## Try it without an account
+
+The demo endpoint runs a free, capped review of any public URL, with no account and no sign-in:
+
+```
+https://mcp.usesuperflow.ai/mcp/try
+```
+
+Add it like any other MCP server. It exposes two tools: one starts a review of a URL with a small agent suite (broken links, accessibility, social preview image, spelling), the other polls for the findings. The demo is rate limited per user and per target site, and results are kept for 24 hours. It is also the right path for clients that cannot add authenticated remote connectors, such as free-plan claude.ai accounts.
+
+## Security notes
+
+- Text quoted from reviewed pages and comments is marked as untrusted data in tool results, so your AI tool treats it as content, never as instructions.
+- Authorization uses OAuth 2.1 with PKCE and dynamic client registration; there are no API keys to paste and nothing to store in the client.
+- Each connection is rate limited to 60 requests per minute.
+
+## Troubleshooting
+
+- **Calling the server with curl or your own HTTP client returns 406.** Every request must accept both response types. Send `Accept: application/json, text/event-stream`.
+- **A tool reports a missing permission.** Reconnect Superflow in your AI tool and approve the permission it names.
+- **Agent runs fail with an AI credits message.** Your workspace balance is empty. See [AI Credits](/billing/ai-credits).

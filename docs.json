@@ -23,6 +23,7 @@
             "pages": [
               "index",
               "quickstart",
+              "features",
               "watch"
             ]
           }
@@ -45,7 +46,8 @@
             "pages": [
               "agents/how-to-create-a-new-agent",
               "agents/how-to-create-agents-from-a-checklist",
-              "agents/how-to-create-and-run-an-agent-group"
+              "agents/how-to-create-and-run-an-agent-group",
+              "agents/workspace-agent"
             ]
           },
           {
@@ -53,7 +55,8 @@
             "icon": "play",
             "pages": [
               "agents/how-to-run-agent-pre-checks-on-a-new-project",
-              "agents/how-to-run-an-agent-from-the-agents-tab"
+              "agents/how-to-run-an-agent-from-the-agents-tab",
+              "agents/how-to-review-agent-findings"
             ]
           },
           {
@@ -122,7 +125,6 @@
             "pages": [
               "how-to-guides/how-to-add-a-comment-on-an-element",
               "how-to-guides/how-to-add-a-comment-to-a-text",
-              "how-to-guides/how-to-add-an-arrow-comment",
               "how-to-guides/how-to-draw-a-box-comment-on-the-page",
               "how-to-guides/how-to-add-private-comments"
             ]
@@ -174,7 +176,11 @@
               "dashboard/how-create-a-new-project",
               "dashboard/how-to-access-project-settings",
               "dashboard/how-to-use-the-kanban-board",
+              "dashboard/how-to-manage-custom-statuses",
               "dashboard/how-to-view-all-comments-on-a-project",
+              "dashboard/how-to-view-analytics",
+              "dashboard/how-to-set-up-email-summaries",
+              "dashboard/how-to-archive-or-delete-a-project",
               "dashboard/how-to-invite-users-to-your-project",
               "dashboard/how-to-invite-admin-users",
               "dashboard/how-to-invite-commenters",
@@ -189,7 +195,9 @@
             "icon": "file-lines",
             "pages": [
               "files/how-to-upload-a-file",
+              "files/how-to-import-from-figma",
               "files/how-to-comment-on-a-file",
+              "files/how-to-approve-a-file-version",
               "files/how-to-invite-commenters-to-a-file",
               "files/how-to-invite-admin-users-to-a-file"
             ]
@@ -218,6 +226,8 @@
             "pages": [
               "product-features/what-is-guest-mode",
               "product-features/what-are-private-comments",
+              "product-features/user-roles-explained",
+              "product-features/comment-screenshots",
               "product-features/how-secure-is-Superflow",
               "product-features/which-parts-of-the-site-would-I-be-able-to-custom-brand"
             ]
@@ -228,6 +238,7 @@
             "pages": [
               "billing/what-is-an-active-project",
               "billing/what-is-a-seat",
+              "billing/ai-credits",
               "billing/do-you-offer-a-free-plan",
               "billing/do-you-offer-a-discount-to-education-institutes-or-non-profits"
             ]
@@ -237,13 +248,27 @@
             "icon": "shield-halved",
             "pages": [
               "security/content-security-policy",
-              "security/auth-tokens"
+              "security/auth-tokens",
+              "security/saml-sso"
+            ]
+          },
+          {
+            "group": "MCP for AI Tools",
+            "icon": "robot",
+            "pages": [
+              "mcp/overview",
+              "mcp/tools",
+              "mcp/connect-claude",
+              "mcp/connect-chatgpt",
+              "mcp/connect-cursor",
+              "mcp/connect-gemini"
             ]
           },
           {
             "group": "REST APIs",
             "icon": "code",
             "pages": [
+              "rest-apis/overview",
               "rest-apis/projects/create-project"
             ]
           },
@@ -273,6 +298,7 @@
   },
   "redirects": [
     { "source": "/introduction", "destination": "/" },
+    { "source": "/how-to-guides/how-to-add-an-arrow-comment", "destination": "/how-to-guides/how-to-draw-a-box-comment-on-the-page" },
     { "source": "/how-to-guides/how-to-create-a-new-agent", "destination": "/agents/how-to-create-a-new-agent" },
     { "source": "/how-to-guides/how-to-create-agents-from-a-checklist", "destination": "/agents/how-to-create-agents-from-a-checklist" },
     { "source": "/how-to-guides/how-to-create-and-run-an-agent-group", "destination": "/agents/how-to-create-and-run-an-agent-group" },

@@ -1,0 +1,43 @@
+---
+title: "How to Review Agent Findings"
+description: "Where agent findings show up: as pins on the live page, in the Agent Checks sidebar, and on the Agent Comments tab of the project board."
+icon: "triangle-exclamation"
+---
+
+When an agent finds an issue, the finding shows up in three places: pinned on the live page where the issue is, in the **Agent Checks** sidebar of the toolbar, and on the **Agent Comments** tab of the project board. This article covers all three.
+
+## On the page, in the toolbar
+
+<Steps>
+  <Step title="Open your site in review mode as an Admin">
+    Open the site with `?review=true`. If any agent has open findings, the toolbar shows an **Agent Comments** button with a warning triangle and a count of open findings.
+  </Step>
+  <Step title="Click Agent Comments to open the Agent Checks sidebar">
+    The sidebar lists each agent that has findings, with a count per agent. Click an agent to see its findings grouped by page. The page you are on is labeled **(This Page)** and opens first.
+  </Step>
+  <Step title="Click a finding to jump to it">
+    Each finding shows what was found (for example a misspelled word or a broken link), a suggestion or detail where available, and how many times it occurs. Clicking a finding on another page navigates you there with the sidebar still open.
+  </Step>
+</Steps>
+
+<Note>
+The Agent Checks sidebar is visible to workspace Admins. Findings also appear as regular agent comments, so the rest of the team sees them in the comments sidebar and on the board.
+</Note>
+
+## On the project board
+
+<Steps>
+  <Step title="Open the project and switch to the Agent Comments tab">
+    On the Superflow Dashboard, open your project. Next to **Comments** there is an **Agent Comments** tab with a count.
+  </Step>
+  <Step title="Browse findings by agent">
+    The left rail lists each agent with its comment count. The right pane shows each finding with its page path, the device it was found on, and when it was found, plus a link to view it on the live page.
+  </Step>
+  <Step title="Filter, copy, or clean up">
+    Use the **All / Desktop / Mobile** filter to narrow by device, and search to find a specific finding. You can copy all of one agent's findings in one click, hand them to your developer with **Open with Cursor**, or clear everything with **Delete all agent suggestions**.
+  </Step>
+</Steps>
+
+<Tip>
+The copy action formats every finding as text, which is handy for pasting into a ticket, a client email, or an AI coding assistant.
+</Tip>

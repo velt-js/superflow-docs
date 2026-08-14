@@ -1,0 +1,25 @@
+---
+title: "SAML Single Sign-On"
+description: "Let your team sign in to Superflow through your identity provider, like Okta or Microsoft Entra ID."
+icon: "key"
+---
+
+Workspaces on Enterprise plans can sign in through their own identity provider using SAML SSO. Once configured, your team signs in at your workspace's dedicated URL, for example `app.usesuperflow.com/saml/acme/login`, and is redirected through your identity provider.
+
+<Note>
+SAML SSO is enabled per workspace. Contact us at hello@usesuperflow.com to turn it on for yours; the **SAML** tab then appears under **Settings**.
+</Note>
+
+## Configuring
+
+<Steps>
+  <Step title="Create a SAML app in your identity provider">
+    In Okta, Microsoft Entra ID, or any SAML 2.0 provider, create an application for Superflow. You will need its **Entity ID**, **SSO URL**, and **X.509 certificate**.
+  </Step>
+  <Step title="Fill in the SAML tab under Settings">
+    Basic settings: a **Display Name** for the connection, your company's **Email Domain**, and a **URL Slug** which becomes your sign-in URL. SAML settings: the **Provider ID**, **Entity ID**, **SSO URL**, and **X.509 certificate** from your identity provider.
+  </Step>
+  <Step title="Share the sign-in URL with your team">
+    Your team signs in at `app.usesuperflow.com/saml/your-slug/login`, or from the general SSO page at `app.usesuperflow.com/saml/login` by entering their work email.
+  </Step>
+</Steps>

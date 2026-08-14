@@ -1,0 +1,79 @@
+---
+title: "MCP Tool Reference"
+sidebarTitle: "Tool Reference"
+description: "Every tool the Superflow MCP connector exposes: workspace, projects, agents, comments, analytics, and invitations."
+icon: "wrench"
+---
+
+The connector exposes 20 tools on the authenticated endpoint, plus 2 demo tools on the free `/mcp/try` endpoint. Each tool requires the permission listed next to it; tools whose permission was not approved on the consent screen are unavailable.
+
+You do not call these directly. Your AI tool picks them based on what you ask for. This reference is here so you know exactly what a connected tool can and cannot do.
+
+## Workspace
+
+| Tool | Permission | What it does |
+| --- | --- | --- |
+| `list_workspaces` | Read workspace | Lists every workspace you belong to and marks the one this connection is bound to. A connection acts only on its bound workspace. |
+| `get_workspace` | Read workspace | Returns the connected workspace's plan, feature access, usage counters, and AI credit balance. |
+
+## Projects
+
+| Tool | Permission | What it does |
+| --- | --- | --- |
+| `list_projects` | Read projects | Lists projects, newest activity first. Supports paging (`pageSize` 1 to 100, default 25), name search, and filtering by status or category (website, image, pdf, video, figma). |
+| `get_project` | Read projects | Returns one project's record: name, primary URL, status, category, versions, and install platform. |
+| `create_web_project` | Create and update projects | Creates a website project from a URL, with an optional display name. Creating the same URL twice resolves to the same project. |
+| `get_install_snippet` | Read projects | Returns the exact script tag to paste into a site so the toolbar loads on it. |
+| `verify_installation` | Create and update projects | Loads the project's site once and checks whether the snippet is live, marking the project installed when it is. Answers with one of four verdicts: `installed`, `different_project_installed`, `not_installed`, or `inconclusive`. |
+| `update_project_status` | Create and update projects | Sets a project's status: `archived`, `not_installed`, or `installed` (the manual equivalent of verifying by hand). |
+
+## Agents
+
+| Tool | Permission | What it does |
+| --- | --- | --- |
+| `list_agents` | Read agents | Lists the review agents in the workspace and the groups they are organized into, optionally filtered to one group. |
+| `create_agent` | Create and edit agents | Creates a custom review agent from plain-language instructions (name, optional description, instructions) and returns its id, ready to run. |
+| `run_agents` | Run agents | Starts one execution per agent against a page. Takes exactly one of `url` or `projectId` (findings attach to the project when given), up to 20 agent ids (defaults to the essential suite: spell check, lorem ipsum, Lighthouse, broken links, accessibility), and a `desktop` or `mobile` viewport. Spends AI credits. |
+| `get_agent_run` | Read agents | Returns the status and findings of one execution. Polled every 15 to 30 seconds until it completes. Returns up to 50 findings, with the true total reported. |
+| `list_agent_runs` | Read agents | Lists past executions, newest first, filtered by project, agent, or both. |
+
+## Comments
+
+| Tool | Permission | What it does |
+| --- | --- | --- |
+| `get_agent_findings` | Read comments | Returns the persisted agent findings on a project (what a reviewer sees in the toolbar), optionally narrowed to one execution. Paged, up to 200 rows per page. |
+| `list_comments` | Read comments | Returns one page of comments on a project, from people and agents alike. Paged, up to 200 rows per page. |
+
+## Analytics
+
+| Tool | Permission | What it does |
+| --- | --- | --- |
+| `get_team_analytics` | Read analytics | Workspace-level comment, resolution and project-activity rollup for a 1, 7, 14 or 30 day window (default 7). |
+| `get_people_analytics` | Read analytics | Per-person activity over the same windows: who commented, who resolved, who is idle. |
+| `get_past_data_analytics` | Read analytics | The all-time rollup: lifetime comment counts, most active projects and people. |
+
+<Note>
+Analytics are recomputed once a day. When a rollup is stale, the tools say so rather than reporting zeros as real activity.
+</Note>
+
+## Invitations
+
+| Tool | Permission | What it does |
+| --- | --- | --- |
+| `invite_team_member` | Invite people | Invites up to 10 people to the workspace as Team Users with access to every project. Sends real invitation emails immediately. |
+| `invite_guest` | Invite people | Invites up to 10 people to a single project as Guests. Sends real invitation emails immediately. |
+
+<Warning>
+The invitation tools send real email the moment they run. AI tools are instructed to invite only addresses you explicitly named, and the **Invite people** permission is never pre-selected on the consent screen; grant it only if you want your AI tool to be able to send invites.
+</Warning>
+
+## Demo tools (no account)
+
+Available only on `https://mcp.usesuperflow.ai/mcp/try`, and never on the authenticated endpoint:
+
+| Tool | What it does |
+| --- | --- |
+| `run_site_preview` | Starts a free, no-account review of any public URL with a capped agent suite, against a temporary project. Returns session credentials to poll with. |
+| `get_site_preview` | Returns the progress of a preview session and, once agents finish, their findings. |
+
+Demo sessions are rate limited, and their results are kept for 24 hours.

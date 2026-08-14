@@ -8,11 +8,11 @@ Navigation lives in `docs.json`. Five tabs, in order:
 
 | Tab | What's in it | Folders |
 | --- | --- | --- |
-| **Start Here** | Home, quickstart, video library | `index.mdx`, `quickstart.mdx`, `watch.mdx` |
+| **Start Here** | Home, quickstart, top features, video library | `index.mdx`, `quickstart.mdx`, `features.mdx`, `watch.mdx` |
 | **Agents & AI** | Agents overview, building, running, AI Co-Pilot | `agents/` |
 | **Install** | One page per platform or framework | `no-code-platforms/`, `web-frameworks/` |
 | **Guides** | Toolbar, comments, dashboard, files, integrations | `how-to-guides/`, `dashboard/`, `files/`, `Integrations/` |
-| **Reference** | Features, billing, security, REST API, updates | `product-features/`, `billing/`, `security/`, `rest-apis/`, `product-updates/` |
+| **Reference** | Features, billing, security, MCP, REST API, updates | `product-features/`, `billing/`, `security/`, `mcp/`, `rest-apis/`, `product-updates/` |
 
 Assets: screenshots in `images/<section>/<page-slug>/`, screen recordings in `videos/`.
 

@@ -1,18 +1,35 @@
 ---
-title: "Generating Auth Tokens"
+title: "Auth Tokens"
+description: "Generate the auth token used, together with your API key, to authenticate REST API calls."
+icon: "key"
 ---
 
+REST API calls to Superflow are authenticated with two values, sent as headers on every request:
+
+| Header | Where to find it |
+| --- | --- |
+| `x-superflow-api-key` | Your workspace API key, shown on the REST API integration page |
+| `x-superflow-auth-token` | The auth token you generate on the same page |
+
+## Generating a token
+
 <Steps>
-<Step title="Go to the Superflow Admin Dashboard">
+  <Step title="Open the REST API integration page">
+    On the Superflow Dashboard, go to **Settings**, then **Integrations**, then **REST API**, or open [app.usesuperflow.com/settings/integrations/rest](https://app.usesuperflow.com/settings/integrations/rest) directly.
+  </Step>
+  <Step title="Click Generate Token">
+    Your workspace API key and the new auth token are both shown on this page with copy buttons.
 
-Goto [REST API page](https://app.usesuperflow.com/dashboard/integrations/rest) on the Superflow Admin Dashboard.
-
-</Step>
-<Step title="Click Generate Token button">
-</Step>
-
-<Step title="Copy the generated token.">
-
-</Step>
-
+    <Frame>
+    ![The REST API integration page with the API key and auth token](/images/security/auth-tokens/01-rest-api-page.png)
+    </Frame>
+  </Step>
 </Steps>
+
+## Things to know
+
+- **Keep it server-side.** The auth token grants API access to your workspace. Use it from your backend or automation only, and never embed it in frontend code or a public repository.
+- **One token per workspace.** Generating a new token replaces the old one, so update any automations after you regenerate.
+- The REST API integration is available on plans that include integrations. If the page shows an upgrade prompt, your current plan does not include it.
+
+See the [REST API overview](/rest-apis/overview) for how to use these headers in requests.
