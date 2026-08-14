@@ -1,34 +1,39 @@
-# Mintlify Starter Kit
+# Superflow Docs
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+The source for [docs.usesuperflow.com](https://docs.usesuperflow.com), built with [Mintlify](https://mintlify.com).
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## Structure
 
-### 👩‍💻 Development
+Navigation lives in `docs.json`. Five tabs, in order:
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+| Tab | What's in it | Folders |
+| --- | --- | --- |
+| **Start Here** | Home, quickstart, video library | `index.mdx`, `quickstart.mdx`, `watch.mdx` |
+| **Agents & AI** | Agents overview, building, running, AI Co-Pilot | `agents/` |
+| **Install** | One page per platform or framework | `no-code-platforms/`, `web-frameworks/` |
+| **Guides** | Toolbar, comments, dashboard, files, integrations | `how-to-guides/`, `dashboard/`, `files/`, `Integrations/` |
+| **Reference** | Features, billing, security, REST API, updates | `product-features/`, `billing/`, `security/`, `rest-apis/`, `product-updates/` |
 
+Assets: screenshots in `images/<section>/<page-slug>/`, screen recordings in `videos/`.
+
+## Writing conventions
+
+These are what make the docs work for people who would rather not read:
+
+- **Media first.** If a page has a video, it goes directly under the frontmatter, above the written steps. Install pages open with the YouTube walkthrough; agent pages open with a screen recording.
+- **Steps, not numbered paragraphs.** Procedures use `<Steps>` / `<Step title="…">`. The step title carries the instruction, so it is scannable without reading the body.
+- **A screenshot per step.** Wrap it in `<Frame>` and always give the image alt text: `![What the screenshot shows](/images/…)`.
+- **Responsive embeds.** Videos and iframes use `className="w-full aspect-video rounded-xl"`, never fixed pixel width and height.
+- **Frontmatter on every page.** `title`, `description` and `icon`. The description is what shows in search results and on hover cards.
+- **Never move a page without a redirect.** Add an entry to `redirects` in `docs.json`.
+
+## Development
+
+```bash
+npm i -g mint
+mint dev
 ```
-npm i -g mintlify
-```
 
-Run the following command at the root of your documentation (where mint.json is)
+## Publishing
 
-```
-mintlify dev
-```
-
-### 😎 Publishing Changes
-
-Changes will be deployed to production automatically after pushing to the default branch.
-
-You can also preview changes using PRs, which generates a preview link of the docs.
-
-#### Troubleshooting
-
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `mint.json`
+Changes deploy automatically after merging to the default branch. Pull requests generate a preview link.

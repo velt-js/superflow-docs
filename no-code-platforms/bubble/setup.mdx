@@ -1,124 +1,120 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Bubble"
+title: "Bubble"
+sidebarTitle: "Bubble"
+description: "Install Superflow on Bubble, with a video walkthrough and step-by-step screenshots."
+icon: "puzzle-piece"
 ---
 
-
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full Bubble walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/SbBBr4ArPGk?si=O2QjwKBVd0A_psyk"
+    title="Install Superflow on Bubble"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
-## 2) Select Other from the list of Platforms
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-Choose Other from the list of options to install Superflow with Bubble.
+    <Frame>
+    ![Bubble: Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select Other from the list of Platforms">
+    Choose Other from the list of options to install Superflow with Bubble.
 
-<Frame>
-![](/images/select-other-final.png)
-</Frame>
+    <Frame>
+    ![Bubble: Select Other from the list of Platforms](/images/select-other-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow code">
+    You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
 
+    <Frame>
+    ![Bubble: Copy your unique Superflow code](/images/copy-code-final.png)
+    </Frame>
+  </Step>
+  <Step title="Go to Settings on your Bubble site, then click SEO/metatags to add your unique Superflow code">
+    You can get to the Settings page by clicking the gear icon on the side menu.
 
+    Then click SEO/metatags in the top navigation.
 
-## 3) Copy your unique Superflow code
-
-You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
-
-<Frame>
-![](/images/copy-code-final.png)
-</Frame>
-
-## 4) Go to Settings on your Bubble site, then click SEO/metatags to add your unique Superflow code
-
-You can get to the Settings page by clicking the gear icon on the side menu.
-
-Then click SEO/metatags in the top navigation.
-
-After that, scroll down to "Script in the Body" and add your unique Superflow code. Be sure to save.
-
-
-<Frame>
-![](/images/code-bubble-final.png)
-</Frame>
-
-
-
-## 5) Publish your Bubble site
+    After that, scroll down to "Script in the Body" and add your unique Superflow code. Be sure to save.
 
 
-Click the `Main` button in the top right of the page.
+    <Frame>
+    ![Bubble: Go to Settings on your Bubble site, then click SEO/metatags to add your unique Superflow…](/images/code-bubble-final.png)
+    </Frame>
+  </Step>
+  <Step title="Publish your Bubble site">
+    Click the `Main` button in the top right of the page.
 
-<Frame>
-![](/images/publish-bubble-main-final.png)
-</Frame>
-
-
-Then click Deploy to Live to publish your Bubble site.
-
-<Frame>
-![](/images/publish-bubble-final.png)
-</Frame>
+    <Frame>
+    ![Bubble: Publish your Bubble site](/images/publish-bubble-main-final.png)
+    </Frame>
 
 
+    Then click Deploy to Live to publish your Bubble site.
 
-## 6) Verify your Installation
+    <Frame>
+    ![Bubble: Publish your Bubble site](/images/publish-bubble-final.png)
+    </Frame>
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
+    <Frame>
+    ![Bubble: Verify your Installation](/images/verify-final.png)
+    </Frame>
 
-<Frame>
-![](/images/verify-final.png)
-</Frame>
+    If successful, you should be redirected to your published Bubble site and see the following success message:
 
-If successful, you should be redirected to your published Bubble site and see the following success message:
+    <Frame>
+    ![Bubble: Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-<Frame>
-![](/images/verified-final.png)
-</Frame>
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your Bubble site">
+    Now that you have verified that Superflow has been installed on your Bubble site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-## 7) Troubleshooting
+    `Example: mywebsite.bubble.io/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
+    <Frame>
+    ![Bubble: Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
+    You can also leave voice and screen recordings in your comments as well!
 
-## 8) Navigate to your Bubble site 
-
-Now that you have verified that Superflow has been installed on your Bubble site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.bubble.io/?review=true`
-
-
-## 9) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
-
-
-
-## 10) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
-
+    <Frame>
+    ![Bubble: Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

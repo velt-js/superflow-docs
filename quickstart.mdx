@@ -1,87 +1,90 @@
 ---
-title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+title: "Quickstart"
+description: "Install Superflow on your site and leave your first comment."
+icon: "bolt"
 ---
 
+Superflow installs as a single script on the site you already have. Once it is on the page, you add `?review=true` to any URL to bring up the toolbar and start commenting.
 
-## Setup your development
+<Frame caption="What you get once Superflow is installed">
+  ![The Superflow toolbar on a live site, with a comment being left on the page](/images/demo.gif)
+</Frame>
 
-Learn how to update your docs locally and and deploy them to the public.
+<Steps>
+  <Step title="Create a project" icon="folder-plus">
+    Enter the URL of the site you want to review. Superflow generates a unique script for that project.
 
-### Edit and preview
+    <Frame>
+      ![Entering a site URL when creating a Superflow project](/images/enter-url-final.png)
+    </Frame>
 
-<AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
-  </Accordion>
-</AccordionGroup>
+    <Tip>
+      Turn on **Run Agents** here and Superflow starts reviewing the site for spelling, broken links, accessibility and more while you finish the install. See [agent pre-checks](/agents/how-to-run-agent-pre-checks-on-a-new-project).
+    </Tip>
+  </Step>
 
-### Deploy your changes
+  <Step title="Add the script to your site" icon="code">
+    Pick your platform below. Every install guide opens with a video walkthrough, then repeats it as steps with a screenshot for each click.
 
-<AccordionGroup>
+    <Frame>
+      ![Choosing a platform from the list during Superflow onboarding](/images/select-platform-final.png)
+    </Frame>
+  </Step>
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
-</Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
-</Accordion>
+  <Step title="Verify the installation" icon="circle-check">
+    Click **Verify** in the onboarding flow. Superflow opens your published site and confirms the script is live.
 
-</AccordionGroup>
+    <Frame>
+      ![The Superflow installation verified confirmation message](/images/verified-final.png)
+    </Frame>
 
-## Update your docs
+    <Warning>
+      Not verifying? The usual causes are unsaved custom code, an unpublished site, a cached page, a missing `?review=true`, a staging URL when you are checking production, or the script installed twice.
+    </Warning>
+  </Step>
 
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+  <Step title="Leave your first comment" icon="comment-dots">
+    Open your site with `?review=true` at the end of the URL, for example `mywebsite.com/?review=true`. The toolbar appears in the bottom right.
 
-<CardGroup>
+    <Frame>
+      ![The Superflow toolbar in the bottom right of a live website](/images/toolbar-final.png)
+    </Frame>
 
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
-</Card>
+    You can comment by highlighting text, hovering an element, or drawing a box anywhere on the page, and you can record a voice note or your screen instead of typing.
+  </Step>
+</Steps>
 
-<Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
->
-  Implement your OpenAPI spec and enable API user interaction.
-</Card>
+## Pick your platform
 
-<Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
->
-  Draw insights from user interactions with your documentation.
-</Card>
+<CardGroup cols={3}>
+  <Card title="Webflow" icon="webflow" href="/no-code-platforms/webflow/setup" horizontal />
+  <Card title="Webflow app" icon="webflow" href="/no-code-platforms/webflow-integration/setup" horizontal />
+  <Card title="WordPress plugin" icon="wordpress" href="/no-code-platforms/wordpress-plugin/setup" horizontal />
+  <Card title="WordPress self-hosted" icon="wordpress" href="/no-code-platforms/wordpress/setup" horizontal />
+  <Card title="Elementor" icon="elementor" href="/no-code-platforms/elementor/setup" horizontal />
+  <Card title="Shopify" icon="shopify" href="/no-code-platforms/shopify/setup" horizontal />
+  <Card title="Squarespace" icon="squarespace" href="/no-code-platforms/squarespace/setup" horizontal />
+  <Card title="Wix" icon="wix" href="/no-code-platforms/wix/setup" horizontal />
+  <Card title="Bubble" icon="puzzle-piece" href="/no-code-platforms/bubble/setup" horizontal />
+  <Card title="HubSpot" icon="hubspot" href="/no-code-platforms/hubspot/setup" horizontal />
+  <Card title="Drupal" icon="drupal" href="/no-code-platforms/drupal/setup" horizontal />
+  <Card title="Framer" icon="browser" href="/no-code-platforms/framer/setup" horizontal />
+  <Card title="Typedream" icon="browser" href="/no-code-platforms/typedream/setup" horizontal />
+  <Card title="Google Tag Manager" icon="google" href="/no-code-platforms/google-tag-manager/setup" horizontal />
+  <Card title="React" icon="react" href="/web-frameworks/react/setup" horizontal />
+  <Card title="Next.js" icon="n" href="/web-frameworks/next/setup" horizontal />
+  <Card title="Vue" icon="vuejs" href="/web-frameworks/vue/setup" horizontal />
+  <Card title="Angular" icon="angular" href="/web-frameworks/angular/setup" horizontal />
+  <Card title="Svelte" icon="code" href="/web-frameworks/svelte/setup" horizontal />
+</CardGroup>
 
-<Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
->
-  Keep your docs on your own website's subdomain.
-</Card>
+## Next
 
+<CardGroup cols={2}>
+  <Card title="Put agents to work" icon="robot" href="/agents/overview">
+    Describe a check in plain English and let Superflow run it against your site.
+  </Card>
+  <Card title="Watch every walkthrough" icon="circle-play" href="/watch">
+    All installation and agent videos on one page.
+  </Card>
 </CardGroup>

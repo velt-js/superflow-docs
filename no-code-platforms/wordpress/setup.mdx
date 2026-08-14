@@ -1,102 +1,102 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Wordpress"
+title: "WordPress (Self-Hosted)"
+sidebarTitle: "WordPress (Self-Hosted)"
+description: "Install Superflow on self-hosted WordPress, with a video walkthrough and step-by-step screenshots."
+icon: "wordpress"
 ---
 
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full WordPress (Self-Hosted) walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/zK3yFlzokyM?si=OEXzPU3MWxHn7soN"
+    title="Install Superflow on WordPress (Self-Hosted)"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
-## 2) Select Wordpress from the list of Platforms
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
-Choose Wordpress from the list of options to install Superflow with Wordpress.
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-<Frame>
-![](/images/select-wordpress-final.png)
-</Frame>
+    <Frame>
+    ![WordPress (Self-Hosted): Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select Wordpress from the list of Platforms">
+    Choose Wordpress from the list of options to install Superflow with Wordpress.
 
+    <Frame>
+    ![WordPress (Self-Hosted): Select Wordpress from the list of Platforms](/images/select-wordpress-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow code">
+    You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
 
+    <Frame>
+    ![WordPress (Self-Hosted): Copy your unique Superflow code](/images/snippet-wordpress-final.png)
+    </Frame>
+  </Step>
+  <Step title="Add your unique Superflow code at the end of functions.php">
+    Go to your Wordpress source code and open a file called `functions.php`, which should be in the `wp-includes` folder.
 
-## 3) Copy your unique Superflow code
+    Add your Superflow code at the end of the file and be sure to save.
+  </Step>
+  <Step title="Deploy your Wordpress site with the new changes">
+    Deploy your wordpress site with your new changes.
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
+    <Frame>
+    ![WordPress (Self-Hosted): Verify your Installation](/images/verify-final.png)
+    </Frame>
 
-<Frame>
-![](/images/snippet-wordpress-final.png)
-</Frame>
+    If successful, you should be redirected to your published Wordpress site and see the following success message:
 
+    <Frame>
+    ![WordPress (Self-Hosted): Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your Wordpress site">
+    Now that you have verified that Superflow has been installed on your Wordpress site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-## 4) Add your unique Superflow code at the end of `functions.php`
+    `Example: mywebsite.wordpress.com/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-Go to your Wordpress source code and open a file called `functions.php`, which should be in the `wp-includes` folder.
+    <Frame>
+    ![WordPress (Self-Hosted): Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
-Add your Superflow code at the end of the file and be sure to save.
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
+    You can also leave voice and screen recordings in your comments as well!
 
-## 5) Deploy your Wordpress site with the new changes
-
-Deploy your wordpress site with your new changes.
-
-## 6) Verify your Installation
-
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
-
-<Frame>
-![](/images/verify-final.png)
-</Frame>
-
-If successful, you should be redirected to your published Wordpress site and see the following success message:
-
-<Frame>
-![](/images/verified-final.png)
-</Frame>
-
-## 7) Troubleshooting
-
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
-
-
-## 8) Navigate to your Wordpress site 
-
-Now that you have verified that Superflow has been installed on your Wordpress site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.wordpress.com/?review=true`
-
-
-## 9) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
-
-
-
-
-## 10) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
+    <Frame>
+    ![WordPress (Self-Hosted): Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

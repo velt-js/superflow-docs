@@ -1,121 +1,120 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Shopify"
+title: "Shopify"
+sidebarTitle: "Shopify"
+description: "Install Superflow on Shopify, with a video walkthrough and step-by-step screenshots."
+icon: "shopify"
 ---
 
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full Shopify walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/xAW03jDe5ZE?si=jWq4vh7vDWUXLb-8"
+    title="Install Superflow on Shopify"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
-## 2) Select Shopify from the list of Platforms
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
-Choose Shopify from the list of options to install Superflow with Shopify.
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-<Frame>
-![](/images/select-shopify-final.png)
-</Frame>
+    <Frame>
+    ![Shopify: Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select Shopify from the list of Platforms">
+    Choose Shopify from the list of options to install Superflow with Shopify.
 
+    <Frame>
+    ![Shopify: Select Shopify from the list of Platforms](/images/select-shopify-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow code">
+    You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
 
+    <Frame>
+    ![Shopify: Copy your unique Superflow code](/images/copy-code-final.png)
+    </Frame>
+  </Step>
+  <Step title="Go to the Themes setting on your Webflow Site and edit the code.">
+    You can get to the Themes setting at the bottom left of the side menu. Then next to the Customize button, click the ... button and then click Edit Code.
 
-## 3) Copy your unique Superflow code
+    <Frame>
+    ![Shopify: Go to the Themes setting on your Webflow Site and edit the code](/images/code-shopify-final.png)
+    </Frame>
+  </Step>
+  <Step title="Add your unique Superflow code in the Footer section">
+    Click `Sections` on the side menu and then click on the `footer.liquid` file.
 
-You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
+    Next, do a ctrl F search for `</footer>`. 
 
-<Frame>
-![](/images/copy-code-final.png)
-</Frame>
+    You should paste your Superflow code snippet right above the `</footer>` tag. 
 
-## 4) Go to the Themes setting on your Webflow Site and edit the code.
+    Be sure to save.
 
-You can get to the Themes setting at the bottom left of the side menu. Then next to the Customize button, click the ... button and then click Edit Code.
+    <Frame>
+    ![Shopify: Add your unique Superflow code in the Footer section](/images/footer-shopify-final.png)
+    </Frame>
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-<Frame>
-![](/images/code-shopify-final.png)
-</Frame>
+    <Frame>
+    ![Shopify: Verify your Installation](/images/verify-final.png)
+    </Frame>
 
+    If successful, you should be redirected to your published Shopify site and see the following success message:
 
+    <Frame>
+    ![Shopify: Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-## 5) Add your unique Superflow code in the Footer section
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your Shopify site">
+    Now that you have verified that Superflow has been installed on your Shopify site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-Click `Sections` on the side menu and then click on the `footer.liquid` file.
+    `Example: mywebsite.shopify.com/?review=true`
 
-Next, do a ctrl F search for `</footer>`. 
+    If you are unsure, what your Shopify site URL is, you can click the Preview button at the top right of the Themes settings page.
 
-You should paste your Superflow code snippet right above the `</footer>` tag. 
+    <Frame>
+    ![Shopify: Navigate to your Shopify site](/images/preview-shopify-final.png)
+    </Frame>
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-Be sure to save.
+    <Frame>
+    ![Shopify: Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
-<Frame>
-![](/images/footer-shopify-final.png)
-</Frame>
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
+    You can also leave voice and screen recordings in your comments as well!
 
-## 6) Verify your Installation
-
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
-
-<Frame>
-![](/images/verify-final.png)
-</Frame>
-
-If successful, you should be redirected to your published Shopify site and see the following success message:
-
-<Frame>
-![](/images/verified-final.png)
-</Frame>
-
-## 7) Troubleshooting
-
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
-
-
-## 8) Navigate to your Shopify site 
-
-Now that you have verified that Superflow has been installed on your Shopify site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.shopify.com/?review=true`
-
-If you are unsure, what your Shopify site URL is, you can click the Preview button at the top right of the Themes settings page.
-
-<Frame>
-![](/images/preview-shopify-final.png)
-</Frame>
-
-
-
-## 9) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
-
-
-
-
-## 10) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
+    <Frame>
+    ![Shopify: Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>
