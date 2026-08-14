@@ -1,0 +1,32 @@
+---
+title: "Comment Screenshots"
+description: "Superflow captures a screenshot with each comment, so feedback still makes sense after the page changes. Local mode covers login-gated sites."
+icon: "camera"
+---
+
+Websites change. A comment that says "this headline is wrong" is only useful if you can still see the headline it pointed at. With screenshots on, Superflow captures the page at the moment each comment is made and attaches it to the comment.
+
+## Turning screenshots on
+
+<Steps>
+  <Step title="Go to Settings, then Advanced Features">
+    Under **Comment Settings**, turn on **Take screenshot on comments**.
+  </Step>
+  <Step title="Pick a screenshot mode">
+    The **Screenshot mode** dropdown offers **Basic** and **Local**. Basic is right for most sites; read on for when to use Local.
+  </Step>
+</Steps>
+
+## Basic vs. Local mode
+
+| | **Basic** | **Local** |
+| --- | --- | --- |
+| How it works | Superflow's servers visit the page and capture it | The screenshot is captured in the commenter's own browser tab |
+| Best for | Public sites | Login-gated sites, SSO, intranets, personalized pages |
+| What the commenter sees | Nothing extra | A one-time browser permission prompt for screen sharing |
+
+In Basic mode the capture happens server-side, which only works if the page is publicly reachable. If your site sits behind a login, the server would capture the login page instead. That is what **Local** mode is for: it uses the browser's own screen-sharing permission to capture exactly what the signed-in commenter sees.
+
+<Note>
+In Local mode, the browser asks for screen-sharing permission when entering comment mode. If a reviewer declines, the toolbar shows a "Screenshots off" notice, and they can re-enable capture from the toolbar's menu with **Use Local Screenshot**. Superflow's own toolbar and widgets are excluded from the capture automatically.
+</Note>

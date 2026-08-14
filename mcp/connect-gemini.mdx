@@ -1,0 +1,36 @@
+---
+title: "Connect Gemini and Other Clients"
+description: "Add the Superflow MCP connector to Gemini CLI or any other MCP client that supports Streamable HTTP."
+icon: "diamond"
+---
+
+## Gemini CLI
+
+<Steps>
+  <Step title="Edit ~/.gemini/settings.json">
+    ```json
+    {
+      "mcpServers": {
+        "superflow": {
+          "httpUrl": "https://mcp.usesuperflow.ai/mcp"
+        }
+      }
+    }
+    ```
+
+    Note the key is `httpUrl`, not `url`. In Gemini CLI, `url` means an SSE server and will not work.
+  </Step>
+  <Step title="Sign in on first use">
+    Gemini CLI supports OAuth for remote HTTP servers and runs the sign-in the first time a Superflow tool is used.
+  </Step>
+</Steps>
+
+## Any other MCP client
+
+Superflow is a standard remote MCP server. In any client that supports remote servers, add it as a **Streamable HTTP** MCP server with the URL:
+
+```
+https://mcp.usesuperflow.ai/mcp
+```
+
+The server supports OAuth 2.1 with dynamic client registration, so clients need no pre-shared credentials; the sign-in flow runs on first use.

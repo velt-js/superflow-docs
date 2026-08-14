@@ -1,0 +1,34 @@
+---
+title: "Connect Cursor"
+description: "Add the Superflow MCP connector to Cursor with one click or a small config file."
+icon: "arrow-pointer"
+---
+
+## One-click install
+
+<a href="https://cursor.com/en/install-mcp?name=superflow&config=eyJ1cmwiOiJodHRwczovL21jcC51c2VzdXBlcmZsb3cuYWkvbWNwIn0%3D">
+  <img src="https://cursor.com/deeplink/mcp-install-dark.svg" alt="Add Superflow MCP server to Cursor" />
+</a>
+
+## Manual setup
+
+<Steps>
+  <Step title="Create or edit the MCP config file">
+    Use `.cursor/mcp.json` in your project, or `~/.cursor/mcp.json` to make Superflow available in every project:
+
+    ```json
+    {
+      "mcpServers": {
+        "superflow": {
+          "url": "https://mcp.usesuperflow.ai/mcp"
+        }
+      }
+    }
+    ```
+  </Step>
+  <Step title="Sign in on first use">
+    Cursor runs the OAuth sign-in the first time a Superflow tool is used. Sign in, pick your workspace, and approve the [permissions](/mcp/overview#permissions).
+  </Step>
+</Steps>
+
+A natural fit in Cursor: run Superflow's agents on your deployed site, then ask Cursor to fix the findings in your codebase. The portal's Agent Comments view also has a built-in **Open with Cursor** action for exactly this loop.
