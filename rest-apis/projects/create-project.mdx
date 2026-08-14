@@ -1,10 +1,9 @@
 ---
 title: "Create Project"
-# api: "POST https://api.velt.dev/adddocuments"
-api: "POST https://createproject.api.usesuperflow.com/"
+api: "POST https://createproject.api.velt.dev/"
 ---
 
-Use this API to create a project on Superflow.
+Use this API to create a website project on Superflow. Creating the same URL twice resolves to the same project, so the call is safe to repeat.
 
 # Endpoint
 
@@ -27,11 +26,23 @@ Use this API to create a project on Superflow.
 <ParamField body="data" type="object" required>
   <Expandable title="properties">
     <ParamField body="projectUrl" type="string" required>
-      Project URL
+      Project URL, for example `https://yourprojecturl.com`
     </ParamField>
 
     <ParamField body="projectName" type="string" required>
       Project Name
+    </ParamField>
+
+    <ParamField body="scriptAlreadyInstalled" type="boolean">
+      Set `true` when the Superflow script is already on the site, for example because your platform injects it for every project. The project is created as installed, and the duplicate-install check is skipped.
+    </ParamField>
+
+    <ParamField body="runAgentChecks" type="boolean">
+      Set `true` to run AI agent checks against the site right after the project is created. Runs spend [AI credits](/billing/ai-credits).
+    </ParamField>
+
+    <ParamField body="agentIds" type="string[]">
+      Which agents to run when `runAgentChecks` is `true`, up to 10. Defaults to the essential suite: `spell-check`, `lorem-ipsum`, `lighthouse`, `broken-links`, `accessibility-checker`. Ignored when `runAgentChecks` is not `true`.
     </ParamField>
   </Expandable>
 </ParamField>
@@ -40,9 +51,22 @@ Use this API to create a project on Superflow.
 
 ```JSON
 {
-  "data":{
-      "projectUrl": "https://yourprojecturl.com",
-      "projectName": "Your Project Name"
+  "data": {
+    "projectUrl": "https://yourprojecturl.com",
+    "projectName": "Your Project Name"
+  }
+}
+```
+
+With agent checks:
+
+```JSON
+{
+  "data": {
+    "projectUrl": "https://yourprojecturl.com",
+    "projectName": "Your Project Name",
+    "runAgentChecks": true,
+    "agentIds": ["spell-check", "broken-links"]
   }
 }
 ```
@@ -63,6 +87,25 @@ Use this API to create a project on Superflow.
 }
 ```
 
+When `runAgentChecks` is `true`, `data` also contains an `agentChecks` block. `executionIds` are runs that started (not finished), and `failedAgentIds` lists any requested agents that could not start. Agent check failures never fail the create.
+
+```JSON
+{
+  "result": {
+    "status": "success",
+    "message": "Created new project successfully.",
+    "data": {
+      "projectId": "7649736893876327",
+      "agentChecks": {
+        "requested": ["spell-check", "broken-links"],
+        "executionIds": ["exec_abc123", "exec_def456"],
+        "failedAgentIds": []
+      }
+    }
+  }
+}
+```
+
 #### Failure Response
 
 ```JSON
@@ -73,6 +116,17 @@ Use this API to create a project on Superflow.
   }
 }
 ```
+
+Common failures:
+
+| Status | Message | Meaning |
+| --- | --- | --- |
+| `INVALID_ARGUMENT` | `Api key not found.` / `Auth token not found.` | A required header is missing. |
+| `INVALID_ARGUMENT` | `Invalid Api key.` / `Invalid Auth token.` | The credentials do not match a workspace. |
+| `INVALID_ARGUMENT` | `Project url not valid!` | The URL could not be parsed. |
+| `INVALID_ARGUMENT` | `SuperFlow project detected` | The site already has Superflow installed. Pass `scriptAlreadyInstalled: true` if that is expected. |
+| `ALREADY_EXISTS` | | A project already exists for this domain. |
+| `RESOURCE_EXHAUSTED` | | The workspace has reached its project limit. |
 
 <ResponseExample>
 ```js

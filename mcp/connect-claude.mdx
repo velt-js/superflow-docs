@@ -43,21 +43,27 @@ Then just ask, in any chat: "Run the accessibility and broken links agents on ac
 
 ## Claude API
 
-Pass the server in the `mcp_servers` block of a Messages API request (MCP connector support requires the current MCP beta header; see the [Claude API docs](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector)):
+Pass the server in the `mcp_servers` block of a Messages API request, with a matching `mcp_toolset` entry in `tools` (both are required) and the MCP client beta flag:
 
 ```json
 {
+  "model": "claude-opus-5",
+  "max_tokens": 16000,
+  "betas": ["mcp-client-2025-11-20"],
   "mcp_servers": [
     {
       "type": "url",
+      "name": "superflow",
       "url": "https://mcp.usesuperflow.ai/mcp",
-      "name": "superflow"
+      "authorization_token": "YOUR_TOKEN"
     }
-  ]
+  ],
+  "tools": [{ "type": "mcp_toolset", "mcp_server_name": "superflow" }],
+  "messages": [{ "role": "user", "content": "List the projects in my Superflow workspace." }]
 }
 ```
 
-API access authenticates with an OAuth token obtained through the same user sign-in flow.
+Over raw HTTP, the beta flag goes in a header instead: `anthropic-beta: mcp-client-2025-11-20`. The `authorization_token` is an access token for the Superflow connector obtained through the OAuth sign-in flow; see the [Claude API MCP connector docs](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector) for how clients obtain and refresh it.
 
 <Note>
 Free-plan claude.ai accounts cannot add remote connectors. Upgrade, or use Claude Code, which works on any plan that includes it.
