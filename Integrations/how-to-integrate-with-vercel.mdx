@@ -20,7 +20,7 @@ Go to the [Superflow AI listing on the Vercel Marketplace](https://vercel.com/ma
 
 Choose the Vercel team you want to install into, then authorize the projects you want reviewed.
 
-You can grant access to all projects, or pick specific projects. Only the projects you authorize will trigger Superflow reviews — you can change this selection later from your Vercel integration settings.
+You can grant access to all projects, or pick specific projects. Only the projects you authorize will trigger Superflow reviews. You can change this selection later from your Vercel integration settings.
 
 ## 3) Sign in to your Superflow workspace
 
@@ -32,8 +32,8 @@ If you don't have a workspace yet, create one at this step. Once the connection 
 
 Create the review agents you want to run against your deployments. You can:
 
-- **Start from a preset** — visual QA, copy, or accessibility.
-- **Build a custom agent** — write your own instructions describing exactly what the agent should look for. If your team already has a QA checklist, paste it in and turn it into an agent.
+- **Start from a preset** for visual QA, copy, or accessibility.
+- **Build a custom agent** by writing your own instructions describing exactly what the agent should look for. If your team already has a QA checklist, paste it in and turn it into an agent.
 
 Enable the agents you want to run. Only enabled agents are triggered on a deployment.
 
@@ -57,7 +57,7 @@ Not seeing any review comments after a deployment? Here are the most common caus
 - **The project isn't authorized.** Open the Superflow AI integration in your Vercel dashboard and confirm the project is in the authorized list.
 - **No agents are enabled.** Agents that exist but aren't enabled won't run. Enable at least one agent in your Superflow workspace.
 - **The deployment URL isn't publicly reachable.** If Vercel Deployment Protection (for example, Vercel Authentication or password protection) is enabled for the environment, the rendered page can't be loaded for review. Disable protection for the environments you want reviewed, or configure a protection bypass.
-- **The connection was never completed.** Installing from the Marketplace is only the first half — you also have to sign in to your Superflow workspace to finish connecting.
+- **The connection was never completed.** Installing from the Marketplace is only the first half. You also have to sign in to your Superflow workspace to finish connecting.
 
 ## 8) Managing or removing the integration
 

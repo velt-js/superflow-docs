@@ -9,7 +9,7 @@
   },
   "favicon": "favicon.svg",
   "banner": {
-    "content": "🤖 Agents are in Beta — describe a check in plain English and let Superflow review your site. [See how](/agents/overview)",
+    "content": "🤖 Agents are in Beta. Describe a check in plain English and let Superflow review your site. [See how](/agents/overview)",
     "dismissible": true
   },
   "navigation": {

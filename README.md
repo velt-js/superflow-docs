@@ -23,7 +23,7 @@ These are what make the docs work for people who would rather not read:
 - **Media first.** If a page has a video, it goes directly under the frontmatter, above the written steps. Install pages open with the YouTube walkthrough; agent pages open with a screen recording.
 - **Steps, not numbered paragraphs.** Procedures use `<Steps>` / `<Step title="…">`. The step title carries the instruction, so it is scannable without reading the body.
 - **A screenshot per step.** Wrap it in `<Frame>` and always give the image alt text: `![What the screenshot shows](/images/…)`.
-- **Responsive embeds.** Videos and iframes use `className="w-full aspect-video rounded-xl"` — never fixed pixel width and height.
+- **Responsive embeds.** Videos and iframes use `className="w-full aspect-video rounded-xl"`, never fixed pixel width and height.
 - **Frontmatter on every page.** `title`, `description` and `icon`. The description is what shows in search results and on hover cards.
 - **Never move a page without a redirect.** Add an entry to `redirects` in `docs.json`.
 
