@@ -62,6 +62,19 @@
             "pages": [
               "agents/how-to-use-the-AI-co-pilot"
             ]
+          },
+          {
+            "group": "Superflow MCP",
+            "icon": "plug",
+            "pages": [
+              "mcp/overview",
+              "mcp/claude",
+              "mcp/chatgpt",
+              "mcp/cursor",
+              "mcp/gemini",
+              "mcp/other-clients",
+              "mcp/troubleshooting"
+            ]
           }
         ]
       },
