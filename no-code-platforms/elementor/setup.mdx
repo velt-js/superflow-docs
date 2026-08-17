@@ -1,126 +1,123 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Elementor"
+title: "Elementor"
+sidebarTitle: "Elementor"
+description: "Install Superflow on Elementor, with a video walkthrough and step-by-step screenshots."
+icon: "elementor"
 ---
 
-
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full Elementor walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/2OJ-Umsv29Q?si=zfjDV8leT9Mhfb2R"
+    title="Install Superflow on Elementor"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
-## 2) Select Other from the list of Platforms
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
-Choose Other from the list of options to install Superflow with Elementor.
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-<Frame>
-![](/images/select-other-final.png)
-</Frame>
+    <Frame>
+    ![Elementor: Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select Other from the list of Platforms">
+    Choose Other from the list of options to install Superflow with Elementor.
 
+    <Frame>
+    ![Elementor: Select Other from the list of Platforms](/images/select-other-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow code">
+    You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
 
+    <Frame>
+    ![Elementor: Copy your unique Superflow code](/images/copy-code-final.png)
+    </Frame>
+  </Step>
+  <Step title="Go to your Wordpress Dashboard, then click on Custom Code under Elementor">
+    Go to your Wordpress Dashboard then click on Elementor in the side navigation. 
 
-## 3) Copy your unique Superflow code
+    Next, click on Custom Code and then click Create New Custom Code to add your unique Superflow code
 
-You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
+    <Frame>
+    ![Elementor: Go to your Wordpress Dashboard, then click on Custom Code under Elementor](/images/settings-elementor-final.png)
+    </Frame>
+  </Step>
+  <Step title="Add Your unique Superflow Code">
+    Create a new Custom Code title and paste in your unique Superflow Code
 
-<Frame>
-![](/images/copy-code-final.png)
-</Frame>
+    <Frame>
+    ![Elementor: Add Your unique Superflow Code](/images/code-elementor-add-final.png)
+    </Frame>
 
-## 4) Go to your Wordpress Dashboard, then click on Custom Code under Elementor 
+    Be sure to change the location to `<Body> - End`.
 
-Go to your Wordpress Dashboard then click on Elementor in the side navigation. 
+    <Frame>
+    ![Elementor: Add Your unique Superflow Code](/images/elementor-body-final.png)
+    </Frame>
+  </Step>
+  <Step title="Publish your Elementor site">
+    Click the Publish button at the right of the page to publish your Elementor site.
 
-Next, click on Custom Code and then click Create New Custom Code to add your unique Superflow code
+    <Frame>
+    ![Elementor: Publish your Elementor site](/images/publish-elementor-final.png)
+    </Frame>
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-<Frame>
-![](/images/settings-elementor-final.png)
-</Frame>
+    <Frame>
+    ![Elementor: Verify your Installation](/images/verify-final.png)
+    </Frame>
 
-## 5) Add Your unique Superflow Code
+    If successful, you should be redirected to your published Elementor site and see the following success message:
 
-Create a new Custom Code title and paste in your unique Superflow Code
+    <Frame>
+    ![Elementor: Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-<Frame>
-![](/images/code-elementor-add-final.png)
-</Frame>
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your Elementor site">
+    Now that you have verified that Superflow has been installed on your Elementor site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-Be sure to change the location to `<Body> - End`.
+    `Example: mywebsite.elementor.com/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-<Frame>
-![](/images/elementor-body-final.png)
-</Frame>
+    <Frame>
+    ![Elementor: Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
-## 5) Publish your Elementor site
+    You can also leave voice and screen recordings in your comments as well!
 
-
-Click the Publish button at the right of the page to publish your Elementor site.
-
-<Frame>
-![](/images/publish-elementor-final.png)
-</Frame>
-
-
-
-## 6) Verify your Installation
-
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
-
-<Frame>
-![](/images/verify-final.png)
-</Frame>
-
-If successful, you should be redirected to your published Elementor site and see the following success message:
-
-<Frame>
-![](/images/verified-final.png)
-</Frame>
-
-## 7) Troubleshooting
-
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
-
-
-## 8) Navigate to your Elementor site 
-
-Now that you have verified that Superflow has been installed on your Elementor site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.elementor.com/?review=true`
-
-
-## 9) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
-
-
-
-
-## 10) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
+    <Frame>
+    ![Elementor: Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

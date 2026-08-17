@@ -1,156 +1,150 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Drupal"
+title: "Drupal"
+sidebarTitle: "Drupal"
+description: "Install Superflow on Drupal, with a video walkthrough and step-by-step screenshots."
+icon: "drupal"
 ---
 
-
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full Drupal walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/0j9H-9egaBI?si=bHtsAqdRxizDS_di"
+    title="Install Superflow on Drupal"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
+
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
+
+    <Frame>
+    ![Drupal: Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select Other from the list of Platforms">
+    Choose Other from the list of options to install Superflow with Drupal.
+
+    <Frame>
+    ![Drupal: Select Other from the list of Platforms](/images/select-other-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow code">
+    You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
+
+    <Frame>
+    ![Drupal: Copy your unique Superflow code](/images/copy-code-final.png)
+    </Frame>
+  </Step>
+  <Step title="Go to your Drupal Admin Panel and configure the page structure to add your Superflow code snippet">
+    In your Drupal Admin Panel, click on Manage in the top left corner and then click on Structure and then Block Layout.
+
+    <Frame>
+    ![Drupal: Go to your Drupal Admin Panel and configure the page structure to add your Superflow code…](/images/drupal3.png)
+    </Frame>
+
+    Next, scroll down and click on Footer Bottom”
+
+    <Frame>
+    ![Drupal: Go to your Drupal Admin Panel and configure the page structure to add your Superflow code…](/images/drupal4.png)
+    </Frame>
+
+    A pop up will appear. Inside the popup, click on + Add Content Block.
+
+    <Frame>
+    ![Drupal: Go to your Drupal Admin Panel and configure the page structure to add your Superflow code…](/images/drupal5.png)
+    </Frame>
+  </Step>
+  <Step title="Enter Your Superflow Code Snippet">
+    Under “Block description” add “Superflow Toolbar Block” or any name as block description.
+
+    Then, in the “Text format” dropdown below Body text editor, select “Full HTML” .
+
+    After that, in the Body text editor, click the “Source” option and paste your code there.
+
+    Lastly, click the “Save” button.
+
+    <Frame>
+    ![Drupal: Enter Your Superflow Code Snippet](/images/drupal6.png)
+    </Frame>
+
+    You'll then be taken to another configuration page.
+
+    On this page, uncheck the "Display Title" checkbox.
+
+    Then select "Footer Bootom" in the Region dropdown.
+
+    Lastly, click the "Save Block" button.
 
 
-## 2) Select Other from the list of Platforms
+    <Frame>
+    ![Drupal: Enter Your Superflow Code Snippet](/images/drupal7.png)
+    </Frame>
 
-Choose Other from the list of options to install Superflow with Drupal.
-
-<Frame>
-![](/images/select-other-final.png)
-</Frame>
-
-
-## 3) Copy your unique Superflow code
-
-You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
-
-<Frame>
-![](/images/copy-code-final.png)
-</Frame>
-
-## 4) Go to your Drupal Admin Panel and configure the page structure to add your Superflow code snippet
-
-In your Drupal Admin Panel, click on Manage in the top left corner and then click on Structure and then Block Layout.
-
-<Frame>
-![](/images/drupal3.png)
-</Frame>
-
-Next, scroll down and click on Footer Bottom”
-
-<Frame>
-![](/images/drupal4.png)
-</Frame>
-
-A pop up will appear. Inside the popup, click on + Add Content Block.
-
-<Frame>
-![](/images/drupal5.png)
-</Frame>
-
-## 5) Enter Your Superflow Code Snippet
-
-Under “Block description” add “Superflow Toolbar Block” or any name as block description.
-
-Then, in the “Text format” dropdown below Body text editor, select “Full HTML” .
-
-After that, in the Body text editor, click the “Source” option and paste your code there.
-
-Lastly, click the “Save” button.
-
-<Frame>
-![](/images/drupal6.png)
-</Frame>
-
-You'll then be taken to another configuration page.
-
-On this page, uncheck the "Display Title" checkbox.
-
-Then select "Footer Bootom" in the Region dropdown.
-
-Lastly, click the "Save Block" button.
-
-
-<Frame>
-![](/images/drupal7.png)
-</Frame>
-
-After completing above steps successfully, you would see “Superflow Toolbar Block” added in “Footer Bottom” section as shown in below screenshot.
+    After completing above steps successfully, you would see “Superflow Toolbar Block” added in “Footer Bottom” section as shown in below screenshot.
         
-Be sure to click on "Save Blocks" to finalize your changes.
+    Be sure to click on "Save Blocks" to finalize your changes.
 
-<Frame>
-![](/images/drupal10.png)
-</Frame>
+    <Frame>
+    ![Drupal: Enter Your Superflow Code Snippet](/images/drupal10.png)
+    </Frame>
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the "Yes, I've Published" button and then the "Verify Install" button on the onboarding flow.
 
+    <Frame>
+    ![Drupal: Verify your Installation](/images/drupal9.png)
+    </Frame>
 
-## 6) Verify your Installation
+    If successful, you should be redirected to your published Drupal site and see the following success message:
 
-Verify your Superflow installation by clicking the "Yes, I've Published" button and then the "Verify Install" button on the onboarding flow.
+    <Frame>
+    ![Drupal: Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-<Frame>
-![](/images/drupal9.png)
-</Frame>
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+    - Ensure that your website changes have actually been published. You should see be able to see Superflow JS tag in your dev console DOM tree.
+    - Sometimes the browser is loading the older cached version of your website, so check if you are able to see the Superflow script tag.
+    - If you still don’t see the toolbar at the bottom right of your website, open dev console to see if there are any errors from Superflow?
+  </Step>
+  <Step title="Navigate to your Drupal site">
+    Now that you have verified that Superflow has been installed on your Drupal site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-If successful, you should be redirected to your published Drupal site and see the following success message:
+    `Example: mywebsite.drupal.com/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-<Frame>
-![](/images/verified-final.png)
-</Frame>
+    <Frame>
+    ![Drupal: Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
-## 7) Troubleshooting
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
+    You can also leave voice and screen recordings in your comments as well!
 
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
- - Ensure that your website changes have actually been published. You should see be able to see Superflow JS tag in your dev console DOM tree.
- - Sometimes the browser is loading the older cached version of your website, so check if you are able to see the Superflow script tag.
- - If you still don’t see the toolbar at the bottom right of your website, open dev console to see if there are any errors from Superflow?
-
-## 8) Navigate to your Drupal site 
-
-Now that you have verified that Superflow has been installed on your Drupal site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.drupal.com/?review=true`
-
-
-## 9) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
-
-
-
-
-## 10) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
-
-
-
-
-
-
-
+    <Frame>
+    ![Drupal: Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

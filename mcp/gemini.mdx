@@ -1,6 +1,7 @@
 ---
 title: "Connect to Gemini"
 description: "Add Superflow to the Gemini CLI as a remote MCP server."
+icon: "gem"
 ---
 
 The Gemini CLI supports remote MCP servers over HTTP, including the OAuth sign-in flow, so Superflow only needs a config entry.
@@ -27,7 +28,7 @@ Run `/mcp` inside the CLI to list connected servers and their tools, then try *"
   Gemini's CLI has changed its config format across releases, and Google is
   folding the Gemini CLI into the Antigravity CLI. The `mcpServers` block
   carries over, but if the server doesn't show up in `/mcp`, check the key name
-  for remote HTTP servers in your version's documentation — some releases use
+  for remote HTTP servers in your version's documentation. Some releases use
   `url` rather than `httpUrl`.
 </Note>
 

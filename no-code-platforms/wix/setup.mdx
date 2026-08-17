@@ -1,118 +1,117 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Wix"
+title: "Wix"
+sidebarTitle: "Wix"
+description: "Install Superflow on Wix, with a video walkthrough and step-by-step screenshots."
+icon: "wix"
 ---
 
-
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full Wix walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/VzHZN7kv7hk?si=x0OY9YF_7bPvNWS6"
+    title="Install Superflow on Wix"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
-## 2) Select Wix from the list of Platforms
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
-Choose Wix from the list of options to install Superflow with Wix.
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-<Frame>
-![](/images/select-wix-final.png)
-</Frame>
+    <Frame>
+    ![Wix: Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select Wix from the list of Platforms">
+    Choose Wix from the list of options to install Superflow with Wix.
 
+    <Frame>
+    ![Wix: Select Wix from the list of Platforms](/images/select-wix-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow code">
+    You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
 
+    <Frame>
+    ![Wix: Copy your unique Superflow code](/images/copy-code-final.png)
+    </Frame>
+  </Step>
+  <Step title="Go to Settings on your Wix Site and then click Custom Code">
+    You can get to Settings at the bottom left of the side menu. Then scroll down and click Custom Code.
 
-## 3) Copy your unique Superflow code
+    <Frame>
+    ![Wix: Go to Settings on your Wix Site and then click Custom Code](/images/code-wix-final.png)
+    </Frame>
+  </Step>
+  <Step title="Add your unique Superflow code in the Body - End section">
+    Scroll down and add your unique Superflow code in the Body - End section. Be sure to save.
 
-You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
+    <Frame>
+    ![Wix: Add your unique Superflow code in the Body - End section](/images/footer-wix-final.png)
+    </Frame>
+  </Step>
+  <Step title="Publish your Wix site">
+    To publish your Wix site first go to your home page and then click Edit Site. 
 
-<Frame>
-![](/images/copy-code-final.png)
-</Frame>
+    Next, click the publish button in the top right to publish your Wix site.
 
-## 4) Go to Settings on your Wix Site and then click Custom Code
+    <Frame>
+    ![Wix: Publish your Wix site](/images/publish-wix-final.png)
+    </Frame>
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-You can get to Settings at the bottom left of the side menu. Then scroll down and click Custom Code.
+    <Frame>
+    ![Wix: Verify your Installation](/images/verify-final.png)
+    </Frame>
 
-<Frame>
-![](/images/code-wix-final.png)
-</Frame>
+    If successful, you should be redirected to your published Wix site and see the following success message:
 
+    <Frame>
+    ![Wix: Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-## 5) Add your unique Superflow code in the Body - End section
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your Wix site">
+    Now that you have verified that Superflow has been installed on your Wix site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-Scroll down and add your unique Superflow code in the Body - End section. Be sure to save.
+    `Example: mywebsite.wix.com/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-<Frame>
-![](/images/footer-wix-final.png)
-</Frame>
+    <Frame>
+    ![Wix: Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
-## 6) Publish your Wix site
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
-To publish your Wix site first go to your home page and then click Edit Site. 
+    You can also leave voice and screen recordings in your comments as well!
 
-Next, click the publish button in the top right to publish your Wix site.
-
-<Frame>
-![](/images/publish-wix-final.png)
-</Frame>
-
-
-## 7) Verify your Installation
-
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
-
-<Frame>
-![](/images/verify-final.png)
-</Frame>
-
-If successful, you should be redirected to your published Wix site and see the following success message:
-
-<Frame>
-![](/images/verified-final.png)
-</Frame>
-
-## 8) Troubleshooting
-
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
-
-
-## 9) Navigate to your Wix site 
-
-Now that you have verified that Superflow has been installed on your Wix site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.wix.com/?review=true`
-
-
-## 10) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
-
-
-
-
-## 11) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
+    <Frame>
+    ![Wix: Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

@@ -1,132 +1,127 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Typedream"
+title: "Typedream"
+sidebarTitle: "Typedream"
+description: "Install Superflow on Typedream, with a video walkthrough and step-by-step screenshots."
+icon: "browser"
 ---
 
-
-## 1) Enter Your Site URL
-
-Enter the site URL you want Superflow to be installed in.
-
-<Frame>
-![](/images/enter-url-final.png)
+<Frame caption="Watch the full Typedream walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/_yAaxRiERgE?si=aCazguamzAj3OjeV"
+    title="Install Superflow on Typedream"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 </Frame>
 
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
-## 2) Select Other from the list of Platforms
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-Choose Other from the list of options to install Superflow with Typedream.
+    <Frame>
+    ![Typedream: Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select Other from the list of Platforms">
+    Choose Other from the list of options to install Superflow with Typedream.
 
-<Frame>
-![](/images/select-other-final.png)
-</Frame>
+    <Frame>
+    ![Typedream: Select Other from the list of Platforms](/images/select-other-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow code">
+    You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
 
+    <Frame>
+    ![Typedream: Copy your unique Superflow code](/images/copy-code-final.png)
+    </Frame>
+  </Step>
+  <Step title="Go to Site Settings on your Typedream site editor.">
+    Click `Site Settings` in the left hand side panel on your site editor.
 
+    <Frame>
+    ![Typedream: Go to Site Settings on your Typedream site editor](/images/typedream1.png)
+    </Frame>
+  </Step>
+  <Step title="Click on Code Injection to add your unique Superflow code">
+    Then click `Code Injection` in the side navigation.
 
-## 3) Copy your unique Superflow code
-
-You can copy your unique Superflow code from the onboarding flow or from your project settings in your dashboard.
-
-<Frame>
-![](/images/copy-code-final.png)
-</Frame>
-
-## 4) Go to Site Settings on your Typedream site editor.
-
-Click `Site Settings` in the left hand side panel on your site editor.
-
-<Frame>
-![](/images/typedream1.png)
-</Frame>
-
-
-## 5) Click on Code Injection to add your unique Superflow code
-
-
-Then click `Code Injection` in the side navigation.
-
-After that, scroll down to `Site Body` and add your unique Superflow code. 
-
-
-<Frame>
-![](/images/typedream2.png)
-</Frame>
-
-Be sure to save by pressing `Update Settings`.
-
-<Frame>
-![](/images/typedream3.png)
-</Frame>
+    After that, scroll down to `Site Body` and add your unique Superflow code. 
 
 
-## 6) Publish your Typedream site
+    <Frame>
+    ![Typedream: Click on Code Injection to add your unique Superflow code](/images/typedream2.png)
+    </Frame>
+
+    Be sure to save by pressing `Update Settings`.
+
+    <Frame>
+    ![Typedream: Click on Code Injection to add your unique Superflow code](/images/typedream3.png)
+    </Frame>
+  </Step>
+  <Step title="Publish your Typedream site">
+    Go into one of your Typedream site pages and click `Publish` in top right of the page.
+
+    <Frame>
+    ![Typedream: Publish your Typedream site](/images/typedream4.png)
+    </Frame>
 
 
-Go into one of your Typedream site pages and click `Publish` in top right of the page.
+    Click `Publish` again in the dropdown to deploy your changes.
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-<Frame>
-![](/images/typedream4.png)
-</Frame>
+    <Frame>
+    ![Typedream: Verify your Installation](/images/verify-final.png)
+    </Frame>
 
+    If successful, you should be redirected to your published Typedream site and see the following success message:
 
-Click `Publish` again in the dropdown to deploy your changes.
+    <Frame>
+    ![Typedream: Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your Typedream site">
+    Now that you have verified that Superflow has been installed on your Typedream site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-## 7) Verify your Installation
+    `Example: mywebsite.typedream.app/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
+    <Frame>
+    ![Typedream: Test out Superflow](/images/typedream5.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
-<Frame>
-![](/images/verify-final.png)
-</Frame>
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
-If successful, you should be redirected to your published Typedream site and see the following success message:
+    You can also leave voice and screen recordings in your comments as well!
 
-<Frame>
-![](/images/verified-final.png)
-</Frame>
-
-## 8) Troubleshooting
-
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
-
-
-## 9) Navigate to your Typedream site 
-
-Now that you have verified that Superflow has been installed on your Typedream site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.typedream.app/?review=true`
-
-
-## 10) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/typedream5.png)
-</Frame>
-
-
-
-## 11) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
-
+    <Frame>
+    ![Typedream: Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>

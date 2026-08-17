@@ -1,9 +1,10 @@
 ---
 title: "Connect to Cursor"
 description: "Add Superflow to Cursor with the install link or an mcp.json entry."
+icon: "code"
 ---
 
-Cursor supports remote MCP servers natively, so Superflow is a few lines of config — or one click.
+Cursor supports remote MCP servers natively, so Superflow is a few lines of config, or one click.
 
 ## Install with one click
 
@@ -40,4 +41,4 @@ Open **Cursor Settings**, then **MCP**. Superflow should be listed with its tool
 
 ## Managing the connection
 
-Remove the `superflow` entry from `mcp.json` to disconnect Cursor. To revoke the grant itself, disconnect Superflow from your [Superflow dashboard](https://app.usesuperflow.com) as well — removing the config stops Cursor from calling the server, but doesn't revoke the token it already holds.
+Remove the `superflow` entry from `mcp.json` to disconnect Cursor. To revoke the grant itself, disconnect Superflow from your [Superflow dashboard](https://app.usesuperflow.com) as well. Removing the config stops Cursor from calling the server, but it does not revoke the token Cursor already holds.

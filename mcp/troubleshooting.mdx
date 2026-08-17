@@ -1,6 +1,7 @@
 ---
 title: "Troubleshooting"
 description: "Fixes for the common problems when connecting the Superflow MCP server."
+icon: "wrench"
 ---
 
 ## The client won't add the server
@@ -22,7 +23,7 @@ description: "Fixes for the common problems when connecting the Superflow MCP se
     client registers itself when it connects. There are no credentials to copy.
   </Accordion>
   <Accordion title="The URL is rejected or the server never responds">
-    Check the URL is exactly `https://mcp.usesuperflow.ai/mcp` — including the
+    Check the URL is exactly `https://mcp.usesuperflow.ai/mcp`, including the
     `/mcp` path. Some clients silently drop a trailing slash or a missing path
     and then fail with a generic connection error.
   </Accordion>
@@ -52,15 +53,15 @@ description: "Fixes for the common problems when connecting the Superflow MCP se
 
 <AccordionGroup>
   <Accordion title="The assistant says it can't see any Superflow tools">
-    Restart the client after adding the server — most clients only read MCP
+    Restart the client after adding the server. Most clients only read MCP
     config at startup. Then check the client's MCP panel (`/mcp` in Claude Code
     and the Gemini CLI, **Settings → MCP** in Cursor) to confirm Superflow is
     listed and connected.
   </Accordion>
   <Accordion title="A tool returns a permission error">
-    You didn't grant that scope. Each capability — running agents, creating
-    projects, reading analytics, inviting people — is a separate scope on the
-    consent screen. Reconnect the server and approve the scopes you need.
+    You didn't grant that scope. Each capability is a separate scope on the
+    consent screen: running agents, creating projects, reading analytics, and
+    inviting people. Reconnect the server and approve the scopes you need.
 
     Tools also can't exceed your own access. If your Superflow account can't do
     something, neither can the assistant.

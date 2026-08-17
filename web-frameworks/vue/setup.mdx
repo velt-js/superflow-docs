@@ -1,139 +1,142 @@
 ---
-title: "Setup"
-description: "How to setup Superflow with Vue.js"
+title: "Vue"
+sidebarTitle: "Vue"
+description: "Install Superflow on Vue, with a video walkthrough and step-by-step screenshots."
+icon: "vuejs"
 ---
+
+<Frame caption="Watch the full Vue walkthrough">
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/YSftYr7yZDk?si=UqLsVwP_XEbDQ5l_"
+    title="Install Superflow on Vue"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
+</Frame>
+
+<Tip>
+  Prefer to read? Every step in the video is written out below, with a screenshot for each one.
+</Tip>
 
 [Github Repo](https://github.com/benjvelt/superflow-vue)
 
 [Demo](https://superflow-vue.vercel.app/?review=true)
 
-## 1) Enter Your Site URL
+<Steps>
+  <Step title="Enter Your Site URL">
+    Enter the site URL you want Superflow to be installed in.
 
-Enter the site URL you want Superflow to be installed in.
+    <Frame>
+    ![Vue: Enter Your Site URL](/images/enter-url-final.png)
+    </Frame>
+  </Step>
+  <Step title="Select NPM from the list of Platforms">
+    Choose NPM from the list of options to install Superflow with Vue.
 
-<Frame>
-![](/images/enter-url-final.png)
-</Frame>
+    <Frame>
+    ![Vue: Select NPM from the list of Platforms](/images/select-npm-final.png)
+    </Frame>
+  </Step>
+  <Step title="Copy your unique Superflow Code">
+    Copy the code from the section "Initialize Superflow"
 
-## 2) Select NPM from the list of Platforms
+    <Frame>
+    ![Vue: Copy your unique Superflow Code](/images/copy-npm-final.png)
+    </Frame>
+  </Step>
+  <Step title="Install the Superflow NPM package">
+    Install the Superflow NPM package with:
 
-Choose NPM from the list of options to install Superflow with Vue.
+    ```
+    npm i @usesuperflow/client
+    ```
+  </Step>
+  <Step title="Import Superflow in main.js">
+    Import the Superflow NPM package with:
 
-<Frame>
-![](/images/select-npm-final.png)
-</Frame>
+    ```
+    import { initSuperflow } from '@usesuperflow/client'
+    ```
+  </Step>
+  <Step title="Initialize Superflow within main.js">
+    Import `initSuperflow` from the NPM package and use it to initialize Superflow.
 
-## 3) Copy your unique Superflow Code
-
-Copy the code from the section "Initialize Superflow"
-
-<Frame>
-![](/images/copy-npm-final.png)
-</Frame>
-
-## 4) Install the Superflow NPM package
-
-Install the Superflow NPM package with:
-
-```
-npm i @usesuperflow/client
-```
-
-## 5) Import Superflow in `main.js`
-
-Import the Superflow NPM package with:
-
-```
-import { initSuperflow } from '@usesuperflow/client'
-```
-
-## 6) Initialize Superflow within `main.js`
-
-Import `initSuperflow` from the NPM package and use it to initialize Superflow.
-
-Next, paste in the unique Superflow code you copied earlier before `app.use(router)`.
+    Next, paste in the unique Superflow code you copied earlier before `app.use(router)`.
 
 
-```js
-import './assets/main.css'
+    ```js
+    import './assets/main.css'
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import { initSuperflow } from '@usesuperflow/client'
+    import { createApp } from 'vue'
+    import App from './App.vue'
+    import router from './router'
+    import { initSuperflow } from '@usesuperflow/client'
 
-const app = createApp(App)
+    const app = createApp(App)
 
-//initialize Superflow
-initSuperflow('YOUR_API_KEY', {
-    projectId: 'YOUR_PROJECT_ID'
-});
+    //initialize Superflow
+    initSuperflow('YOUR_API_KEY', {
+        projectId: 'YOUR_PROJECT_ID'
+    });
 
-app.use(router)
+    app.use(router)
 
-app.mount('#app')
+    app.mount('#app')
 
-```
-## 7) Deploy your app with your changes
+    ```
+  </Step>
+  <Step title="Deploy your app with your changes">
+    Deploy your Vue app with your changes.
+  </Step>
+  <Step title="Verify your Installation">
+    Verify your Superflow installation by clicking the Verify button on the onboarding flow.
 
-Deploy your Vue app with your changes.
+    <Frame>
+    ![Vue: Verify your Installation](/images/verify-final.png)
+    </Frame>
 
+    If successful, you should be redirected to your published Vue site and see the following success message:
 
-## 8) Verify your Installation
+    <Frame>
+    ![Vue: Verify your Installation](/images/verified-final.png)
+    </Frame>
+  </Step>
+  <Step title="Troubleshooting">
+    Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
 
-Verify your Superflow installation by clicking the Verify button on the onboarding flow.
+    - Did you forget to save the Custom Code?
+    - Did you forget to publish your site?
+    - Is the browser still loading a cached version?
+    - Did you add `?review=true` at the end of your url?
+    - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
+    - Did you accidentally install multiple Superflow scripts in the Custom Code?
+  </Step>
+  <Step title="Navigate to your Vue site">
+    Now that you have verified that Superflow has been installed on your Vue site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
 
-<Frame>
-![](/images/verify-final.png)
-</Frame>
+    `Example: mywebsite.com/?review=true`
+  </Step>
+  <Step title="Test out Superflow">
+    You should now see a Superflow toolbar on the bottom right of you screen.
 
-If successful, you should be redirected to your published Vue site and see the following success message:
+    <Frame>
+    ![Vue: Test out Superflow](/images/toolbar-final.png)
+    </Frame>
+  </Step>
+  <Step title="Dropping your first comment">
+    Try leaving a comment on your page.
 
-<Frame>
-![](/images/verified-final.png)
-</Frame>
+    You can leave a comment in several different ways:
+    - By highlighting any text
+    - By hovering over any element on the page
+    - By drawing a box anywhere on the page
 
-## 9) Troubleshooting
+    You can also leave voice and screen recordings in your comments as well!
 
-Having trouble getting your verifying your installation? Here are the common mistakes users encounter when installing Superflow:
-
- - Did you forget to save the Custom Code?
- - Did you forget to publish your site?
- - Is the browser still loading a cached version?
- - Did you add `?review=true` at the end of your url?
- - Did you publish your changes on a staging URL while you are trying to access a Prod URL?
- - Did you accidentally install multiple Superflow scripts in the Custom Code?
-
-
-## 10) Navigate to your Vue site 
-
-Now that you have verified that Superflow has been installed on your Vue site, navigate to your published site and add `?review=true` at the end of the URL to enable Superflow. 
-
-`Example: mywebsite.com/?review=true`
-
-
-## 11) Test out Superflow
-
-You should now see a Superflow toolbar on the bottom right of you screen.
-
-<Frame>
-![](/images/toolbar-final.png)
-</Frame>
-
-
-
-
-## 12) Dropping your first comment
-Try leaving a comment on your page.
-
-You can leave a comment in several different ways:
-- By highlighting any text
-- By hovering over any element on the page
-- By drawing a box anywhere on the page
-
-You can also leave voice and screen recordings in your comments as well!
-
-<Frame>
-![](/images/demo.gif)
-</Frame>
-
+    <Frame>
+    ![Vue: Dropping your first comment](/images/demo.gif)
+    </Frame>
+  </Step>
+</Steps>
