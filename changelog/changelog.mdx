@@ -25,3 +25,43 @@ description: "New updates and improvements to Superflow"
 
   See CHANGELOG_AGENT_NOTE.md in the repo root for full instructions.
 */}
+
+<Update label="August 16, 2026" description="Aug 2-16, 2026">
+  ## Real-feeling previews, a proper agent workspace, and more ways to install
+
+  ### New Features
+
+  - **Cross-page preview navigation**: Visitors reviewing a site through a shared preview link can click through to other pages in the preview instead of being stuck on a single page.
+  - **Workspace Agent**: A built-in Workspace Agent now appears in the agents list with its own page for tracking checklist progress. It unlocks automatically once your workspace has enough review rules.
+  - **MCP connector for AI assistants**: Connect AI tools such as Claude, ChatGPT, Cursor, and Gemini CLI to your workspace over OAuth to access project data, with a consent screen and setup instructions in settings.
+  - **Framer install**: Install the toolbar on a Framer site straight from the portal by pasting your project link and API key, alongside the existing plugin-based flow.
+  - **Danger Zone in project settings**: Project deletion and a new Delete All Comments action now live in a dedicated Danger Zone, each behind a confirmation step.
+  - **Deep-linked findings**: Opening a finding from agent results jumps straight to its comment on the reviewed page.
+  - **Leave a workspace**: If you belong to more than one workspace, you can leave one directly from the workspace switcher, with a confirmation step first.
+  - **Figma import for everyone**: Figma project import is now available on all accounts, with no early-access restriction.
+
+  ### Improvements
+
+  - The agents list and review checklist use a new table layout with sorting, category tagging, inline rule editing, and clearer utilization indicators for each rule.
+  - The agents list can be sorted by last used or usage, and the agent picker on the new project page lists agents alphabetically in a larger scroll area.
+  - The preview review card shows a loading placeholder while results are gathered, and says clearly when no automated checks ran.
+  - Creating a project now succeeds even when the target site blocks automated detection.
+  - When a site can't be reached during install verification, the portal shows a clear message and stops retrying instead of polling indefinitely.
+  - The sidebar on the new project screen can be expanded and collapsed like everywhere else in the app.
+  - Kanban status columns all render at the same width, no matter how much content a card holds.
+  - Settings navigation returns you to the page you came from.
+  - The arrow tool is no longer offered as a creation option in the toolbar. Existing arrow annotations still display as before.
+  - Deletion actions now respect plan status and usage limits.
+
+  ### Bug Fixes
+
+  - Fixed an issue where clicking continue again during sign-in after successful code verification could show a code expired error.
+  - Fixed project and comment status filters returning results that disagreed with what was shown on screen.
+  - Fixed pages failing to load shortly after an update, which previously required a manual refresh.
+  - Fixed projects that already have comments showing as Not Installed in the project list.
+  - Fixed the close button and Go Back action on the kanban status change modal.
+  - Fixed the Show Comments on Page toggle so it hides all comment pins and highlights, not just the minimap markers.
+  - Fixed agent-driven comment checks so they detect and navigate to the current page when the site is accessed through a proxy.
+  - Fixed the Figma review layout so the frame view uses the full available width.
+  - Fixed the Open-in-Mobile QR code so it loads on the first click.
+</Update>
