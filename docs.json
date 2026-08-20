@@ -337,7 +337,7 @@
       {
         "label": "Video library",
         "icon": "circle-play",
-        "href": "/watch"
+        "href": "https://usesuperflow.ai/docs/watch"
       }
     ],
     "primary": {
