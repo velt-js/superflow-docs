@@ -57,6 +57,13 @@
             ]
           },
           {
+            "group": "Agent Workflows",
+            "icon": "diagram-project",
+            "pages": [
+              "agents/agent-workflows"
+            ]
+          },
+          {
             "group": "AI in the Toolbar",
             "icon": "pen-nib",
             "pages": [
@@ -337,7 +344,7 @@
       {
         "label": "Video library",
         "icon": "circle-play",
-        "href": "/watch"
+        "href": "https://usesuperflow.ai/docs/watch"
       }
     ],
     "primary": {

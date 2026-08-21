@@ -1,0 +1,351 @@
+---
+title: "Agent Workflows"
+description: "Run your agents as a QA gate on your issue tracker: findings go back on the ticket, and the ticket moves itself."
+icon: "diagram-project"
+---
+
+In this article, you will learn how to run Superflow agents as an **agent workflow** — a gate that reviews your deployed site whenever a ticket enters QA, writes every finding back onto that ticket, and moves the card. This guide builds the loop on Jira, but the engine is tracker-agnostic; see [Driving it from your own system](#driving-it-from-your-own-system).
+
+<Frame>
+<video controls className="w-full aspect-video" src="/videos/jira-qa-loop.mp4"></video>
+</Frame>
+
+<Note>
+Agent workflows are currently in **Beta**. Each pass runs its agents against your deployed page and consumes credits from your workspace balance.
+</Note>
+
+## Overview
+
+Your AI builds a feature and marks the ticket ready for testing. Superflow's QA agents review the deployed site against the ticket's own acceptance checklist, write every finding back to the ticket, and move it to your fix column. Your coding agent fixes, resubmits, and the cycle repeats until the ticket lands in **Done**.
+
+There is no polling and no glue server: Jira Automation and Superflow's workflow engine talk to each other directly over webhooks.
+
+## How it works
+
+A single QA pass runs as one workflow execution. A status change in Jira dispatches the run; the verdict returns as a signed webhook that Jira Automation turns into a comment, labels, and a status move.
+
+| # | From → To | What happens |
+| :---- | :---- | :---- |
+| 1 | Jira Automation → Superflow workflow | Ticket enters QA; `POST /v2/workflow/executions/dispatch` |
+| 2 | Superflow workflow → QA agents | Agent nodes run in parallel |
+| 3 | QA agents → Deployed site | Agents review the page |
+| 4 | Deployed site → QA agents | Page content returned |
+| 5 | QA agents → Superflow workflow | Verdicts: all clean = **approve**, any finding = **reject** |
+| 6 | Superflow workflow → Jira Automation | Signed verdict webhook (findings JSON or all-clean) |
+| 7 | Jira Automation → Ticket | Comment + labels + status move |
+
+### The ticket's journey
+
+Superflow decides which arrow fires; Jira Automation moves the card.
+
+| From | To | Fires when |
+| :---- | :---- | :---- |
+| QA | Fix | Findings were reported — adds the `ai-fix` label |
+| Fix | QA | The coding agent fixed it and sent the ticket back |
+| QA | Done | Every agent came back clean — adds the `uat-passed` label |
+
+### Ticket states and labels
+
+| Ticket state | Label | Set by | Meaning |
+| :---- | :---- | :---- | :---- |
+| **QA** | `qa` | Your team / coding agent | Build is deployed; run the QA pass |
+| **Fix** | `ai-fix` | Jira rule, on Superflow's findings webhook | Findings are on the ticket; coding agent picks it up |
+| **Done** | `uat-passed` | Jira rule, on Superflow's all-clean webhook | Every agent passed; ship it |
+
+<Warning>
+**Do not mirror.** Statuses and labels always change together because each rule sets both. Never build mirror label-to-status rules alongside these — automation changes do not trigger other rules by default, so the mirrors half-sync.
+</Warning>
+
+## What you need
+
+<CardGroup cols={2}>
+  <Card title="A Superflow workspace" icon="cube">
+    With your site added as a project. You need three values from it: the **API key**, the **auth token**, and the project's **organization id + document id**.
+  </Card>
+  <Card title="A Jira project" icon="list-check">
+    Where you can create Automation rules, with board columns for **QA**, **Fix**, and **Done**.
+  </Card>
+  <Card title="A deployed site URL" icon="globe">
+    Reachable by the agents over the public internet.
+  </Card>
+  <Card title="Your Superflow API base URL" icon="link">
+    The examples below use `https://staging.velt.dev`; your account team will confirm your host.
+  </Card>
+</CardGroup>
+
+All calls are `POST` with the headers `x-velt-api-key` and `x-velt-auth-token`, and the body wrapped as `{"data": ...}`. Responses come back as `{"result": ...}`.
+
+## Setup
+
+<Steps>
+  <Step title="Create the UAT Checker agent">
+    Superflow ships built-in agents — spell check, broken links, accessibility, Lighthouse, and more. Add one custom agent that verifies whatever acceptance checklist each ticket carries.
+
+    ```json POST /v2/agents/create
+    {
+      "data": {
+        "name": "UAT Instructions Checker",
+        "description": "Verifies the deployed page against the ticket's UAT checklist.",
+        "instructions": "You are a UAT reviewer verifying a deployed web page against acceptance checks written on a ticket. Treat each numbered line of the provided UAT instructions as one check. For EVERY failing check report one finding: title = the check, description = what you observed versus what was expected, severity high for functional failures, medium for content issues. Do NOT report checks that pass or issues outside the checklist. If all checks pass, report zero findings.",
+        "contextGathering": {
+          "strategies": ["web-page-text", "web-page-screenshot", "web-page-html"]
+        },
+        "execution": { "executionStrategy": "ai" },
+        "input": {
+          "userContextFields": [
+            {
+              "id": "ticketInstructions",
+              "title": "UAT instructions to verify (from the ticket)",
+              "type": "string",
+              "required": true
+            },
+            { "id": "ticketKey", "title": "Ticket key", "type": "string" }
+          ]
+        }
+      }
+    }
+    ```
+
+    The response returns the agent's id, referenced in the next step.
+
+    <Tip>
+    **Zero findings = pass** is the loop's termination test: a clean agent approves, any finding rejects.
+    </Tip>
+  </Step>
+
+  <Step title="Create the workflow definition">
+    One workflow is the agents you picked, running in parallel, with two exits. Scope it to your project at document level so findings are pinned on the page.
+
+    The two webhook URLs come from step 3 — create the definition with placeholders and update it after, or make the Jira rules first.
+
+    ```json POST /v2/workflow/definitions/create
+    {
+      "data": {
+        "definitionId": "jira-uat-qa",
+        "name": "Jira UAT QA loop",
+        "scope": {
+          "level": "document",
+          "organizationId": "<ORG_ID>",
+          "documentId": "<PROJECT_DOC_ID>"
+        },
+        "nodes": [
+          {
+            "nodeId": "qa-spell",
+            "type": "agent",
+            "config": { "agentId": "spell-check", "urlPath": "page.url" }
+          },
+          {
+            "nodeId": "qa-uat",
+            "type": "agent",
+            "config": {
+              "agentId": "<UAT_CHECKER_AGENT_ID>",
+              "urlPath": "page.url",
+              "userContextMapping": {
+                "ticketInstructions": "ticket.uatInstructions",
+                "ticketKey": "ticket.key"
+              }
+            }
+          },
+          {
+            "nodeId": "report-findings",
+            "type": "webhook",
+            "config": {
+              "url": "<JIRA_INCOMING_WEBHOOK_URL_FINDINGS>",
+              "method": "POST",
+              "mode": "sync",
+              "authMode": "none",
+              "bodyTemplate": "envelope",
+              "timeoutMs": 30000,
+              "requestHeaders": {
+                "X-Automation-Webhook-Token": "<FINDINGS_WEBHOOK_SECRET>"
+              }
+            }
+          },
+          {
+            "nodeId": "report-pass",
+            "type": "webhook",
+            "config": {
+              "url": "<JIRA_INCOMING_WEBHOOK_URL_PASSED>",
+              "method": "POST",
+              "mode": "sync",
+              "authMode": "none",
+              "bodyTemplate": "envelope",
+              "timeoutMs": 30000,
+              "requestHeaders": {
+                "X-Automation-Webhook-Token": "<PASSED_WEBHOOK_SECRET>"
+              }
+            }
+          }
+        ],
+        "groups": [
+          {
+            "groupId": "qa-agents",
+            "memberNodeIds": ["qa-spell", "qa-uat"],
+            "expectedSteps": 2,
+            "quorum": 2,
+            "onQuorumMet": "waitAll"
+          }
+        ],
+        "edges": [
+          {
+            "from": { "kind": "group", "groupId": "qa-agents" },
+            "to": "report-pass",
+            "on": "approve"
+          },
+          {
+            "from": { "kind": "group", "groupId": "qa-agents" },
+            "to": "report-findings",
+            "on": "reject"
+          }
+        ]
+      }
+    }
+    ```
+
+    Add more agent nodes to the group for a stricter gate: broken links, accessibility, Lighthouse, or your own custom agents. The verdict is unanimous — every agent must pass for the ticket to go green.
+  </Step>
+
+  <Step title="Create three Automation rules in Jira">
+    **Rule 1 — QA-dispatch.** Trigger: *Work item transitioned*, to **QA**. If you set a From filter, include your fix column *and* Done, so re-opened tickets can re-enter QA. Use no label conditions — the rule's own label action keeps labels in sync.
+
+    Actions: *Edit labels* (add `qa`, remove `ai-fix`, remove `uat-passed`), then *Send web request* with **Wait for response** enabled:
+
+    ```json POST https://<YOUR_SUPERFLOW_HOST>/v2/workflow/executions/dispatch
+    {
+      "data": {
+        "definitionId": "jira-uat-qa",
+        "correlationId": "{{issue.key}}",
+        "organizationId": "<ORG_ID>",
+        "documentId": "<PROJECT_DOC_ID>",
+        "triggerContext": {
+          "page": { "url": "<YOUR_SITE_URL>" },
+          "ticket": {
+            "key": "{{issue.key}}",
+            "summary": {{issue.summary.asJsonString}},
+            "uatInstructions": {{issue.description.asJsonString}},
+            "url": "https://<YOUR_SITE>.atlassian.net/browse/{{issue.key}}"
+          }
+        }
+      }
+    }
+    ```
+
+    Send the headers `x-velt-api-key` and `x-velt-auth-token` (hidden) with the request. The `correlationId` — the issue key — is what routes results back to the right ticket; it rides every webhook Superflow sends.
+
+    <Warning>
+    **Leave out the idempotency key.** There is deliberately no `idempotencyKey`: the server generates a unique one per dispatch. If you add your own, never build it with `{{now.format("...")}}` — Jira's new flow editor renders it empty, the key goes constant, and the 24h dedup window silently swallows every run after the first.
+    </Warning>
+
+    **Rule 2 — QA-findings.** Trigger: *Incoming webhook*, with work-item criteria set to **No work items from the webhook**. Generate the secret it offers — that is the `<FINDINGS_WEBHOOK_SECRET>` used in step 2.
+
+    Add a **For: JQL** branch, `key = {{webhookData.correlationId}}`, holding three actions: a *Comment* rendering every finding, *Edit labels* (add `ai-fix`, remove `qa`), and *Transition* to **Fix**.
+
+    ```text Comment template
+    *Superflow QA — FAILED* (execution {{webhookData.executionId}})
+
+    *UAT checks — {{webhookData.input.groupOutputs.qa-uat.agentResultsSummary.totalFindings}} failed:*
+    {{#webhookData.input.groupOutputs.qa-uat.agentFindings}}
+    * [{{severity}}] {{title}}: {{description}}
+    {{/}}
+
+    *Spell check — {{webhookData.input.groupOutputs.qa-spell.agentResultsSummary.totalFindings}} findings:*
+    {{#webhookData.input.groupOutputs.qa-spell.agentFindings}}
+    * [{{severity}}] {{title}}: {{description}}
+    {{/}}
+
+    Pinned comments on the page: <YOUR_SITE_URL>
+    Fix the issues, then move the ticket back to QA.
+    ```
+
+    <Note>
+    Enter each smart value as a single unbroken string in the rule editor, even where it is shown wrapped above.
+    </Note>
+
+    **Rule 3 — QA-passed.** Same shape, second incoming webhook — its URL becomes `<JIRA_INCOMING_WEBHOOK_URL_PASSED>`. Comment `✅ Superflow QA — UAT passed, all agents clean`, *Edit labels* (add `uat-passed`, remove `qa`), *Transition* to **Done**.
+
+    Pick your Done status explicitly in the destination dropdown; the default *Copy from trigger work item* does not work for webhook-triggered rules.
+
+    <Tip>
+    **Flow-editor tips that save real debugging time**
+
+    - Statuses added or renamed on the board do not appear in the editor's dropdowns until you refresh it.
+    - Hidden header values can blank when a rule is re-saved — re-enter the auth token after edits.
+    - The editor's **Validate** button only substitutes smart values when you give it a real work item key.
+    - *Successfully published web request* means fire-and-forget: the response, including a 4xx, is ignored. Enable **Wait for response** so failures show in the audit log.
+    </Tip>
+  </Step>
+
+  <Step title="Connect the webhooks and write the first ticket">
+    Paste the two incoming-webhook URLs and secrets into the definition — re-send the full definition via `POST /v2/workflow/definitions/update` with `ifVersion` set to the current version.
+
+    Then write tickets with one convention: **the description is the UAT checklist**, a numbered list of concrete, checkable statements about the deployed page.
+
+    Move the ticket to **QA** and watch. Findings arrive as a comment in about one to two minutes, pinned to the exact elements on your live page in the Superflow project.
+  </Step>
+</Steps>
+
+## Driving it from your own system
+
+If your software factory prefers direct API calls, or you use a different tracker, the same engine is fully drivable over REST. Jira Automation is just one possible client.
+
+| Call | Use |
+| :---- | :---- |
+| `POST /v2/workflow/executions/dispatch` | Start a QA pass; set `correlationId` to your ticket id and pass the checklist + URL in `triggerContext` |
+| Webhook nodes / definition `webhookConfig` | Point them at your own endpoint instead of Jira; you receive the same findings JSON, HMAC-signed |
+| `POST /v2/workflow/executions/get` | Poll an execution; every agent's verdict and findings are on the step outputs |
+| `POST /v2/workflow/executions/getEvents` | Missed-webhook recovery, cursor on `sinceSeq` |
+| `POST /v2/agents/execution/get` with `includeResults: true` | Full per-URL findings for your coding agent: exact target text, suggested fix, confidence, the pinned comment's id |
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Moving to QA does nothing">
+    Rule 1's trigger or conditions — check the rule's **Audit log**. A label condition like *does not contain `ai-fix`* blocks re-runs, because the fixed ticket still wears the label when it re-enters QA. Let the rule's own label action clear it instead.
+  </Accordion>
+  <Accordion title="Dispatch returns 401">
+    Wrong `x-velt-auth-token`, or key and token from different workspaces. Also check the hidden headers — they can blank when a rule is re-saved.
+  </Accordion>
+  <Accordion title="Rule shows success but no run starts (200 with deduplicated: true)">
+    The dispatch's `idempotencyKey` resolves to the same value every time, so the 24h dedup window swallows every run after the first. Known trap: Jira's new flow editor renders `{{now.format("...")}}` as empty. Simplest fix — omit the field entirely.
+  </Accordion>
+  <Accordion title="Run completes but no Jira comment">
+    On the incoming-webhook rule: work-item criteria must be **No work items from the webhook**, the **For: JQL** branch must hold the actions, and the webhook node must send the rule's secret in `X-Automation-Webhook-Token`. The rule's Audit log shows each delivery.
+  </Accordion>
+  <Accordion title="Agent step fails with already-exists">
+    A pass for the same agent + project is still running. Wait for it, or cancel it, before re-entering QA.
+  </Accordion>
+  <Accordion title="Findings comment shows counts only">
+    The comment template is printing `agentResultsSummary.summary`. Iterate `agentFindings` instead — see the Rule 2 template above.
+  </Accordion>
+  <Accordion title="Agents can't produce pinned comments">
+    The definition is not document-scoped, or the org / document ids don't match the Superflow project.
+  </Accordion>
+  <Accordion title="Re-running QA right after a deploy repeats the old findings">
+    Superflow caches fetched page content per URL for about two minutes. If the fix deploys and QA re-runs inside that window, agents may evaluate the cached page. Leave two to three minutes between deploy and re-QA; real fix cycles rarely hit this.
+  </Accordion>
+  <Accordion title="A status is missing from the rule editor's dropdowns">
+    The editor caches the project's status list when it loads. After adding or renaming board columns, refresh the browser tab and reopen the rule.
+  </Accordion>
+</AccordionGroup>
+
+## Good to know
+
+- **Each QA pass is one workflow execution**, correlated by ticket key. The back-and-forth is driven by ticket state, not a long-running process.
+- **The verdict is unanimous.** One finding from any agent fails the pass. Tune the agent set to match how strict the gate should be.
+- **Findings in the webhook payload** carry title, description, severity, and source URL — top 50 per agent by severity. For surgical detail (exact page text, suggested fix, element selector) fetch the agent execution with `includeResults: true`.
+- **Loop guard:** cap retries with a "QA passes" counter field incremented by Rule 2, and a Rule 1 condition that stops dispatching past your limit — escalate to a human instead.
+
+## Coming next
+
+- **Native Jira connector:** richer formatted comments, screenshots attached to findings, per-ticket run history, replacing the Automation-rule templates.
+- **Ticket references as a first-class field** on runs — today the ticket key travels as `correlationId`.
+- **Cross-run loop accounting per ticket:** pass counter, max-passes guard, and serialization of overlapping passes, inside Superflow instead of Jira fields.
+- **Per-ticket deployed URLs** via a custom field — today the URL is set per rule; preview-deploy-per-ticket works by passing it in `triggerContext.page.url`.
+- **The same loop for Linear, Azure DevOps, and Slack-based trackers** — the engine side is tracker-agnostic already.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Create a new agent" icon="wand-magic-sparkles" href="/agents/how-to-create-a-new-agent" horizontal />
+  <Card title="Run an agent from the Agents tab" icon="play" href="/agents/how-to-run-an-agent-from-the-agents-tab" horizontal />
+</CardGroup>
