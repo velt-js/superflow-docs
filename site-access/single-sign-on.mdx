@@ -1,0 +1,68 @@
+---
+title: "Single Sign On"
+description: "Set up a dedicated service account so Superflow's agents can sign in through Okta, Microsoft Entra, or any SAML provider."
+icon: "id-badge"
+---
+
+Use this when your site redirects to an identity provider such as Okta, Microsoft Entra, or any SAML setup.
+
+This is the option that asks the most of you, for a reason worth understanding: it is the only one where a password gets typed into a page on a **domain you do not own**. The safeguards around that are what make the setup longer.
+
+<Tip>
+If your site also sits behind Cloudflare Access or Vercel, a [bypass token](/site-access/bypass-token) takes two minutes and works even with single sign on behind it. Check for one first.
+</Tip>
+
+## What you need before you start
+
+- Permission to create a user in your identity provider.
+- Permission to change sign on policies, or someone who can.
+
+## Step 1: Create a dedicated account
+
+Create a normal user account for Superflow. Do not reuse a person's account.
+
+- Give it a name that makes its purpose obvious, such as `Superflow Agent`.
+- Set the password yourself.
+- **Turn off any "user must change password at next sign in" option.**
+
+<Warning>
+If "must change password at next sign in" is left on, the agent is sent to a change password screen it cannot complete, and the run reports a sign in that did not finish. Nothing in that message points at this setting, so it is worth getting right first time.
+</Warning>
+
+## Step 2: Exempt it from multi-factor authentication
+
+This is the part with no workaround. Multi-factor means a code from a phone or a tap on an app. An agent has neither.
+
+Most providers let you exempt a single service account, and doing so for one non-human account is the normal way automation is granted access. If your security team will not allow it, single sign on cannot work for you, and the honest answer is to look for a [bypass token](/site-access/bypass-token) instead.
+
+**Exempting means more than one setting.** Providers typically separate:
+
+1. **How you sign in to an application.** Set this to password only for the service account.
+2. **How you establish a session with the provider at all.** Multi-factor not required.
+3. **Whether you must enrol an authenticator app.** This one is easy to miss and fails in a confusing way. If enrolment is still required, the agent lands on a "set up security methods" screen. That is an enrolment prompt rather than a sign in challenge, so Superflow reports a sign in that did not complete rather than telling you multi-factor is the problem.
+
+<Card title="Okta, step by step" icon="list-check" href="/site-access/okta" horizontal>
+  The verified walkthrough for Okta. Other providers use different names for the same three things.
+</Card>
+
+## Step 3: Connect it in Superflow
+
+<Steps>
+  <Step title="Open your project's Site Access settings" />
+  <Step title="Turn on This project is password protected" />
+  <Step title="Choose Single sign on (Okta, SAML)" />
+  <Step title="Enter the service account's username and password" />
+  <Step title="Save, then press Test access" />
+</Steps>
+
+## What Test access does, and why it is required
+
+For every other option, **Test access** just tells you whether the details work. For single sign on it does something more: it records **which sign in page is the right one** for your project.
+
+After that, unattended agent runs only ever type your password into that same page. If your site starts redirecting somewhere else, the run stops rather than handing your corporate password to whoever controls the redirect.
+
+This is why an agent run before any successful test will refuse with a message asking you to run **Test access** first. There is deliberately no path where an unattended run decides for itself that a sign in page is trustworthy.
+
+<Note>
+**If your provider is on your own domain** (for example `login.yourcompany.com` rather than `yourcompany.okta.com`), Test access will stop and ask you to confirm it: *"this site sent us to login.yourcompany.com, is that your sign in page?"* Nothing has been typed at that point, so it is safe to be shown the address. Confirming once is what establishes trust. This is normal and expected for companies using their own single sign on address.
+</Note>

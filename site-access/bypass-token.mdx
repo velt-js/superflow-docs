@@ -1,0 +1,46 @@
+---
+title: "Bypass Token"
+description: "Use a Cloudflare Access service token or a Vercel protection bypass secret to let Superflow through your hosting platform's gate."
+icon: "key"
+---
+
+The simplest option, and the only one that also works in Superflow's page previews. There is no sign in and no session. Your platform issues a secret intended for automation, Superflow sends it with each request, and the platform lets it through.
+
+<Tip>
+A bypass token works even when there is single sign on behind the platform gate, so check for one before setting up the longer [single sign on](/site-access/single-sign-on) option.
+</Tip>
+
+## If you use Cloudflare Access
+
+<Steps>
+  <Step title="In the Cloudflare dashboard, go to Zero Trust → Access → Service auth" />
+  <Step title="Create a service token">
+    Give it a name you will recognise later, such as `superflow-agent`.
+  </Step>
+  <Step title="Copy the Client ID and the Client Secret">
+    The secret is shown once, so copy it now.
+  </Step>
+  <Step title="Allow the token in the Access application that protects your site">
+    Open the application, edit its policy, and add a rule that allows this service token. Without this rule the token exists but is not permitted anywhere.
+  </Step>
+  <Step title="Paste both values into Superflow">
+    Open your project's **Site Access** settings, choose **Bypass token**, and paste the **Client ID** and **Client Secret**.
+  </Step>
+</Steps>
+
+## If you use Vercel
+
+<Steps>
+  <Step title="In your Vercel project, go to Settings → Deployment Protection" />
+  <Step title="Turn on Protection Bypass for Automation">
+    Vercel generates a secret.
+  </Step>
+  <Step title="Copy that secret" />
+  <Step title="Paste it into Superflow and leave the Client ID box empty">
+    Choose **Bypass token**, paste the secret into the secret field, and **leave the Client ID box empty**. Leaving it empty is how you tell Superflow this is a Vercel token rather than a Cloudflare pair.
+  </Step>
+</Steps>
+
+## Why you are not asked to type a header name
+
+Both platforms use fixed header names, and a correct secret pasted under a mistyped header name is the most likely way to configure this and have it silently do nothing. Superflow fills the names in for you so there is nothing to get wrong.
