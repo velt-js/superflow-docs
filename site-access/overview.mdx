@@ -1,0 +1,59 @@
+---
+title: "Letting Superflow Read Your Protected Site"
+sidebarTitle: "Overview"
+description: "If your site is behind a password, a login, or single sign on, Site Access is how you tell Superflow's agents how to get in."
+icon: "lock"
+---
+
+If your website is behind a password, a login, or single sign on, Superflow's agents cannot read it until you tell them how to get in. **Site Access** is where you do that, in your project settings.
+
+## Why this exists
+
+A password screen is not an error. It is a normal web page that loads successfully, with a heading, a box, and a button.
+
+That matters more than it sounds. Without access configured, an agent visits your site, gets a perfectly successful page load, and reads the password screen. It then reports on that screen as though it were your website. The run completes, findings appear, and nothing in the output says the agent never actually saw your site.
+
+Setting up Site Access removes that. It also means that when access is wrong, the run **stops and tells you**, instead of quietly describing the wrong page.
+
+## Which option do I need?
+
+Almost always answerable from one question: **who is doing the blocking?**
+
+Open your site in a private browser window and look at what answers.
+
+| What you see | Use | Setup effort |
+| --- | --- | --- |
+| A hosting platform's screen (Cloudflare Access, Vercel) | [**Bypass token**](/site-access/bypass-token) | 2 minutes, no account needed |
+| One password box, no username | [**Shared password**](/site-access/passwords-and-login-forms#option-3-shared-password) | 1 minute |
+| A browser popup asking for a username and password, before the page draws | [**Browser sign in**](/site-access/passwords-and-login-forms#option-4-browser-sign-in) | 1 minute |
+| A login form on your own site | [**Login form**](/site-access/passwords-and-login-forms#option-5-login-form) | 5 minutes |
+| You get redirected to a different web address to sign in | [**Single sign on**](/site-access/single-sign-on) | 20 minutes, needs your identity admin |
+
+<Note>
+**The redirect is the tell.** If the browser ends up on a different domain than the one you asked for, that is an identity provider, and single sign on is the only option that works.
+</Note>
+
+## Ask about the platform first
+
+If your site sits behind Cloudflare Access or on a Vercel deployment, you can use a **bypass token** even if there is also single sign on behind it. Two minutes in a hosting dashboard beats twenty minutes with an identity administrator, so it is worth checking before assuming you need the harder option.
+
+## The five options
+
+<CardGroup cols={2}>
+  <Card title="Bypass token" icon="key" href="/site-access/bypass-token">
+    Cloudflare Access or Vercel issues a secret intended for automation. No sign in, no session, and the only option that also works in page previews.
+  </Card>
+  <Card title="Single sign on" icon="id-badge" href="/site-access/single-sign-on">
+    For sites that redirect to Okta, Microsoft Entra, or any SAML provider. Needs a dedicated service account exempt from multi-factor.
+  </Card>
+  <Card title="Okta, step by step" icon="list-check" href="/site-access/okta">
+    The verified walkthrough: the application, the service account, the group, and the three policies that have to line up.
+  </Card>
+  <Card title="Passwords and login forms" icon="keyboard" href="/site-access/passwords-and-login-forms">
+    Shared site passwords (Webflow, Shopify, Squarespace, Framer), browser sign in prompts, and login forms on your own site.
+  </Card>
+</CardGroup>
+
+<Card title="When something is wrong" icon="circle-question" href="/site-access/troubleshooting" horizontal>
+  What each message means, why a sign in that used to work stops, and what Superflow stores.
+</Card>

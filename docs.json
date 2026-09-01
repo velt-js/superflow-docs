@@ -205,6 +205,18 @@
             ]
           },
           {
+            "group": "Site Access",
+            "icon": "lock",
+            "pages": [
+              "site-access/overview",
+              "site-access/bypass-token",
+              "site-access/single-sign-on",
+              "site-access/okta",
+              "site-access/passwords-and-login-forms",
+              "site-access/troubleshooting"
+            ]
+          },
+          {
             "group": "Files, PDFs & Media",
             "icon": "file-lines",
             "pages": [

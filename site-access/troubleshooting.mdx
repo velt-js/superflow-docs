@@ -1,0 +1,49 @@
+---
+title: "When Something Is Wrong"
+sidebarTitle: "Troubleshooting"
+description: "What each Site Access message means, why a sign in that used to work stops working, and what Superflow stores."
+icon: "circle-question"
+---
+
+Runs never produce findings about a sign in page. If Superflow cannot get in, it stops and says so.
+
+| What you see | What happened | What to do |
+| --- | --- | --- |
+| The sign in asked for a second factor | The details were almost certainly right. Your provider wanted a code or a tap. | [Exempt the service account from multi-factor](/site-access/single-sign-on#step-2-exempt-it-from-multi-factor-authentication), including the enrolment policy. |
+| Is this your sign in page? | Not a failure. Your provider is on an address we do not recognise, and nothing was typed. | Confirm it once. |
+| Run Test access first | No sign in page has been confirmed yet, so an unattended run refused to type anything anywhere. | Press **Test access** once. |
+| The site did not accept those details | The password or token was rejected. | Check the value. For a bypass token, check it is still valid in your platform. |
+| This site is password protected | A gate was found and nothing is configured for it. | Add credentials in project settings. |
+
+## If a sign in stops completing after it used to work
+
+Most often one of these:
+
+- The service account's password expired or was rotated.
+- A multi-factor policy changed and now covers the service account again.
+- A bypass token was revoked or rotated in the hosting platform.
+- Your sign in address changed, in which case run **Test access** again to confirm the new one.
+
+## What Superflow stores
+
+- Credentials are encrypted, and are never shown back to you after saving. Editing shows a placeholder, and saving with that placeholder untouched keeps what is already stored.
+- Captured sign in sessions and bypass tokens are held separately from other project settings, in storage no browser can reach.
+- Deleting a project's access removes the stored credential and any captured session or token with it.
+- The site address is re-checked when a run happens, so a credential is never sent to a different site than the one it was entered for.
+
+## Questions worth asking us
+
+<AccordionGroup>
+  <Accordion title="Can you use our existing SSO instead of a dedicated account?">
+    No. A person's account almost always has multi-factor, which an agent cannot complete. A dedicated account is also easier to audit and to revoke.
+  </Accordion>
+  <Accordion title="What can the account see?">
+    Whatever the account you create can see. Give it the narrowest access that still lets it reach the pages you want reviewed.
+  </Accordion>
+  <Accordion title="Do previews work too?">
+    Bypass tokens work everywhere. Shared passwords work for Webflow gates. Single sign on works in previews only while a recent sign in is still valid, and otherwise the preview shows a fallback card. Login form access does not apply to previews.
+  </Accordion>
+  <Accordion title="Can we rotate the credential?">
+    Yes. Update it in **Site Access** and press **Test access** again. Nothing else needs changing.
+  </Accordion>
+</AccordionGroup>
