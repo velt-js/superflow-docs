@@ -26,6 +26,34 @@ description: "New updates and improvements to Superflow"
   See CHANGELOG_AGENT_NOTE.md in the repo root for full instructions.
 */}
 
+<Update label="September 6, 2026" description="Aug 23-Sep 6, 2026">
+  ## Generate Reports, credit-based scan pricing, Jira for everyone, and one-click workflows
+
+  ### New Features
+
+  - **Generate Reports with Ask AI**: Ask Superflow for a breakdown of your QA process — reports surface the patterns in it, so you can see what to optimize in your workflow.
+  - **Credit-based pricing for site scans**: Running a scan now shows a live credit quote before you start, reflecting whether you're scanning one page or the whole site. The billing page shows a scan rate breakdown, and usage history has scan-specific labels.
+  - **Jira integration generally available**: The Jira integration is now open to every user, not just an internal group, across both approvals and settings.
+  - **One-click workflow templates**: A new Templates tab installs pre-built workflows in one click. The first template connects Jira issue updates to an automated spell-check and UAT review, and writes pass or fail labels back to the Jira issue.
+  - **Single sign-on for site access**: Project settings now support SAML single sign-on for gated sites, with a distinct status when a service account needs an MFA exemption.
+  - **In-app bug reporting**: Report a bug from the toolbar or a modal within the product. Reports capture diagnostic context automatically, are redacted before submission, and are routed for review — available to every signed-in user, including the keyboard shortcut.
+  - **What's New feed and sidebar announcement**: A dismissible sidebar card surfaces the latest update headline and links to the full What's New feed, alongside the notification button. Feed entries can show a tag for their feature area.
+  - **Mobile-responsive portal**: The portal now works on phone and tablet screen widths. Navigation moves to a bottom bar, onboarding steps stack into one column, and the workflow canvas editor shows a desktop-only message below a minimum width.
+
+  ### Improvements
+
+  - Redesigned the approval workflow builder with updated node cards, consistent group sizing, clearer loading states, and title-case step-type labels.
+  - The onboarding header now shows your upcoming step instead of a generic skip link, and the save-review step opens as a centered dialog reachable from anywhere in the flow. Agents that find no issues now show a clear all-clear indicator instead of a zero count.
+  - Redesigned the onboarding install step to show platform options as a tab strip in one card, replacing the separate circular tiles used before.
+  - Site-scan entries in usage history now show the same page list as other rows, so you can expand details instead of seeing a bare credit amount.
+  - The projects table is now sortable by name, ascending or descending, by clicking the column header.
+
+  ### Bug Fixes
+
+  - Fixed scan quotes for projects whose stored URL omits a scheme, which previously caused underestimated page counts and prices.
+  - Fixed the Comments Added stat in team analytics to count comments only, instead of all interactions.
+</Update>
+
 <Update label="August 16, 2026" description="Aug 2-16, 2026">
   ## Real-feeling previews, a proper agent workspace, and more ways to install
 
