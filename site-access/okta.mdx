@@ -5,7 +5,7 @@ description: "The verified Okta walkthrough: the application, the service accoun
 icon: "list-check"
 ---
 
-These steps were followed and verified end to end. Menu names come from the current Okta admin console. If you have not read [Single Sign On](/site-access/single-sign-on) yet, start there — it explains why a dedicated account is needed and what Test access does.
+These steps were followed and verified end to end. Menu names come from the current Okta admin console. If you have not read [Single Sign On](/site-access/single-sign-on) yet, start there. It explains why a dedicated account is needed and what Test access does.
 
 ## 1. Create the application
 
@@ -81,17 +81,17 @@ New rules are placed above the Catch-all rule automatically. The Catch-all is pi
 
 This is separate from the first and neither substitutes for the other. One governs opening the application, the other governs establishing a session with Okta at all.
 
-### c. Authenticator enrolment
+### c. Authenticator enrollment
 
 **Security → Authenticators → Enrollment** → add a policy for `superflow-agents` with **Password required** and the authenticator apps set to **Optional** or **Disabled**, placed above the default.
 
-You may find that **Email cannot be set to Optional** and has to be **Disabled**. Okta rejects Optional when the email authenticator is configured for recovery only, because Optional and Required both need it enabled for authentication. Disabled is the better choice here anyway, since it removes one more enrolment prompt.
+You may find that **Email cannot be set to Optional** and has to be **Disabled**. Okta rejects Optional when the email authenticator is configured for recovery only, because Optional and Required both need it enabled for authentication. Disabled is the better choice here anyway, since it removes one more enrollment prompt.
 
 ## 5. Prove it before involving an agent
 
 Open a **private browser window** and sign in to your protected page by hand, as the service account.
 
-If you reach your content having typed only a username and password, with no code prompt, no enrolment screen, and no password change, then the agent will get in too. If any extra screen appears, that is the policy still to fix, and you have found it in thirty seconds instead of a full agent run.
+If you reach your content having typed only a username and password, with no code prompt, no enrollment screen, and no password change, then the agent will get in too. If any extra screen appears, that is the policy still to fix, and you have found it in thirty seconds instead of a full agent run.
 
 <Note>
 Signing in to the Okta **admin console** will still prompt you for multi-factor. That is separate and correct. It applies to your own administrator account, not to the service account, and it should be left alone.
@@ -99,4 +99,10 @@ Signing in to the Okta **admin console** will still prompt you for multi-factor.
 
 ## 6. Connect it in Superflow
 
-Enter the service account's username and password in **Site Access**, choose **Single sign on**, and press **Test access**. Because `okta.com` is a recognised provider, it signs in directly without asking you to confirm the address.
+- Open your **Superflow project settings**.
+- Enable **This project is password protected**.
+- In **Site Access**, enter the service account's username and password.
+- Choose **Single sign on**.
+- Press **Test access**.
+
+Because `okta.com` is a recognised provider, Superflow signs in directly without asking you to confirm the address.

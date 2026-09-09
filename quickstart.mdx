@@ -57,34 +57,148 @@ Superflow installs as a single script on the site you already have. Once it is o
 ## Pick your platform
 
 <CardGroup cols={3}>
-  <Card title="Webflow" icon="webflow" href="/no-code-platforms/webflow/setup" horizontal />
-  <Card title="Webflow app" icon="webflow" href="/no-code-platforms/webflow-integration/setup" horizontal />
-  <Card title="WordPress plugin" icon="wordpress" href="/no-code-platforms/wordpress-plugin/setup" horizontal />
-  <Card title="WordPress self-hosted" icon="wordpress" href="/no-code-platforms/wordpress/setup" horizontal />
-  <Card title="Elementor" icon="elementor" href="/no-code-platforms/elementor/setup" horizontal />
-  <Card title="Shopify" icon="shopify" href="/no-code-platforms/shopify/setup" horizontal />
-  <Card title="Squarespace" icon="squarespace" href="/no-code-platforms/squarespace/setup" horizontal />
-  <Card title="Wix" icon="wix" href="/no-code-platforms/wix/setup" horizontal />
-  <Card title="Bubble" icon="puzzle-piece" href="/no-code-platforms/bubble/setup" horizontal />
-  <Card title="HubSpot" icon="hubspot" href="/no-code-platforms/hubspot/setup" horizontal />
-  <Card title="Drupal" icon="drupal" href="/no-code-platforms/drupal/setup" horizontal />
-  <Card title="Framer" icon="browser" href="/no-code-platforms/framer/setup" horizontal />
-  <Card title="Typedream" icon="browser" href="/no-code-platforms/typedream/setup" horizontal />
-  <Card title="Google Tag Manager" icon="google" href="/no-code-platforms/google-tag-manager/setup" horizontal />
-  <Card title="React" icon="react" href="/web-frameworks/react/setup" horizontal />
-  <Card title="Next.js" icon="n" href="/web-frameworks/next/setup" horizontal />
-  <Card title="Vue" icon="vuejs" href="/web-frameworks/vue/setup" horizontal />
-  <Card title="Angular" icon="angular" href="/web-frameworks/angular/setup" horizontal />
-  <Card title="Svelte" icon="code" href="/web-frameworks/svelte/setup" horizontal />
+  <Card title="Webflow" icon="webflow" horizontal href="/no-code-platforms/webflow/setup">
+  </Card>
+  <Card title="Webflow app" icon="webflow" horizontal href="/no-code-platforms/webflow-integration/setup">
+  </Card>
+  <Card title="WordPress plugin" icon="wordpress" horizontal href="/no-code-platforms/wordpress-plugin/setup">
+  </Card>
+  <Card title="WordPress self-hosted" icon="wordpress" horizontal href="/no-code-platforms/wordpress/setup">
+  </Card>
+  <Card title="Elementor" icon="elementor" horizontal href="/no-code-platforms/elementor/setup">
+  </Card>
+  <Card title="Shopify" icon="shopify" horizontal href="/no-code-platforms/shopify/setup">
+  </Card>
+  <Card title="Squarespace" icon="squarespace" horizontal href="/no-code-platforms/squarespace/setup">
+  </Card>
+  <Card title="Wix" icon="wix" horizontal href="/no-code-platforms/wix/setup">
+  </Card>
+  <Card title="Bubble" icon="puzzle-piece" horizontal href="/no-code-platforms/bubble/setup">
+  </Card>
+  <Card title="HubSpot" icon="hubspot" horizontal href="/no-code-platforms/hubspot/setup">
+  </Card>
+  <Card title="Drupal" icon="drupal" horizontal href="/no-code-platforms/drupal/setup">
+  </Card>
+  <Card title="Framer" icon="browser" horizontal href="/no-code-platforms/framer/setup">
+  </Card>
+  <Card title="Typedream" icon="browser" horizontal href="/no-code-platforms/typedream/setup">
+  </Card>
+  <Card title="Google Tag Manager" icon="google" horizontal href="/no-code-platforms/google-tag-manager/setup">
+  </Card>
+  <Card title="React" icon="react" horizontal href="/web-frameworks/react/setup">
+  </Card>
+  <Card title="Next.js" icon="n" horizontal href="/web-frameworks/next/setup">
+  </Card>
+  <Card title="Vue" icon="vuejs" horizontal href="/web-frameworks/vue/setup">
+  </Card>
+  <Card title="Angular" icon="angular" horizontal href="/web-frameworks/angular/setup">
+  </Card>
+  <Card title="Svelte" icon="code" horizontal href="/web-frameworks/svelte/setup">
+  </Card>
+</CardGroup>
+
+## Next
+
+Superflow installs as a single script on the site you already have. Once it is on the page, you add `?review=true` to any URL to bring up the toolbar and start commenting.
+
+<Frame caption="What you get once Superflow is installed">
+  ![The Superflow toolbar on a live site, with a comment being left on the page](/images/demo.gif)
+</Frame>
+
+<Steps>
+  <Step title="Create a project" icon="folder-plus">
+    Enter the URL of the site you want to review. Superflow generates a unique script for that project.
+
+    <Frame>
+      ![Entering a site URL when creating a Superflow project](/images/enter-url-final.png)
+    </Frame>
+
+    <Tip>
+      Turn on **Run Agents** here and Superflow starts reviewing the site for spelling, broken links, accessibility and more while you finish the install. See [agent pre-checks](/agents/how-to-run-agent-pre-checks-on-a-new-project).
+    </Tip>
+  </Step>
+  <Step title="Add the script to your site" icon="code">
+    Pick your platform below. Every install guide opens with a video walkthrough, then repeats it as steps with a screenshot for each click.
+
+    <Frame>
+      ![Choosing a platform from the list during Superflow onboarding](/images/select-platform-final.png)
+    </Frame>
+  </Step>
+  <Step title="Verify the installation" icon="circle-check">
+    Click **Verify** in the onboarding flow. Superflow opens your published site and confirms the script is live.
+
+    <Frame>
+      ![The Superflow installation verified confirmation message](/images/verified-final.png)
+    </Frame>
+
+    <Warning>
+      Not verifying? The usual causes are unsaved custom code, an unpublished site, a cached page, a missing `?review=true`, a staging URL when you are checking production, or the script installed twice.
+    </Warning>
+  </Step>
+  <Step title="Leave your first comment" icon="comment-dots">
+    Open your site with `?review=true` at the end of the URL, for example `mywebsite.com/?review=true`. The toolbar appears in the bottom right.
+
+    <Frame>
+      ![The Superflow toolbar in the bottom right of a live website](/images/toolbar-final.png)
+    </Frame>
+
+    You can comment by highlighting text, hovering an element, or drawing a box anywhere on the page, and you can record a voice note or your screen instead of typing.
+  </Step>
+</Steps>
+
+## Pick your platform
+
+<CardGroup cols={3}>
+  <Card title="Webflow" icon="webflow" horizontal href="/no-code-platforms/webflow/setup">
+
+  </Card>
+  <Card title="Webflow app" icon="webflow" horizontal href="/no-code-platforms/webflow-integration/setup">
+
+  </Card>
+  <Card title="WordPress plugin" icon="wordpress" horizontal href="/no-code-platforms/wordpress-plugin/setup">
+  </Card>
+  <Card title="WordPress self-hosted" icon="wordpress" horizontal href="/no-code-platforms/wordpress/setup">
+  </Card>
+  <Card title="Elementor" icon="elementor" horizontal href="/no-code-platforms/elementor/setup">
+  </Card>
+  <Card title="Shopify" icon="shopify" horizontal href="/no-code-platforms/shopify/setup">
+  </Card>
+  <Card title="Squarespace" icon="squarespace" horizontal href="/no-code-platforms/squarespace/setup">
+  </Card>
+  <Card title="Wix" icon="wix" horizontal href="/no-code-platforms/wix/setup">
+  </Card>
+  <Card title="Bubble" icon="puzzle-piece" horizontal href="/no-code-platforms/bubble/setup">
+  </Card>
+  <Card title="HubSpot" icon="hubspot" horizontal href="/no-code-platforms/hubspot/setup">
+  </Card>
+  <Card title="Drupal" icon="drupal" horizontal href="/no-code-platforms/drupal/setup">
+  </Card>
+  <Card title="Framer" icon="browser" horizontal href="/no-code-platforms/framer/setup">
+  </Card>
+  <Card title="Typedream" icon="browser" horizontal href="/no-code-platforms/typedream/setup">
+  </Card>
+  <Card title="Google Tag Manager" icon="google" horizontal href="/no-code-platforms/google-tag-manager/setup">
+  </Card>
+  <Card title="React" icon="react" horizontal href="/web-frameworks/react/setup">
+  </Card>
+  <Card title="Next.js" icon="n" horizontal href="/web-frameworks/next/setup">
+  </Card>
+  <Card title="Vue" icon="vuejs" horizontal href="/web-frameworks/vue/setup">
+  </Card>
+  <Card title="Angular" icon="angular" horizontal href="/web-frameworks/angular/setup">
+  </Card>
+  <Card title="Svelte" icon="code" horizontal href="/web-frameworks/svelte/setup">
+  </Card>
 </CardGroup>
 
 ## Next
 
 <CardGroup cols={2}>
-  <Card title="Put agents to work" icon="robot" href="/agents/overview">
-    Describe a check in plain English and let Superflow run it against your site.
+  <Card title="Put agents to workPut agents to work" icon="robot" href="/agents/overview">
+    Describe a check in plain English and let Superflow run it against your siteDescribe a check in plain English and let Superflow run it against your site.
   </Card>
-  <Card title="Watch every walkthrough" icon="circle-play" href="/watch">
-    All installation and agent videos on one page.
+
+  <Card title="Watch every walkthroughWatch every walkthrough" icon="circle-play" href="/watch">
+    All installation and agent videos on one pageAll installation and agent videos on one page.
   </Card>
 </CardGroup>
