@@ -5,7 +5,7 @@ description: "The verified Okta walkthrough: the application, the service accoun
 icon: "list-check"
 ---
 
-These steps were followed and verified end to end. Menu names come from the current Okta admin console. If you have not read [Single Sign On](/site-access/single-sign-on) yet, start there. It explains why a dedicated account is needed and what Test access does.
+Verified end to end against the current Okta admin console. New to this? Read [Single Sign On](/site-access/single-sign-on) first for the why.
 
 ## 1. Create the application
 
@@ -15,10 +15,10 @@ These steps were followed and verified end to end. Menu names come from the curr
 - Application type: **Web Application**
 - Grant type: **Authorization Code**
 - Sign-in redirect URI: your site's callback address
-- Save, then copy the **Client ID** and **Client secret** from the **General** tab
+- Copy the **Client ID** and **Client secret** from the **General** tab
 
 <Warning>
-The redirect URI must match exactly. A mismatch is rejected by Okta with a message that does not obviously point back at this setting, so check it first if sign in fails.
+The redirect URI must match exactly. Check it first if sign in fails.
 </Warning>
 
 ## 2. Create the service account
@@ -34,75 +34,79 @@ The redirect URI must match exactly. A mismatch is rejected by Okta with a messa
 | Activation | Activate now |
 | **I will set password** | **Tick this** |
 
-Ticking **I will set password** is not optional. Left unticked, Okta creates the account with no password and emails an activation link, and the agent has no inbox.
+**I will set password** is required. Without it, Okta emails an activation link the agent cannot receive.
 
-When you tick it, two more controls appear. Set a password, and **untick "User must change password on first sign-in"**.
+After ticking it: set a password and **untick "User must change password on first sign-in"**.
 
 <Tip>
-Okta rejects passwords containing parts of the username or name, so avoid reusing any word from the account you just created.
+Okta rejects passwords containing parts of the username or name.
 </Tip>
 
 ## 3. Create a group
 
-**Directory → Groups → Add group**, name it something like `superflow-agents`, and add the service account to it.
+**Directory → Groups → Add group** → name it `superflow-agents` → add the service account.
 
-The group exists so the three policy rules below have something to point at. You do not need it for application access.
+The group exists as a target for the policy rules below, not for application access.
 
 <Note>
-**You may not need to assign the app to anyone.** If the application's **Assignments** tab says *"This app is implicitly assigned to users"* with Federation Broker Mode enabled, access is decided entirely by sign on policy and there is nothing to assign. This is the default for new OIDC apps.
+**You may not need to assign the app to anyone.** If **Assignments** says _"This app is implicitly assigned to users"_ (Federation Broker Mode, the default for new OIDC apps), access is controlled entirely by sign on policy.
 </Note>
 
 ## 4. The three policies
 
-All three target the `superflow-agents` group. All three are needed.
+All three target `superflow-agents`. All three are required.
 
 ### a. Application sign on policy
 
-From the app's **Sign On** tab, scroll past the token settings to the authentication policy card, and open the policy it names. Or go to **Security → Authentication Policies** and pick the policy your app uses.
+**Security → Authentication Policies** → open the policy your app uses.
 
 Add a rule:
 
 - IF **User's group membership includes** → `superflow-agents`
-- THEN **Access is Allowed**, and **User must authenticate with** a single factor option such as *Password / IdP*
+- THEN **Access is Allowed**, **User must authenticate with** a single factor option such as *Password / IdP*
 
-Avoid any option containing *"2 factor types"* or *"+ Another factor"*.
+Avoid options containing *"2 factor types"* or *"+ Another factor"*.
 
-Okta warns that single factor rules are weak and makes you click **Save anyway**. That warning is correct in general and expected here: this rule applies only to one non-human account.
-
-New rules are placed above the Catch-all rule automatically. The Catch-all is pinned last and cannot be moved.
+Okta warns that single factor rules are weak. Click **Save anyway**. The warning is expected here: this rule applies only to one non-human account.
 
 <Warning>
-**Check which applications share this policy.** New OIDC apps are usually attached to a shared default policy, so your exemption follows the service account onto every application using it. That is normally fine, since the blast radius is one non-admin account. If the **Okta Admin Console** is among them, clone the policy and attach only your app instead.
+**Check which apps share this policy.** New OIDC apps often attach to a shared default policy, so your exemption follows the service account to every app using it. Usually fine (one non-admin account). If the **Okta Admin Console** shares it, clone the policy and attach only your app.
 </Warning>
 
 ### b. Global session policy
 
-**Security → Global Session Policy** → add a policy or rule for `superflow-agents` with **Multifactor authentication: Not required**, placed above the default.
+**Security → Global Session Policy** → add a rule for `superflow-agents` with **Multifactor authentication: Not required**, placed above the default.
 
-This is separate from the first and neither substitutes for the other. One governs opening the application, the other governs establishing a session with Okta at all.
+Separate from the app policy. One governs opening the app; this one governs establishing an Okta session.
 
 ### c. Authenticator enrollment
 
-**Security → Authenticators → Enrollment** → add a policy for `superflow-agents` with **Password required** and the authenticator apps set to **Optional** or **Disabled**, placed above the default.
+**Security → Authenticators → Enrollment** → add a policy for `superflow-agents`:
 
-You may find that **Email cannot be set to Optional** and has to be **Disabled**. Okta rejects Optional when the email authenticator is configured for recovery only, because Optional and Required both need it enabled for authentication. Disabled is the better choice here anyway, since it removes one more enrollment prompt.
+- **Password**: required
+- **Authenticator apps**: Optional or Disabled
+- **Email**: Disabled (Optional is often rejected when email is recovery-only)
+
+Place it above the default.
 
 ## 5. Prove it before involving an agent
 
-Open a **private browser window** and sign in to your protected page by hand, as the service account.
+Open a **private browser window** and sign in to your protected page as the service account.
 
-If you reach your content having typed only a username and password, with no code prompt, no enrollment screen, and no password change, then the agent will get in too. If any extra screen appears, that is the policy still to fix, and you have found it in thirty seconds instead of a full agent run.
+Success looks like: username, password, content. No code prompt. No enrollment screen. No password change.
+
+If any extra screen appears, that is the policy still to fix.
 
 <Note>
-Signing in to the Okta **admin console** will still prompt you for multi-factor. That is separate and correct. It applies to your own administrator account, not to the service account, and it should be left alone.
+The Okta **admin console** will still prompt you for multi-factor. That applies to your administrator account, not the service account. Leave it alone.
 </Note>
 
 ## 6. Connect it in Superflow
 
-- Open your **Superflow project settings**.
+- Open **Superflow project settings**.
 - Enable **This project is password protected**.
 - In **Site Access**, enter the service account's username and password.
 - Choose **Single sign on**.
 - Press **Test access**.
 
-Because `okta.com` is a recognised provider, Superflow signs in directly without asking you to confirm the address.
+`okta.com` is a recognised provider, so Superflow signs in directly without asking you to confirm the address.
