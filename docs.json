@@ -278,18 +278,6 @@
             "pages": [
               "rest-apis/projects/create-project"
             ]
-          },
-          {
-            "group": "Product Updates",
-            "icon": "newspaper",
-            "pages": [
-              "product-updates/april-4-2024",
-              "product-updates/march-14-2024",
-              "product-updates/feb-29-2024",
-              "product-updates/feb-22-2024",
-              "product-updates/feb-15-2024",
-              "product-updates/feb-8-2024"
-            ]
           }
         ]
       },
