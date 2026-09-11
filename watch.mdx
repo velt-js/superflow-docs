@@ -1,7 +1,7 @@
 ---
 title: "Video Library"
 sidebarTitle: "Watch"
-description: "Every Superflow walkthrough in one place: agents, installation on 19 platforms, and product updates."
+description: "Every Superflow walkthrough in one place: agents, site access, installation on 19 platforms, and product updates."
 icon: "circle-play"
 mode: "wide"
 ---
@@ -39,6 +39,21 @@ Every walkthrough on this site, collected on one page. Each video also sits at t
     <CardGroup cols={2}>
       <Card title="What agents are" icon="robot" href="/agents/overview" horizontal />
       <Card title="Create your first agent" icon="wand-magic-sparkles" href="/agents/how-to-create-a-new-agent" horizontal />
+    </CardGroup>
+  </Tab>
+
+  <Tab title="Site access">
+    Getting agents past a password, a login form, or single sign on.
+
+    <Columns cols={2}>
+      <Frame caption="Set up Okta so your agents can reach a protected site">
+        <video controls className="w-full aspect-video rounded-xl" src="/videos/okta-setup.mp4"></video>
+      </Frame>
+    </Columns>
+
+    <CardGroup cols={2}>
+      <Card title="Which option do I need?" icon="lock" href="/site-access/overview" horizontal />
+      <Card title="Okta, step by step" icon="list-check" href="/site-access/okta" horizontal />
     </CardGroup>
   </Tab>
 
