@@ -5,28 +5,44 @@ description: "The verified Okta walkthrough: the application, the service accoun
 icon: "list-check"
 ---
 
-Verified end to end against the current Okta admin console. New to this? Read [Single Sign On](/site-access/single-sign-on) first for the why.
-
 <Frame caption="Setting up Okta so agents can reach a protected site">
-<video controls className="w-full aspect-video" src="/videos/okta-setup.mp4"></video>
+<video controls className="w-full aspect-video rounded-xl" src="/videos/okta-setup.mp4"></video>
 </Frame>
+
+These steps were followed end to end, and the menu names were checked against the **Okta admin console 2026.08**. New to this? Read [Single Sign On](/site-access/single-sign-on) first for the why.
 
 <Note>
 The video picks up at **step 2**, with the application already created. If you have not made the app integration yet, start at step 1 below.
 </Note>
 
-## 1. Create the application
+## Before you start
 
-**Applications → Applications → Create App Integration**
+- **The site's address must already be in your Superflow project**, under **Settings → Manage domains**. Site Access takes the address from there and never asks you to type it, so with no domain set its buttons stay greyed out.
+- **Site Access must be included in your plan.** If it is not, the switch shows an upgrade prompt instead.
+- Permission to create a user in Okta, and to change sign on policies, or someone who can.
+
+## If you last used Okta on an older console
+
+Three things moved:
+
+- **Applications** now sits under **Applications and Resources** in the sidebar.
+- **Security → Authentication Policies** now opens a page with two cards. Press **App sign-in** to see the list of policies.
+- An app's **Assignments** tab may have no Assign button at all. That is expected, and [step 3](#3-create-a-group-and-check-the-assignment) explains why.
+
+## 1. Open or create the application
+
+If your site already signs in with Okta, the application exists. Open it from **Applications and Resources → Applications** and go on to step 2.
+
+To create one: **Applications and Resources → Applications → Create App Integration**
 
 - Sign-in method: **OIDC - OpenID Connect**
 - Application type: **Web Application**
 - Grant type: **Authorization Code**
 - Sign-in redirect URI: your site's callback address
-- Copy the **Client ID** and **Client secret** from the **General** tab
+- Save, then copy the **Client ID** and **Client secret** from the **General** tab
 
 <Warning>
-The redirect URI must match exactly. Check it first if sign in fails.
+The redirect URI must match exactly. A mismatch is rejected by Okta with a message that does not obviously point back at this setting, so check it first if sign in fails.
 </Warning>
 
 ## 2. Create the service account
@@ -42,79 +58,111 @@ The redirect URI must match exactly. Check it first if sign in fails.
 | Activation | Activate now |
 | **I will set password** | **Tick this** |
 
-**I will set password** is required. Without it, Okta emails an activation link the agent cannot receive.
+Ticking **I will set password** is not optional. Left unticked, Okta creates the account with no password and emails an activation link, and the agent has no inbox.
 
-After ticking it: set a password and **untick "User must change password on first sign-in"**.
+When you tick it, two more controls appear. Set a password, and **untick "User must change password on first sign-in"**.
 
 <Tip>
-Okta rejects passwords containing parts of the username or name.
+Okta rejects passwords containing parts of the username or name, so avoid reusing any word from the account you just created.
 </Tip>
 
-## 3. Create a group
+## 3. Create a group, and check the assignment
 
-**Directory → Groups → Add group** → name it `superflow-agents` → add the service account.
+**Directory → Groups → Add group**, name it something like `superflow-agents`, and add the service account to it.
 
-The group exists as a target for the policy rules below, not for application access.
+The group exists so the three policy rules below have something to point at. You do not need it for application access.
 
 <Note>
-**You may not need to assign the app to anyone.** If **Assignments** says _"This app is implicitly assigned to users"_ (Federation Broker Mode, the default for new OIDC apps), access is controlled entirely by sign on policy.
+**There is probably nothing to assign.** Open the application's **Assignments** tab. If it says _"This app is implicitly assigned to users"_, there is no Assign button, and that is expected. Sign on rules decide who gets in, so the policies below are what let the service account through. This is the default for new OIDC apps.
 </Note>
 
 ## 4. The three policies
 
-All three target `superflow-agents`. All three are required.
+All three target the `superflow-agents` group. All three are needed. The rule and policy names below are examples; any name works.
 
 ### a. Application sign on policy
 
-**Security → Authentication Policies** → open the policy your app uses.
+Open the application, go to the **Sign On** tab, scroll to the **User authentication** card, and press **View policy details**. Or go to **Security → Authentication Policies**, press **App sign-in**, and open the policy your app uses. In a new org that is often **Any two factors**.
 
-Add a rule:
+The policy page has two tabs worth opening, in this order:
+
+- **Application** lists every app that shares this policy. Read it before changing anything, for the reason in the warning below.
+- **Rules** is where the exemption goes.
+
+On the **Rules** tab, press **Add rule**, name it (for example `superflow-agents password only`), and set:
 
 - IF **User's group membership includes** → `superflow-agents`
-- THEN **Access is Allowed**, **User must authenticate with** a single factor option such as *Password / IdP*
+- THEN **Access** is **Allowed**, and **User must authenticate with** is **Password / IdP**
 
-Avoid options containing *"2 factor types"* or *"+ Another factor"*.
+Avoid any option containing *"2 factor types"* or *"+ Another factor"*.
 
-Okta warns that single factor rules are weak. Click **Save anyway**. The warning is expected here: this rule applies only to one non-human account.
+Okta warns that single factor rules are weak and makes you confirm before saving. That warning is correct in general and expected here: this rule applies only to one non-human account.
+
+New rules go to priority 1, above the **Catch-all Rule**. The Catch-all is pinned last and cannot be moved.
 
 <Warning>
-**Check which apps share this policy.** New OIDC apps often attach to a shared default policy, so your exemption follows the service account to every app using it. Usually fine (one non-admin account). If the **Okta Admin Console** shares it, clone the policy and attach only your app.
+**Check which applications share this policy.** Your exemption follows the service account onto every application listed on the **Application** tab. That is normally fine, since the blast radius is one non-admin account. The **Okta Admin Console** usually has a policy of its own and will not be listed. If it is, clone the policy and attach only your app to the clone instead.
 </Warning>
 
 ### b. Global session policy
 
-**Security → Global Session Policy** → add a rule for `superflow-agents` with **Multifactor authentication: Not required**, placed above the default.
+**Security → Global Session Policy** → add a policy for `superflow-agents` (for example `superflow-agents service accounts`) with a rule (for example `Password only no MFA`) where **Multifactor authentication (MFA) is** set to **Not required**. Keep the policy at number 1, above **Default Policy**.
 
-Separate from the app policy. One governs opening the app; this one governs establishing an Okta session.
+This is separate from the first, and neither substitutes for the other. One governs opening the application, the other governs establishing a session with Okta at all.
 
-### c. Authenticator enrollment
+### c. Authenticator enrolment
 
-**Security → Authenticators → Enrollment** → add a policy for `superflow-agents`:
+**Security → Authenticators → Enrollment** tab → add a policy for `superflow-agents` (for example `superflow-agents password enrollment`) with **Password** set to **Required**, and authenticator apps such as **Okta Verify** set to **Optional** or **Disabled**. Keep it at number 1, above the default.
 
-- **Password**: required
-- **Authenticator apps**: Optional or Disabled
-- **Email**: Disabled (Optional is often rejected when email is recovery-only)
+Set **Email** to **Disabled**. You may find that Email cannot be set to Optional at all: Okta rejects Optional when the email authenticator is configured for recovery only, because Optional and Required both need it enabled for authentication. Disabled is the better choice here anyway, since it removes one more enrolment prompt.
 
-Place it above the default.
+<Tip>
+To check where Email ended up, expand the **Disabled** group on the policy and press **View**.
+</Tip>
 
 ## 5. Prove it before involving an agent
 
-Open a **private browser window** and sign in to your protected page as the service account.
+Open a **private browser window** and sign in to your protected page by hand, as the service account.
 
-Success looks like: username, password, content. No code prompt. No enrollment screen. No password change.
+If you reach your content having typed only a username and password, with no code prompt, no enrolment screen, and no password change, then the agent will get in too. If any extra screen appears, that is the policy still to fix, and you have found it in thirty seconds instead of a full agent run.
 
-If any extra screen appears, that is the policy still to fix.
+| Extra screen | Policy to recheck |
+| --- | --- |
+| A code or push prompt | [4a](#a-application-sign-on-policy) and [4b](#b-global-session-policy) |
+| "Set up security methods" | [4c](#c-authenticator-enrolment) |
+| A change password screen | The checkbox in [step 2](#2-create-the-service-account) |
 
 <Note>
-The Okta **admin console** will still prompt you for multi-factor. That applies to your administrator account, not the service account. Leave it alone.
+Signing in to the Okta **admin console** will still prompt you for multi-factor. That is separate and correct. It applies to your own administrator account, not to the service account, and it should be left alone.
 </Note>
 
 ## 6. Connect it in Superflow
 
-- Open **Superflow project settings**.
-- Enable **This project is password protected**.
-- In **Site Access**, enter the service account's username and password.
-- Choose **Single sign on**.
-- Press **Test access**.
+<Steps>
+  <Step title="Open your project's Site Access settings" />
+  <Step title="Turn on This project is password protected" />
+  <Step title="Under How the site is protected, choose Single sign on (Okta, SAML)" />
+  <Step title="Enter the service account's username and password, and press Save password">
+    You should see _"Saved. Agents will use these credentials on the next run."_ The password box empties after saving. That is normal: the password is stored, and is never shown again.
+  </Step>
+  <Step title="Type the password into the box again">
+    **Test access** stays greyed out until you do.
+  </Step>
+  <Step title="Press Test access once, and give it up to a minute">
+    A real browser is signing in. You should see _"Unlocked. Agents can read this site."_
+  </Step>
+</Steps>
 
-`okta.com` is a recognised provider, so Superflow signs in directly without asking you to confirm the address.
+<Warning>
+**Save first, then test.** If you press **Test access** before the first save, the first agent run stops and asks you to run Test access again. If that has already happened, press **Test access** once more now that the credential is saved.
+</Warning>
+
+<Warning>
+**Press Test access once, then wait.** It is limited to five tries a minute, and repeated failed sign ins can lock the service account in Okta. If a test fails, fix the cause it names before trying again.
+</Warning>
+
+Because `okta.com` is a recognised provider, Superflow signs in directly without asking you to confirm the address.
+
+<Card title="When something is wrong" icon="circle-question" href="/site-access/troubleshooting" horizontal>
+  What each message means, why a sign in that used to work stops, and what Superflow stores.
+</Card>

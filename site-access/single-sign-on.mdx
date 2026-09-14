@@ -16,6 +16,7 @@ If your site also sits behind Cloudflare Access or Vercel, a [bypass token](/sit
 
 - Permission to create a user in your identity provider.
 - Permission to change sign on policies, or someone who can.
+- **The site's address already added to your Superflow project**, under **Settings → Manage domains**. Site Access takes the address from there and never asks you to type it, so with no domain set its buttons stay greyed out.
 
 ## Step 1: Create a dedicated account
 
@@ -50,10 +51,25 @@ Most providers let you exempt a single service account, and doing so for one non
 <Steps>
   <Step title="Open your project's Site Access settings" />
   <Step title="Turn on This project is password protected" />
-  <Step title="Choose Single sign on (Okta, SAML)" />
-  <Step title="Enter the service account's username and password" />
-  <Step title="Save, then press Test access" />
+  <Step title="Under How the site is protected, choose Single sign on (Okta, SAML)" />
+  <Step title="Enter the service account's username and password, and press Save password">
+    You should see _"Saved. Agents will use these credentials on the next run."_ The password box empties after saving. That is normal: the password is stored, and is never shown again.
+  </Step>
+  <Step title="Type the password into the box again">
+    **Test access** stays greyed out until you do.
+  </Step>
+  <Step title="Press Test access once, and give it up to a minute">
+    A real browser is signing in. You should see _"Unlocked. Agents can read this site."_
+  </Step>
 </Steps>
+
+<Warning>
+**Save first, then test.** If you press **Test access** before the first save, the first agent run stops and asks you to run Test access again. If that has already happened, press **Test access** once more now that the credential is saved.
+</Warning>
+
+<Warning>
+**Press Test access once, then wait.** It is limited to five tries a minute, and repeated failed sign ins can lock the service account in your identity provider. If a test fails, fix the cause it names before trying again.
+</Warning>
 
 ## What Test access does, and why it is required
 
@@ -64,5 +80,5 @@ After that, unattended agent runs only ever type your password into that same pa
 This is why an agent run before any successful test will refuse with a message asking you to run **Test access** first. There is deliberately no path where an unattended run decides for itself that a sign in page is trustworthy.
 
 <Note>
-**If your provider is on your own domain** (for example `login.yourcompany.com` rather than `yourcompany.okta.com`), Test access will stop and ask you to confirm it: *"this site sent us to login.yourcompany.com, is that your sign in page?"* Nothing has been typed at that point, so it is safe to be shown the address. Confirming once is what establishes trust. This is normal and expected for companies using their own single sign on address.
+**If your provider is on your own domain** (for example `login.yourcompany.com` rather than `yourcompany.okta.com`), Test access will stop and ask you to confirm it: *"This site sent us to login.yourcompany.com. Confirm this is your sign in page and we will use it from now on."* Nothing has been typed at that point, so it is safe to be shown the address. The button now reads **Confirm and sign in**, and pressing it once is what establishes trust. This is normal and expected for companies using their own single sign on address.
 </Note>
