@@ -10,19 +10,21 @@ Runs never produce findings about a sign in page. If Superflow cannot get in, it
 | What you see | What happened | What to do |
 | --- | --- | --- |
 | The sign in asked for a second factor | The details were almost certainly right. Your provider wanted a code or a tap. | [Exempt the service account from multi-factor](/site-access/single-sign-on#step-2-exempt-it-from-multi-factor-authentication), including the enrolment policy. |
-| Is this your sign in page? | Not a failure. Your provider is on an address we do not recognise, and nothing was typed. | Confirm it once. |
-| Run Test access first | No sign in page has been confirmed yet, so an unattended run refused to type anything anywhere. | Press **Test access** once. |
+| This site sent us to a sign in page, confirm it | Not a failure. Your provider is on an address we do not recognise, and nothing was typed. | Check the address is yours, then press **Confirm and sign in** once. |
+| Saved but not verified yet, run Test access | No sign in page has been confirmed for the saved credential, so an unattended run refused to type anything anywhere. This also happens when Test access was pressed before the first save. | Press **Test access** once, after saving. |
 | The site did not accept those details | The password or token was rejected. | Check the value. For a bypass token, check it is still valid in your platform. |
 | This site is password protected | A gate was found and nothing is configured for it. | Add credentials in project settings. |
+| Test access stays greyed out | Nothing is typed in the password box, or the project has no domain. | Type the password again, and check **Settings → Manage domains**. |
 
 ## If a sign in stops completing after it used to work
 
 Most often one of these:
 
 - The service account's password expired or was rotated.
-- A multi-factor policy changed and now covers the service account again.
+- A multi-factor or enrolment policy changed and now covers the service account again.
 - A bypass token was revoked or rotated in the hosting platform.
 - Your sign in address changed, in which case run **Test access** again to confirm the new one.
+- The protection type or the site address was changed in Superflow. The previous test no longer counts, so run **Test access** again.
 
 ## What Superflow stores
 
@@ -44,6 +46,6 @@ Most often one of these:
     Bypass tokens work everywhere. Shared passwords work for Webflow gates. Single sign on works in previews only while a recent sign in is still valid, and otherwise the preview shows a fallback card. Login form access does not apply to previews.
   </Accordion>
   <Accordion title="Can we rotate the credential?">
-    Yes. Update it in **Site Access** and press **Test access** again. Nothing else needs changing.
+    Yes. Save the new password in **Site Access**, type it again, and press **Test access**. Nothing else needs changing.
   </Accordion>
 </AccordionGroup>
