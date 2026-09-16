@@ -1,0 +1,65 @@
+---
+title: "How to Schedule a Recurring Report"
+description: "Learn how to turn an Ask AI answer into a report that runs on its own schedule and is delivered by email or Slack."
+icon: "calendar-days"
+---
+
+In this article, you will learn how to turn an **Ask AI** answer into a report that runs on its own, on a schedule you choose, and reaches the people who need it. If you have not asked a question yet, start with [How to Ask AI About Your Projects](/agents/how-to-ask-ai-about-your-projects).
+
+<Frame>
+<video controls className="w-full rounded-xl" src="/videos/ask-ai-reports.mp4"></video>
+</Frame>
+
+<Steps>
+  <Step title="At the end of any answer, click Make this a weekly report">
+    Superflow creates a scheduled report from the question you asked, and confirms when the first run will happen.
+
+    <Frame>
+    ![At the end of any answer, click Make this a weekly report](/images/how-to-guides/how-to-schedule-a-recurring-report/01-make-this-a-weekly-report.png)
+    </Frame>
+  </Step>
+  <Step title="The report's settings page opens, named after your question">
+    Everything about the schedule is set from this one page.
+
+    | Setting | What it does |
+    | --- | --- |
+    | **Instruction** | The question the report answers on every run. Edit it here to change what the report covers. |
+    | **Run At** | The time of day the report runs, with an **AM** / **PM** toggle. |
+    | **Projects** | Which projects the report covers. |
+    | **Send Email to** | Who receives the finished report by email. |
+    | **Slack Notification** | Sends the finished report into Slack. **Off** by default. |
+
+    <Frame>
+    ![The report's settings page opens, named after your question](/images/how-to-guides/how-to-schedule-a-recurring-report/02-schedule-settings.png)
+    </Frame>
+
+    <Note>
+    Sending to Slack requires the Slack integration to be connected first — see [How to Integrate with Slack](/Integrations/how-to-integrate-with-slack).
+    </Note>
+  </Step>
+  <Step title="Open Projects to choose which projects the report covers">
+    Search for a project by name, or tick the ones you want. The counter above the list shows how many you have selected, and the field keeps reading **All Projects** until you select individual ones.
+
+    <Frame>
+    ![Open Projects to choose which projects the report covers](/images/how-to-guides/how-to-schedule-a-recurring-report/03-projects-picker.png)
+    </Frame>
+  </Step>
+  <Step title="Open Send Email to and choose who receives it">
+    Choose **All Admins** to send the report to every admin on the workspace, or **Only Me** to keep it to yourself.
+
+    <Frame>
+    ![Open Send Email to and choose who receives it](/images/how-to-guides/how-to-schedule-a-recurring-report/04-send-email-to.png)
+    </Frame>
+  </Step>
+  <Step title="Click the Play button to run it now, without waiting for the schedule">
+    Every run is listed under **Runs** at the bottom of the page. A run takes a minute or two to generate; click it to open the finished report.
+
+    <Frame>
+    ![Click the Play button to run it now, without waiting for the schedule](/images/how-to-guides/how-to-schedule-a-recurring-report/05-run-now.png)
+    </Frame>
+
+    <Tip>
+    Scheduled reports appear under **Scheduled** at the top of the chat list on the left, so you can come back and change the schedule at any time. The **Trash** icon beside the Play button deletes the scheduled report.
+    </Tip>
+  </Step>
+</Steps>
