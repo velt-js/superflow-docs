@@ -43,6 +43,7 @@
             "group": "Build Agents",
             "icon": "wand-magic-sparkles",
             "pages": [
+              "agents/how-to-use-your-workspace-agent",
               "agents/how-to-create-a-new-agent",
               "agents/how-to-create-agents-from-a-checklist",
               "agents/how-to-create-and-run-an-agent-group"
@@ -61,6 +62,14 @@
             "icon": "diagram-project",
             "pages": [
               "agents/agent-workflows"
+            ]
+          },
+          {
+            "group": "Ask AI",
+            "icon": "comments",
+            "pages": [
+              "agents/how-to-ask-ai-about-your-projects",
+              "agents/how-to-schedule-a-recurring-report"
             ]
           },
           {

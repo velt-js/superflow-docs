@@ -1,0 +1,74 @@
+---
+title: "How to Use Your Workspace Agent"
+description: "Learn how to find the Workspace Agent Superflow generates from your own review history, give it your brand guidelines, and run it against a project."
+icon: "clipboard-check"
+---
+
+In this article, you will learn how to find the **Workspace Agent** Superflow generates for you, review the checks it has derived from your own review history, give it your brand guidelines, and run it against a project.
+
+<Frame>
+<video controls className="w-full rounded-xl" src="/videos/workspace-agent.mp4"></video>
+</Frame>
+
+<Note>
+Agents are currently in **Beta**. Each run consumes credits from your workspace balance, and the exact cost is shown before you confirm the run.
+</Note>
+
+<Steps>
+  <Step title="On the Superflow Dashboard, click Agents in the left sidebar">
+    Your Workspace Agent sits at the top of the **All Agents** list, marked **(Auto Generated)** — you do not create it. Click its name to open it.
+
+    <Frame>
+    ![On the Superflow Dashboard, click Agents in the left sidebar](/images/how-to-guides/how-to-use-your-workspace-agent/01-all-agents.png)
+    </Frame>
+
+    <Tip>
+    It behaves like any other agent from here on. It can be searched for, filtered by group, and run from the **Play** icon on its row.
+    </Tip>
+  </Step>
+  <Step title="The Checks tab lists every check the agent has derived from your reviews">
+    Each row is one check, written out in full, drawn from the feedback you and your clients have been leaving on projects.
+
+    | Column | What it shows |
+    | --- | --- |
+    | **Tests** | The check itself, in plain English. |
+    | **Group** | The category it belongs to, such as `visual-design`, `layout`, or `technical details`. |
+    | **Utilization** | How consistently this check already appears in your review history — the share of reviews that enforced it, and how many reviews that is based on. A dash means there is no data for it yet. |
+    | **Created by** | Where the check came from. |
+
+    <Frame>
+    ![The Checks tab lists every check the agent has derived from your reviews](/images/how-to-guides/how-to-use-your-workspace-agent/02-checks.png)
+    </Frame>
+
+    <Tip>
+    Use **Search Tests…** to find a check quickly, and **Add Rule** to add one of your own alongside the derived ones.
+    </Tip>
+  </Step>
+  <Step title="Open the Knowledge Base tab and upload your brand guidelines">
+    Click **Upload Brand Guideline** — or **+ Upload** on the right — to give the agent the document it should check work against. The same guidelines then apply to every project you point the agent at.
+
+    <Frame>
+    ![Open the Knowledge Base tab and upload your brand guidelines](/images/how-to-guides/how-to-use-your-workspace-agent/03-knowledge-base.png)
+    </Frame>
+  </Step>
+  <Step title="Run the agent against a project">
+    Click the **Play** icon on the agent's row in **All Agents**. The **Run Workspace Agent** dialog appears — pick the project and path, choose **Desktop** or **Mobile**, and click **Run Agent**.
+
+    | Option | What it does |
+    | --- | --- |
+    | **Project** | The project to run the agent against. |
+    | **Path** | The path to check, for example `/`. |
+    | **Device** | Run the check as **Desktop** or **Mobile**. |
+    | **Run only for main URL** | Leave this checked to check only the main URL instead of crawling the whole project. |
+
+    <Frame>
+    ![Run the agent against a project](/images/how-to-guides/how-to-use-your-workspace-agent/04-run-dialog.png)
+    </Frame>
+
+    <Note>
+    The cost of the run is shown above the buttons, along with your remaining balance. If the balance will not cover it, an **Add credit and run** button appears in place of **Run Agent** and brings you back here after checkout.
+    </Note>
+  </Step>
+</Steps>
+
+When the run finishes, the results panel opens on the right with the findings from that run, and keeps the history of every earlier one. See [How to Run an Agent from the Agents Tab](/agents/how-to-run-an-agent-from-the-agents-tab) for how to read and compare them.
