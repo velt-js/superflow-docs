@@ -26,6 +26,30 @@ description: "New updates and improvements to Superflow"
   See CHANGELOG_AGENT_NOTE.md in the repo root for full instructions.
 */}
 
+<Update label="September 20, 2026" description="Sep 6-20, 2026">
+  ## Smarter reports, direct integrations, and precise scans
+
+  ### New Features
+
+  - **Weekly QA feedback trend reports**: Ask AI can generate a one-off or recurring weekly report on QA trends, including top issues, project breakdowns, and a comments-per-week chart — viewable in-app or downloadable as a PDF.
+  - **Slack notifications for scheduled reports**: A scheduled QA trends report can post to a Slack channel using your workspace's existing Slack connection, with each run showing whether the post succeeded.
+  - **Send findings to Jira, Asana, Monday, ClickUp, or Slack from approvals**: A new approvals step can create a task in Jira, Asana, Monday, or ClickUp, or post a message to Slack, using accounts already connected in Settings.
+  - **Run a scan against a specific list of pages**: The run modal now accepts a pasted list of page paths, so Superflow scans exactly those pages instead of crawling the whole site.
+  - **Stop in-progress Ask AI answers**: The send button becomes a Stop control while an answer streams. Stopping ends generation and keeps the partial answer as a message.
+
+  ### Improvements
+
+  - The in-app report view now matches the downloaded PDF, showing scope, top issues, a projects table, trends, and recommendations, with support for diagrams and dividers in report text.
+  - Reports now state the exact time window they cover and note how many test or placeholder comments were excluded.
+  - Connected apps management moved from Workflows into Settings, and the redesigned integrations page now covers seven workflow apps.
+  - When site size can't be determined, the run modal quotes a small-site page limit and shows the corresponding credit cost instead of an unrelated page count.
+
+  ### Bug Fixes
+
+  - Fixed report-ready email links to open in the workspace that generated the report, even when it differs from your default workspace.
+  - Fixed the comments filter and executions sidebar to track each query-string variant of a page separately, instead of collapsing them into one entry.
+</Update>
+
 <Update label="September 6, 2026" description="Aug 23-Sep 6, 2026">
   ## Generate Reports, credit-based scan pricing, Jira for everyone, and one-click workflows
 
