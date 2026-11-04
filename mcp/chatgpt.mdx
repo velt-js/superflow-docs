@@ -32,7 +32,9 @@ Superflow connects to ChatGPT as a **custom connector**. Paste the server URL, s
   </Step>
   <Step title="Sign in and approve">
     ChatGPT opens the Superflow sign-in page. Sign in, pick your workspace, and
-    approve the scopes on the consent screen.
+    approve the scopes on the consent screen. If **Edit comments** is not listed,
+    ChatGPT can read and report but not resolve or reply. See
+    [the consent screen](/mcp/overview#the-consent-screen).
   </Step>
 </Steps>
 
@@ -44,4 +46,4 @@ ChatGPT decides when to call a connector, and it may ask you to confirm the firs
 
 ## Managing the connection
 
-Go back to **Settings**, then **Connectors** to view the granted scopes, reconnect, or delete the connector. Deleting it revokes ChatGPT's access to your workspace immediately.
+Go back to **Settings**, then **Connectors** to view the granted scopes, reconnect, or delete the connector. You can also revoke it in Superflow under **Settings > Integrations > API keys**, in **Connected AI apps**. Anything using it stops working at once.

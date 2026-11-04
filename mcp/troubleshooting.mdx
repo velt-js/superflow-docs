@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting"
-description: "Fixes for the common problems when connecting the Superflow MCP server."
+description: "Fixes for the common problems when connecting and using the Superflow MCP server."
 icon: "wrench"
 ---
 
@@ -14,9 +14,9 @@ icon: "wrench"
     workspace an admin has to allow custom connectors first, and ChatGPT may
     also require developer mode.
 
-    If you can't get that changed, point your client at the
-    [demo endpoint](/mcp/overview#try-it-without-an-account) instead. It's
-    read-only sample data, but it needs no sign-in and no plan upgrade.
+    If you can't get that changed, run the [local package](/mcp/local-package)
+    in a client that allows local servers, such as Claude Desktop, Claude Code
+    or Cursor.
   </Accordion>
   <Accordion title="The form is asking for a client ID and secret">
     Leave them blank. Superflow supports dynamic client registration, so your
@@ -43,9 +43,42 @@ icon: "wrench"
     from your client and add it again to restart the flow.
   </Accordion>
   <Accordion title="Wrong workspace">
-    The grant is scoped to the workspace you chose during sign-in. To switch,
-    revoke the connection and reconnect, then pick the right workspace on the
-    consent screen.
+    A sign-in or key belongs to one workspace. To switch, revoke the connection
+    and reconnect, then pick the right workspace on the consent screen. For a
+    key, switch the workspace at the top of the Superflow app before you create
+    it.
+  </Accordion>
+  <Accordion title="The consent screen does not list a permission I need">
+    The screen offers only what your AI tool asked for, and you cannot add to it
+    there. Create an [API key](/mcp/api-keys-and-permissions) with the permission
+    and connect with it, or sign in with the package and name it:
+    `npx -y @usesuperflow/mcp login --scope "..."`. `login --help` prints every
+    permission name.
+  </Accordion>
+</AccordionGroup>
+
+## The local package won't start
+
+<AccordionGroup>
+  <Accordion title="Not signed in">
+    Your AI tool shows the server as failed, and its log says *"Not signed in"*.
+    There is no API key and no saved sign-in. Run
+    `npx -y @usesuperflow/mcp login`, or set `SUPERFLOW_API_KEY`.
+  </Accordion>
+  <Accordion title="The Superflow API key was rejected">
+    The key was revoked, expired or mistyped. Create a new one under
+    **Settings > Integrations > API keys**, or remove `SUPERFLOW_API_KEY` from
+    your config and run `login` instead. A key in the config always wins over a
+    sign-in.
+  </Accordion>
+  <Accordion title="npx is not found, or the package will not start">
+    Install Node.js 20 or later, then restart your AI tool so it sees the new
+    `npx`.
+  </Accordion>
+  <Accordion title="Gemini CLI does not show Superflow">
+    Gemini CLI starts MCP servers only in a trusted folder. Trust the folder
+    when it asks, then check `gemini mcp list`. For a headless `gemini -p` run,
+    pass `--skip-trust` or set `GEMINI_CLI_TRUST_WORKSPACE=true`.
   </Accordion>
 </AccordionGroup>
 
@@ -58,24 +91,29 @@ icon: "wrench"
     and the Gemini CLI, **Settings → MCP** in Cursor) to confirm Superflow is
     listed and connected.
   </Accordion>
-  <Accordion title="A tool returns a permission error">
-    You didn't grant that scope. Each capability is a separate scope on the
-    consent screen: running agents, creating projects, reading analytics, and
-    inviting people. Reconnect the server and approve the scopes you need.
+  <Accordion title="A tool says forbidden">
+    The key or sign-in lacks the permission that tool needs, and the message
+    names it. Ask the assistant *"which account and permissions am I using?"*
+    (it calls `superflow_get_me`), then create a key or connect again with that
+    permission. The [tool reference](/mcp/tools) lists what each tool needs.
 
     Tools also can't exceed your own access. If your Superflow account can't do
     something, neither can the assistant.
   </Accordion>
+  <Accordion title="A run did not start">
+    Runs need the Run agents permission and enough AI credits. Ask the
+    assistant to estimate the run first; it shows the cost and your balance.
+  </Accordion>
   <Accordion title="An agent run never finishes">
     Runs are asynchronous, and a full-page review takes a couple of minutes.
-    The assistant polls `get_agent_run` until it completes, so give it time
-    before asking again.
+    The assistant follows it with `superflow_get_run` until it completes, so
+    give it time before asking again. A run cannot be cancelled once started.
 
     If it fails outright, the usual causes are the same as for any agent run:
     the page isn't publicly reachable, the project has no agents enabled, or the
     workspace is out of AI credits.
   </Accordion>
-  <Accordion title="verify_installation says a project isn't installed">
+  <Accordion title="The install check says a project isn't installed">
     The snippet has to be live on the URL the project points at. Check that you
     published the site after pasting the snippet, that the URL in the project
     matches the environment you deployed to, and that the page isn't behind
@@ -85,11 +123,15 @@ icon: "wrench"
     [CSP rules](/security/content-security-policy) if your site sets a strict
     Content Security Policy.
   </Accordion>
+  <Accordion title="Analytics look empty">
+    Analytics are computed once a day. When they are not ready yet the tools say
+    so, rather than showing zero activity.
+  </Accordion>
 </AccordionGroup>
 
 ## Disconnecting
 
-Removing the server from your client's config stops it calling Superflow, but doesn't revoke the access token it already holds. To revoke the grant itself, disconnect Superflow from the client's connected apps screen, or from the MCP settings in your [Superflow dashboard](https://app.usesuperflow.com). Access dies immediately; anything the assistant already created stays in your workspace.
+Removing the server from your client's config stops it calling Superflow, but doesn't revoke the access token it already holds. To revoke the grant itself, disconnect Superflow from the client's connected apps screen, or revoke it in Superflow under **Settings > Integrations > API keys**, in **Connected AI apps**. For a package sign-in, run `npx -y @usesuperflow/mcp logout`. Access dies immediately; anything the assistant already created stays in your workspace.
 
 <Note>
   Still stuck? Reach us from the

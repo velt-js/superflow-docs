@@ -12,7 +12,7 @@ Superflow is a standard remote MCP server, so any client that speaks MCP over St
 | --- | --- |
 | **Server URL** | `https://mcp.usesuperflow.ai/mcp` |
 | **Transport** | Streamable HTTP (stateless JSON responses) |
-| **Authentication** | OAuth 2.1, authorization code with PKCE |
+| **Authentication** | OAuth 2.1, authorization code with PKCE, or a Superflow API key as a bearer token |
 | **Client registration** | Dynamic ([RFC 7591](https://datatracker.ietf.org/doc/html/rfc7591)), with no pre-issued client ID or secret |
 | **Discovery** | Protected resource metadata ([RFC 9728](https://datatracker.ietf.org/doc/html/rfc9728)) and authorization server metadata ([RFC 8414](https://datatracker.ietf.org/doc/html/rfc8414)) at the origin root |
 | **Revocation** | `POST https://mcp.usesuperflow.ai/oauth/revoke` |
@@ -42,11 +42,17 @@ Some clients name the field `httpUrl`, `serverUrl`, or `endpoint`, and some ask 
 
 ## Clients without OAuth support
 
-A few clients can't run an interactive browser sign-in, such as CI jobs, server-side agents, and direct API calls. For those, generate a token from the MCP settings in your [Superflow dashboard](https://app.usesuperflow.com) and send it as a bearer token on every request. Treat it like a password: it carries your account's access, so store it in a secret manager rather than in a config file you commit.
+A few clients can't run an interactive browser sign-in, such as CI jobs, server-side agents, and direct API calls. For those, create an [API key](/mcp/api-keys-and-permissions) under **Settings > Integrations > API keys** and send it as a bearer token on every request:
+
+```
+Authorization: Bearer sf_pat_...
+```
+
+Treat it like a password: it carries your account's access, so give it only the permissions it needs and store it in a secret manager rather than in a config file you commit. A client that runs local (stdio) servers can use the [local package](/mcp/local-package) instead.
 
 ## Testing without an account
 
-The demo endpoint needs no authentication and returns sample data, which makes it a quick way to check that a new client can reach the server at all:
+The demo endpoint needs no authentication. It offers two tools that start a free Superflow review of any public URL and read back the findings, which makes it a quick way to check that a new client can reach the server at all:
 
 ```
 https://mcp.usesuperflow.ai/mcp/try

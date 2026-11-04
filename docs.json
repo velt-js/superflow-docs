@@ -89,6 +89,11 @@
               "mcp/cursor",
               "mcp/gemini",
               "mcp/other-clients",
+              "mcp/local-package",
+              "mcp/api-keys-and-permissions",
+              "mcp/tools",
+              "mcp/playbooks-and-prompts",
+              "mcp/safety-and-limits",
               "mcp/troubleshooting"
             ]
           }

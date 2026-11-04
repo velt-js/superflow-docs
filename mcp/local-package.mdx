@@ -1,0 +1,127 @@
+---
+title: "Use the local package"
+description: "Run @usesuperflow/mcp on your computer with a browser sign-in or an API key, and turn on read-only mode."
+icon: "terminal"
+---
+
+`@usesuperflow/mcp` is a small program your AI tool starts on your computer. It talks to your tool locally and forwards every request to the Superflow MCP server, so you get the same 101 tools as the hosted connector. It needs **Node.js 20 or later**.
+
+Use it when your tool runs local MCP servers (Claude Desktop, Claude Code, Cursor, Gemini CLI), when you want to use an API key, in CI, or when you want [read-only mode](#read-only-mode).
+
+## Option A: sign in once with the browser
+
+<Steps>
+  <Step title="Run the login command">
+    It opens Superflow's consent screen. Sign in (or sign up), pick the workspace and the permissions, and approve. The terminal finishes on its own.
+
+    ```bash
+    npx -y @usesuperflow/mcp login
+    ```
+  </Step>
+  <Step title="Add the server to your AI tool, with no key">
+    For Claude Code:
+
+    ```bash
+    claude mcp add superflow -- npx -y @usesuperflow/mcp
+    ```
+
+    For Claude Desktop, Cursor or Gemini CLI, use the config in [Option B](#option-b-use-an-api-key) and leave out the `env` block.
+  </Step>
+</Steps>
+
+<AccordionGroup>
+  <Accordion title="Which permissions login asks for">
+    Everything the tools use except four you add by name: **Invite people** (`users:invite`, sends real email), **Remove people** (`users:write`), **Manage workspace settings** (`workspace:write`, also creates and revokes API keys) and **Read team members** (`users:read`, no tool needs it).
+
+    `--scope` replaces the list. Name every permission you want, separated by spaces or commas:
+
+    ```bash
+    npx -y @usesuperflow/mcp login --scope "comments:read projects:read"
+    ```
+
+    A sign-in's permissions cannot change later, so run `login` again to change them. `npx -y @usesuperflow/mcp login --help` prints both lists.
+  </Accordion>
+  <Accordion title="Where the sign-in is kept">
+    In the macOS Keychain, the Linux Secret Service, or a file only you can read (`~/.config/superflow-mcp/credentials.json`, or under `%APPDATA%` on Windows). The login command says which. Access renews in the background while the server runs.
+
+    `npx -y @usesuperflow/mcp logout` ends the sign-in and removes it. You can also revoke it in Superflow under **Settings > Integrations > API keys**, in **Connected AI apps**.
+  </Accordion>
+  <Accordion title="Published with provenance">
+    Each version on npm carries a signed provenance statement that links it to the exact source commit it was built from. npm shows it on the package page, and `npm audit signatures` checks it.
+  </Accordion>
+</AccordionGroup>
+
+## Option B: use an API key
+
+[Create a key](/mcp/api-keys-and-permissions#create-an-api-key) in Superflow. The key's setup panel gives you these snippets with your key already filled in.
+
+<Tabs>
+  <Tab title="Claude Code">
+    ```bash
+    claude mcp add superflow -e SUPERFLOW_API_KEY=sf_pat_... -- npx -y @usesuperflow/mcp
+    ```
+  </Tab>
+  <Tab title="Claude Desktop">
+    Open **Settings > Developer > Edit Config**, add this to `claude_desktop_config.json`, then restart Claude Desktop.
+
+    ```json claude_desktop_config.json
+    {
+      "mcpServers": {
+        "superflow": {
+          "command": "npx",
+          "args": ["-y", "@usesuperflow/mcp"],
+          "env": {
+            "SUPERFLOW_API_KEY": "sf_pat_..."
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Cursor">
+    Add this to `~/.cursor/mcp.json` in your home folder. It holds your key, so keep it out of project files.
+
+    ```json ~/.cursor/mcp.json
+    {
+      "mcpServers": {
+        "superflow": {
+          "command": "npx",
+          "args": ["-y", "@usesuperflow/mcp"],
+          "env": {
+            "SUPERFLOW_API_KEY": "sf_pat_..."
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Gemini CLI">
+    ```bash
+    gemini mcp add -s user -e SUPERFLOW_API_KEY=sf_pat_... superflow npx -y @usesuperflow/mcp
+    ```
+
+    Do not put `--` before `npx` here. `gemini mcp list` should then show superflow as Connected.
+  </Tab>
+</Tabs>
+
+## Settings
+
+| Variable | Default | What it does |
+| --- | --- | --- |
+| `SUPERFLOW_API_KEY` | none | Your API key. Not needed after `login`. When set, it wins over a saved sign-in. |
+| `SUPERFLOW_READ_ONLY` | `false` | `true` hides every tool that changes data. See [read-only mode](#read-only-mode). |
+| `SUPERFLOW_LOG_LEVEL` | `info` | `debug`, `info`, `warn`, `error` or `silent`. Logs go to stderr, never to the chat. |
+| `SUPERFLOW_CREDENTIALS_STORE` | `auto` | `file` keeps the sign-in in a file instead of the Keychain or Secret Service. |
+| `SUPERFLOW_CREDENTIALS_FILE` | `~/.config/superflow-mcp/credentials.json` | Where the file store keeps the sign-in. |
+
+## Read-only mode
+
+Set `SUPERFLOW_READ_ONLY=true` and the 56 tools that change data are hidden. A call to one is refused on your computer before it reaches Superflow. The 45 read tools stay, so the assistant can still read, filter, count, export, look up projects and runs, and estimate what a run would cost. The prompts still work.
+
+```bash
+claude mcp add superflow -e SUPERFLOW_API_KEY=sf_pat_... -e SUPERFLOW_READ_ONLY=true -- npx -y @usesuperflow/mcp
+```
+
+<Tip>
+  **For a hard guarantee**, also use a key without any write permission. Then even a tool outside read-only mode cannot change anything.
+</Tip>

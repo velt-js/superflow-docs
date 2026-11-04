@@ -1,0 +1,83 @@
+---
+title: "API keys and permissions"
+description: "Create a Superflow API key, choose its permissions, and see what each permission allows."
+icon: "key"
+---
+
+An API key lets the [local package](/mcp/local-package), CI or another tool connect without a browser sign-in. It acts as you, in one workspace, with the permissions you pick. The same key also works as a bearer token on the hosted server.
+
+## Create an API key
+
+<Steps>
+  <Step title="Open API keys">
+    Go to **Settings > Integrations > API keys**. Check the workspace selector at the top: a key belongs to one workspace.
+  </Step>
+  <Step title="Choose Create key">
+    The page lists your keys and, under **Connected AI apps**, every tool you connected with sign-in.
+  </Step>
+  <Step title="Name the key">
+    Name it after where it will run, for example "Cursor on my laptop", so you know which one to revoke later.
+  </Step>
+  <Step title="Tick the permissions it needs">
+    The form opens with five ticked: Read workspace, Read projects, Read comments, Edit comments and Import findings. That is enough to read and work on comments and to import your own findings. Leave the write permissions out for a key that should only read. See [what each permission allows](#what-each-permission-allows).
+  </Step>
+  <Step title="Pick when it expires">
+    Never, 30 days or 90 days. Then choose **Create key**.
+  </Step>
+  <Step title="Copy the key now">
+    It starts with `sf_pat_` and is shown only once. Superflow keeps only a fingerprint of it. Closing the panel with **Done** hides the key for good.
+  </Step>
+  <Step title="Copy the setup snippet">
+    Under **Set it up**, pick Claude Code, Claude Desktop or Cursor and copy the snippet. Your key is already in it.
+  </Step>
+</Steps>
+
+## What each permission allows
+
+These are the 16 checkboxes on the form, and the consent screen uses the same names. A tool whose permission is missing answers with a clear "forbidden" message that names what it needs. The [tool reference](/mcp/tools) shows which permission each tool needs.
+
+| Permission | Name in `--scope` | What it allows | Kind |
+| --- | --- | --- | --- |
+| Read workspace | `workspace:read` | See workspace details like name, plan, and members. | Read |
+| Read projects | `projects:read` | See your projects and their settings. | Read |
+| Read agents | `agents:read` | See your agents and how they are configured. | Read |
+| Run agents | `agents:run` | Run agents on your sites and read the results. | Write |
+| Read analytics | `analytics:read` | See usage and engagement data for your workspace. | Read |
+| Read comments | `comments:read` | See comments and replies left on your projects. | Read |
+| Read integrations | `integrations:read` | See which tools are connected, like Slack and Jira. Never their passwords or tokens. | Read |
+| Read team members | `users:read` | See who is in your workspace. No tool needs it today: the team list comes with Read projects. | Read |
+| Edit comments | `comments:write` | Create, update, resolve, reply to and delete comments. | Write |
+| Import findings | `ingest` | Push findings from your own review in as comments. It only adds or merges, never deletes. | Write |
+| Create and update projects | `projects:write` | Create, update, archive and delete projects, manage pages, statuses, tags and review links, and verify installs. | Write |
+| Create and edit agents | `agents:write` | Create agents and change how they are configured. | Write |
+| Use integrations | `integrations:write` | Push comments to Jira, Asana, ClickUp or Monday, post to Slack, and set integration defaults. | Write |
+| Manage workspace settings | `workspace:write` | Rename the workspace and change your own notification settings. Also creates and revokes API keys. | Write |
+| Remove people | `users:write` | Remove workspace members and project guests. | Write |
+| Invite people | `users:invite` | Invite workspace admins and project guests by email. | Write |
+
+## Good starting sets
+
+<CardGroup cols={2}>
+  <Card title="Read only" icon="eye">
+    Read workspace, Read projects, Read comments, Read agents, Read analytics, Read integrations. Good for reports and questions.
+  </Card>
+  <Card title="Work on comments" icon="comment">
+    Read workspace, Read projects, Read comments, Edit comments. Good for triage, replies and resolving.
+  </Card>
+  <Card title="Run reviews" icon="robot">
+    Add Read agents and Run agents. Runs spend AI credits, and the assistant always shows the estimate first.
+  </Card>
+  <Card title="Hand off work" icon="share-from-square">
+    Add Read integrations and Use integrations to push comments to Jira, Asana, ClickUp or Monday and post to Slack.
+  </Card>
+</CardGroup>
+
+## Manage and revoke access
+
+- **See every connection.** **Settings > Integrations > API keys** lists your API keys and, under **Connected AI apps**, every tool you connected with sign-in, with its permissions and when it was last used.
+- **Revoke.** Choose **Revoke** next to a key or app and confirm. Anything using it stops working at once. You can also disconnect from your AI tool's own connector settings, or run `npx -y @usesuperflow/mcp logout` for a package sign-in.
+- **Change permissions.** A key's or sign-in's permissions cannot be widened later. Create a new key, or connect again and approve the new list, then revoke the old one.
+
+<Note>
+  Removing Superflow from an AI tool's config stops it calling the server, but does not revoke the access that tool already holds. Revoke it in Superflow too.
+</Note>

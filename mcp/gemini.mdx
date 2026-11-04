@@ -1,6 +1,6 @@
 ---
 title: "Connect to Gemini"
-description: "Add Superflow to the Gemini CLI as a remote MCP server."
+description: "Add Superflow to the Gemini CLI as a remote MCP server or with the local package."
 icon: "gem"
 ---
 
@@ -22,7 +22,23 @@ Add Superflow to `~/.gemini/settings.json`:
 
 Restart the CLI. The first time it calls a Superflow tool it opens your browser to sign in and approve the scopes.
 
-Run `/mcp` inside the CLI to list connected servers and their tools, then try *"list my Superflow projects"*.
+Run `/mcp` inside the CLI to list connected servers and their tools, then try *"list my Superflow projects"*. The tools show up named `mcp_superflow_superflow_...`.
+
+<Note>
+  Gemini CLI starts MCP servers only in a folder you trust. It asks the first
+  time you open a folder. For a headless `gemini -p` run, pass `--skip-trust`
+  or set `GEMINI_CLI_TRUST_WORKSPACE=true`.
+</Note>
+
+## Use an API key instead
+
+Run the local package with an [API key](/mcp/api-keys-and-permissions):
+
+```bash
+gemini mcp add -s user -e SUPERFLOW_API_KEY=sf_pat_... superflow npx -y @usesuperflow/mcp
+```
+
+Do not put `--` before `npx` here. `gemini mcp list` should then show superflow as Connected. See [use the local package](/mcp/local-package) for the browser sign-in and read-only mode.
 
 <Note>
   Gemini's CLI has changed its config format across releases, and Google is
@@ -34,4 +50,4 @@ Run `/mcp` inside the CLI to list connected servers and their tools, then try *"
 
 ## Managing the connection
 
-Delete the `superflow` entry from `settings.json` to disconnect. To revoke the grant, also disconnect Superflow from your [Superflow dashboard](https://app.usesuperflow.com).
+Delete the `superflow` entry from `settings.json` to disconnect. To revoke the grant, also revoke it in Superflow under **Settings > Integrations > API keys**, in **Connected AI apps**.

@@ -1,6 +1,6 @@
 ---
 title: "Connect to Claude"
-description: "Add Superflow to claude.ai, Claude Code, or the Claude API as a custom connector."
+description: "Add Superflow to claude.ai, Claude Desktop, Claude Code, or the Claude API."
 icon: "message"
 ---
 
@@ -10,9 +10,9 @@ Superflow works with Claude as a **custom connector**. You paste the server URL,
 
 <Note>
   Custom connectors are available on Claude Pro and Max, and on Team and
-  Enterprise where an admin has enabled connectors. Free plans can't add remote
-  connectors, so use the [demo endpoint](/mcp/overview#try-it-without-an-account)
-  instead.
+  Enterprise where an admin has enabled connectors. If your plan can't add
+  remote connectors, run the [local package](/mcp/local-package) in Claude
+  Desktop instead.
 </Note>
 
 <Steps>
@@ -36,7 +36,36 @@ Superflow works with Claude as a **custom connector**. You paste the server URL,
   </Step>
 </Steps>
 
-Ask Claude something like *"list my Superflow projects"* to confirm the connection is live.
+Ask Claude something like *"list my Superflow projects"* to confirm the connection is live. A custom connector you add on claude.ai also shows in the Claude desktop app.
+
+<Note>
+  Check the permissions on the consent screen. If **Edit comments** is not
+  listed, Claude can read and report but not resolve or reply. See
+  [the consent screen](/mcp/overview#the-consent-screen).
+</Note>
+
+## Claude Desktop with the local package
+
+Claude Desktop can also run the Superflow package on your computer, signed in with your browser or with an API key. Sign in once:
+
+```bash
+npx -y @usesuperflow/mcp login
+```
+
+Then open **Settings > Developer > Edit Config**, add this to `claude_desktop_config.json`, and restart Claude Desktop:
+
+```json claude_desktop_config.json
+{
+  "mcpServers": {
+    "superflow": {
+      "command": "npx",
+      "args": ["-y", "@usesuperflow/mcp"]
+    }
+  }
+}
+```
+
+To use an API key instead of the sign-in, add `"env": { "SUPERFLOW_API_KEY": "sf_pat_..." }`. See [use the local package](/mcp/local-package).
 
 ## Claude Code
 
@@ -47,6 +76,19 @@ claude mcp add --transport http superflow https://mcp.usesuperflow.ai/mcp
 ```
 
 The first time a Superflow tool is used, Claude Code prompts you to sign in and approve scopes in your browser. Run `/mcp` inside Claude Code to check connection status or re-authenticate.
+
+To skip the sign-in, send an [API key](/mcp/api-keys-and-permissions) as a bearer token:
+
+```bash
+claude mcp add --transport http superflow https://mcp.usesuperflow.ai/mcp \
+  --header "Authorization: Bearer sf_pat_..."
+```
+
+Or run the package locally, which also offers [read-only mode](/mcp/local-package#read-only-mode):
+
+```bash
+claude mcp add superflow -e SUPERFLOW_API_KEY=sf_pat_... -- npx -y @usesuperflow/mcp
+```
 
 ## Claude API
 
@@ -61,7 +103,7 @@ Pass the server in the `mcp_servers` block of your request:
       "type": "url",
       "name": "superflow",
       "url": "https://mcp.usesuperflow.ai/mcp",
-      "authorization_token": "YOUR_ACCESS_TOKEN"
+      "authorization_token": "sf_pat_..."
     }
   ],
   "messages": [
@@ -73,8 +115,8 @@ Pass the server in the `mcp_servers` block of your request:
 Two things to note:
 
 - **The MCP connector is behind a beta header.** Check the current header value in Anthropic's [MCP connector documentation](https://docs.claude.com/en/docs/agents-and-tools/mcp-connector) before you send the request.
-- **The API can't run an interactive sign-in.** There's no browser in the loop, so you supply a token yourself in `authorization_token` rather than going through the OAuth prompt. Generate one from the MCP settings in your [Superflow dashboard](https://app.usesuperflow.com).
+- **The API can't run an interactive sign-in.** There's no browser in the loop, so you put a Superflow [API key](/mcp/api-keys-and-permissions) in `authorization_token`. Create one under **Settings > Integrations > API keys** with only the permissions the request needs.
 
 ## Managing the connection
 
-Open **Settings**, then **Connectors** in claude.ai to see Superflow's granted scopes, reconnect it, or remove it. Removing the connector revokes Claude's access immediately; comments and agent runs it created stay in your workspace.
+Open **Settings**, then **Connectors** in claude.ai to see Superflow's granted scopes, reconnect it, or remove it. You can also revoke it in Superflow under **Settings > Integrations > API keys**, in **Connected AI apps**. Comments and agent runs it created stay in your workspace.
