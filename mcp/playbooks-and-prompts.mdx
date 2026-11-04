@@ -1,0 +1,49 @@
+---
+title: "Playbooks and prompts"
+description: "Ready-made multi-step jobs the Superflow MCP server serves, and the resources you can attach to a chat."
+icon: "book-open"
+---
+
+Some jobs take several tools in a set order. Superflow serves them as **prompts**, which many AI tools show as slash commands (for example `/triage` in Claude Code). Four of them are also **playbooks**: the assistant can fetch the steps on its own with `superflow_use_playbook` when you describe the job, so you do not have to remember the name. You can always just describe the job in plain words.
+
+## Playbooks
+
+<CardGroup cols={2}>
+  <Card title="triage" icon="list-ol">
+    One ordered P0, P1, P2 list of what is broken on a site: its failing checks plus open comments from people, matched together. Writes the order back after you agree.
+  </Card>
+  <Card title="fix" icon="screwdriver-wrench">
+    Fix the items you approved, have a rescan verify each one, then report. Build the list with `triage` first.
+  </Card>
+  <Card title="push_my_review" icon="upload">
+    Push the findings of your own review (your prompts, your agent) into Superflow as pinned comments, with nothing lost or duplicated.
+  </Card>
+  <Card title="onboard_agency" icon="building">
+    From a fresh sign-in to a first client site with scheduled checks and its first results. Stops for payment only at the checkout link.
+  </Card>
+</CardGroup>
+
+## More prompts
+
+| Prompt | What it does | You give it |
+| --- | --- | --- |
+| `stale_threads` | Find threads waiting on your team for a number of days and draft one nudge per assignee. | A project, and optionally the number of days |
+| `client_update` | Draft a short client update: what closed, what is open, and what you need from the client. | A project, and optionally a start date |
+| `agent_findings_review` | Review an agent run's findings, flag likely false positives, and propose which to resolve as noise. | Optionally a run or a project (the latest finished run otherwise) |
+| `find_duplicates` | Find near-duplicate open comments in a project and propose merges. | A project, and optionally a page |
+| `launch_checklist` | Pre-launch check: install status, guests, open comments by priority, and pages nobody has reviewed yet. | A project |
+| `onboard_client` | Create the project, invite the client's reviewers as guests, hand over the install snippet and check it. Asks before every write. | A name and a site URL, optionally the platform and guests |
+| `prelaunch_run` | Estimate the credits, ask, run the review agents, follow the run, summarize by severity and offer to push the critical ones to Jira. | A project, and optionally an agent pack |
+
+## Resources
+
+Clients that show MCP resources can attach these to a chat:
+
+| Resource | What it holds |
+| --- | --- |
+| `superflow://organization` | Your workspace |
+| `superflow://projects` | Your projects |
+| `superflow://projects/{project}` | One project |
+| `superflow://projects/{project}/comments` | A project's comments, optionally filtered by status, page or assignee |
+| `superflow://comments/{comment}` | One comment with its replies |
+| `superflow://runs/{run}` | One agent run |

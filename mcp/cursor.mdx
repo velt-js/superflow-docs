@@ -8,7 +8,7 @@ Cursor supports remote MCP servers natively, so Superflow is a few lines of conf
 
 ## Install with one click
 
-Open this link to add Superflow to Cursor:
+Open this link to add Superflow to Cursor. The **Add to Cursor** button on the MCP page in Superflow (**Settings > Integrations > MCP**) does the same.
 
 [Add Superflow to Cursor](https://cursor.com/en/install-mcp?name=superflow&config=eyJ1cmwiOiJodHRwczovL21jcC51c2VzdXBlcmZsb3cuYWkvbWNwIn0=)
 
@@ -35,10 +35,30 @@ Add Superflow to your MCP config. Use `.cursor/mcp.json` in a project to scope i
 
 Save the file and Cursor picks the server up. The first time it calls a Superflow tool it opens a browser window for you to sign in and approve the scopes.
 
+## Use an API key instead
+
+To skip the sign-in, run the local package with an [API key](/mcp/api-keys-and-permissions). Put this in `~/.cursor/mcp.json` in your home folder, not in a project file, because it holds your key:
+
+```json ~/.cursor/mcp.json
+{
+  "mcpServers": {
+    "superflow": {
+      "command": "npx",
+      "args": ["-y", "@usesuperflow/mcp"],
+      "env": {
+        "SUPERFLOW_API_KEY": "sf_pat_..."
+      }
+    }
+  }
+}
+```
+
+See [use the local package](/mcp/local-package) for the browser sign-in and read-only mode.
+
 ## Check it's working
 
 Open **Cursor Settings**, then **MCP**. Superflow should be listed with its tools, and the status should be green once you've signed in. Then ask the agent something like *"list my Superflow projects"*.
 
 ## Managing the connection
 
-Remove the `superflow` entry from `mcp.json` to disconnect Cursor. To revoke the grant itself, disconnect Superflow from your [Superflow dashboard](https://app.usesuperflow.com) as well. Removing the config stops Cursor from calling the server, but it does not revoke the token Cursor already holds.
+Remove the `superflow` entry from `mcp.json` to disconnect Cursor. To revoke the grant itself, revoke it in Superflow as well, under **Settings > Integrations > API keys**, in **Connected AI apps**. Removing the config stops Cursor from calling the server, but it does not revoke the token Cursor already holds.

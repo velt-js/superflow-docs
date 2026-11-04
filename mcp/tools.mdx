@@ -1,0 +1,191 @@
+---
+title: "Tool reference"
+description: "Every tool the Superflow MCP server offers, what it does, and the permission it needs."
+icon: "list"
+---
+
+The server offers **101 tools**: 45 that only read and 56 that change data. You never call them yourself. Ask in plain words and your assistant picks the right ones. Use this page to choose [permissions](/mcp/api-keys-and-permissions) and to see what a request can do.
+
+Wherever a tool asks for a project, page, person or comment, you can give a name, a site URL, an email or a link.
+
+<Note>
+  Tools marked **asks first** show a preview and change nothing until you agree. See [what asks you first](/mcp/safety-and-limits).
+</Note>
+
+## Playbooks
+
+Step-by-step plans for jobs that take several tools in order. The assistant fetches one and follows it.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_use_playbook`<br/>Get a playbook | Gets a step-by-step plan for a job that takes several tools in order, and the model follows it: `triage` (what is broken on a site, as one ordered P0, P1, P2 list), `fix` (fix the approved items, have a rescan verify each, report), `push_my_review` (push your own review's findings in) and `onboard_agency` (a first client site, checked on a schedule). Nothing to install: the server serves them. *Reads only.* | Any key |
+
+## Checks
+
+A check is one kind of problem the review agents look for, such as broken links or missing alt text. Each check groups its open findings across the site.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_list_failing_checks`<br/>List a site's failing checks | The failing checks of a site, worst first: severity, open findings, pages, owner and how many score points fixing it is worth. *Reads only.* | Read comments |
+| `superflow_get_check_details`<br/>Get one check and its findings | One check: its fix guide and its open findings with their pages and links, 20 at a time. *Reads only.* | Read comments |
+| `superflow_get_site_score`<br/>Get a site's score | The site score, the runs before it, and the lowest scoring pages. *Reads only.* | Read comments |
+| `superflow_get_finding_source`<br/>Find a finding in the page's HTML | The line of stored HTML a finding points at, to find it in the code. *Reads only.* | Read comments |
+| `superflow_mark_check_fixed`<br/>Mark a check fixed | Resolves every open finding of a check and has a rescan verify it (1 credit). Needs `confirm: true`; without it the tool shows what it would resolve. *Changes data, asks first, spends AI credits.* | Read comments, Edit comments |
+| `superflow_exclude_check`<br/>Exclude a check for a site | Turns a check off for a site, with a reason. Needs `confirm: true`. *Changes data, asks first.* | Read comments, Edit comments |
+| `superflow_include_check`<br/>Include an excluded check | Turns an excluded check back on. *Changes data.* | Edit comments |
+| `superflow_assign_check_owner`<br/>Assign a check's owner | Sets who owns a check, or back to the default owner. *Changes data.* | Edit comments |
+| `superflow_reject_comment`<br/>Reject an agent finding | Rejects an agent finding as wrong, not important, not applicable or cannot tell. It cannot be undone, so it needs `confirm: true`; without it the tool shows the finding. *Changes data, asks first, cannot be undone.* | Read comments, Edit comments |
+| `superflow_get_check_settings`<br/>Get a site's check settings | The confidence floor and the default owners for content, design and dev checks. *Reads only.* | Read projects |
+| `superflow_set_default_owners`<br/>Set a site's default owners | Sets the default owners for content, design and dev checks. *Changes data.* | Read projects, Create and update projects |
+
+## Site settings
+
+How a site is monitored, when scheduled checks run, and which forms get tested.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_get_site_monitoring`<br/>Get a site's monitoring mode | Whether a site is in care (agents run on a schedule) or watch (Version history only), with the cadence, time zone and the run in progress. *Reads only.* | Read projects |
+| `superflow_set_site_mode`<br/>Set a site's monitoring mode | Moves a site to care or watch. care runs agents and spends AI credits, so it needs `confirm: true`; on a site never monitored it starts a full check now. *Changes data, asks first, spends AI credits.* | Read projects, Create and update projects |
+| `superflow_set_site_timezone`<br/>Set a site's time zone | The time zone scheduled checks and Version history captures run in. *Changes data.* | Create and update projects |
+| `superflow_list_forms`<br/>List a site's forms | The forms the Forms agent found on a site, with their test settings and last result. *Reads only.* | Read projects |
+| `superflow_set_form_testing`<br/>Turn a form's test on or off | Turns a form's test on or off. On needs `confirm: true`: each test lands in the client's inbox as a lead. *Changes data, asks first.* | Read projects, Create and update projects |
+
+## Comments
+
+Read, search, count, export and work through the feedback on your sites.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_get_me`<br/>Who am I | Who the key belongs to: member, workspace, plan, scopes. *Reads only.* | Any key |
+| `superflow_list_projects`<br/>List projects | Projects (websites) with install status and open comment counts. *Reads only.* | Read projects |
+| `superflow_list_pages`<br/>List pages | Pages of a project with open and total comment counts. *Reads only.* | Read projects |
+| `superflow_list_members`<br/>List members and guests | Your team, plus a project's guests. *Reads only.* | Read projects |
+| `superflow_list_statuses`<br/>List statuses | Workflow statuses in order, and which count as resolved. *Reads only.* | Read comments |
+| `superflow_list_tags`<br/>List tags | The tags on comments, workspace-wide or for one project, and how many comments carry each. *Reads only.* | Read comments |
+| `superflow_list_comments`<br/>List comments | Find comments by project, page, status, assignee, tags, dates, text and more. *Reads only.* | Read comments |
+| `superflow_get_comment`<br/>Get a comment | One comment with every field and its replies. *Reads only.* | Read comments |
+| `superflow_comment_stats`<br/>Comment stats | Counts grouped by page, status, assignee, week and more, plus response times. *Reads only.* | Read comments |
+| `superflow_export_comments`<br/>Export comments | Export matching comments as csv, json or markdown. *Reads only.* | Read comments |
+| `superflow_create_comment`<br/>Create a comment | Leave a new, public comment on a page. *Changes data.* | Edit comments |
+| `superflow_update_comment`<br/>Update a comment | Change one comment: text, priority, status, assignee, tags (a new name creates the tag), page or pin. *Changes data.* | Edit comments |
+| `superflow_resolve_comment`<br/>Resolve a comment | Resolve one comment, with an optional note. *Changes data.* | Read comments, Edit comments |
+| `superflow_reopen_comment`<br/>Reopen a comment | Reopen one comment, with an optional note. *Changes data.* | Read comments, Edit comments |
+| `superflow_add_reply`<br/>Reply to a comment | Reply in a thread, with @mentions. *Changes data.* | Edit comments |
+| `superflow_update_reply`<br/>Edit a reply | Edit a reply. *Changes data.* | Edit comments |
+| `superflow_delete_reply`<br/>Delete a reply | Delete a reply (needs confirm). *Changes data, asks first, cannot be undone.* | Read comments, Edit comments |
+| `superflow_delete_comment`<br/>Delete a comment | Delete a comment thread for good (needs confirm; it cannot be restored). *Changes data, asks first, cannot be undone.* | Read comments, Edit comments |
+| `superflow_bulk_update_comments`<br/>Bulk update comments | Change up to 200 comments at once (dry run first, then confirm). *Changes data, asks first.* | Edit comments |
+| `superflow_add_attachment`<br/>Add an attachment | Attach a file by URL to a comment or reply. *Changes data.* | Edit comments |
+
+## Admin
+
+Projects, pages, people, statuses, tags, the workspace and your own notifications.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_get_project`<br/>Get a project | One project: install status, counts, statuses and settings. *Reads only.* | Read projects |
+| `superflow_create_project`<br/>Create a project | Create a project for a site, optionally inviting guests (sends email). *Changes data, sends email.* | Create and update projects |
+| `superflow_update_project`<br/>Update a project | Rename, change settings (guest comments, toolbar, commenting) or add domains. *Changes data.* | Create and update projects |
+| `superflow_archive_project`<br/>Archive a project | Archive a project. Nothing is deleted. *Changes data.* | Create and update projects |
+| `superflow_unarchive_project`<br/>Unarchive a project | Bring an archived project back. *Changes data.* | Create and update projects |
+| `superflow_delete_project`<br/>Delete a project | Delete a project for good, with its comments (needs confirm). *Changes data, asks first, cannot be undone.* | Read projects, Create and update projects |
+| `superflow_get_install_snippet`<br/>Get the install snippet | The script tag and install steps for the site's platform. *Reads only.* | Read projects |
+| `superflow_verify_install`<br/>Verify the install | Check that the snippet is live on the site. *Changes data.* | Create and update projects |
+| `superflow_get_page`<br/>Get a page | One page with its comment counts. *Reads only.* | Read projects |
+| `superflow_add_page`<br/>Add a page | Add a page before anyone comments on it. *Changes data.* | Create and update projects |
+| `superflow_remove_page`<br/>Remove a page | Remove a page and delete its comments for good (needs confirm). *Changes data, asks first, cannot be undone.* | Read projects, Create and update projects |
+| `superflow_invite_member`<br/>Invite members | Invite teammates to the workspace (sends email). *Changes data, sends email.* | Invite people |
+| `superflow_remove_member`<br/>Remove a member | Remove a teammate, optionally reassigning their open comments (owner only, needs confirm). *Changes data, asks first.* | Remove people |
+| `superflow_list_guests`<br/>List guests | A project's guests. *Reads only.* | Read projects |
+| `superflow_invite_guest`<br/>Invite guests | Invite clients or reviewers to one project (sends email). *Changes data, sends email.* | Invite people |
+| `superflow_remove_guest`<br/>Remove a guest | Take a guest off one project (needs confirm). *Changes data, asks first.* | Read projects, Remove people |
+| `superflow_create_status`<br/>Create a status | Add a custom status, for the workspace or one project. *Changes data.* | Create and update projects |
+| `superflow_update_status`<br/>Update a status | Rename or recolor a status. *Changes data.* | Create and update projects |
+| `superflow_reorder_statuses`<br/>Reorder statuses | Set the order of the statuses. *Changes data.* | Create and update projects |
+| `superflow_delete_status`<br/>Delete a status | Delete a status, moving its comments to another (needs confirm). *Changes data, asks first.* | Read comments, Create and update projects |
+| `superflow_update_tag`<br/>Update a tag | Rename or recolor a tag on every comment that carries it. *Changes data.* | Create and update projects |
+| `superflow_delete_tag`<br/>Delete a tag | Take a tag off every comment that carries it (needs confirm). *Changes data, asks first.* | Create and update projects |
+| `superflow_merge_tags`<br/>Merge tags | Fold one tag into another, or into a new name (needs confirm). *Changes data, asks first.* | Create and update projects |
+| `superflow_get_organization`<br/>Get the workspace | The workspace: plan, seats, projects and AI credits. *Reads only.* | Read workspace |
+| `superflow_update_organization`<br/>Rename the workspace | Rename the workspace (owner only). *Changes data.* | Manage workspace settings |
+| `superflow_get_credit_usage`<br/>AI credit usage | AI credits used, by project, agent or day. *Reads only.* | Read workspace |
+| `superflow_list_activity`<br/>List API activity | Changes made through the API, newest first. *Reads only.* | Read workspace |
+| `superflow_list_review_links`<br/>List review links | Active public review links. *Reads only.* | Read projects |
+| `superflow_create_review_link`<br/>Create a review link | Share a project with a public review link. Not open to every workspace yet. *Changes data.* | Create and update projects |
+| `superflow_revoke_review_link`<br/>Revoke a review link | Turn a review link off (needs confirm). *Changes data, asks first.* | Read projects, Create and update projects |
+| `superflow_get_notification_settings`<br/>Get my notification settings | Your own digest, inbox and email settings. *Reads only.* | Read workspace |
+| `superflow_update_notification_settings`<br/>Update my notification settings | Change your own notification settings. *Changes data.* | Manage workspace settings |
+
+## Agents, runs and schedules
+
+Your AI review agents, what a run costs, live runs, their findings and scheduled runs.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_list_agents`<br/>List agents | AI review agents, built-in and custom, and which run by default. *Reads only.* | Read agents |
+| `superflow_get_agent`<br/>Get an agent | One agent, with a custom agent's instructions. *Reads only.* | Read agents |
+| `superflow_create_agent`<br/>Create an agent | Create a custom agent from plain-language instructions. *Changes data.* | Create and edit agents |
+| `superflow_update_agent`<br/>Update an agent | Turn an agent on or off, or edit a custom agent. *Changes data.* | Create and edit agents |
+| `superflow_delete_agent`<br/>Delete an agent | Delete a custom agent (needs confirm). *Changes data, asks first.* | Read agents, Create and edit agents |
+| `superflow_duplicate_agent`<br/>Duplicate an agent | Copy a custom agent. *Changes data.* | Create and edit agents |
+| `superflow_list_agent_packs`<br/>List agent packs | Agent packs, such as Copy QA, SEO or your own. *Reads only.* | Read agents |
+| `superflow_create_agent_pack`<br/>Create an agent pack | Group agents into a pack. *Changes data.* | Create and edit agents |
+| `superflow_update_agent_pack`<br/>Update an agent pack | Change a pack's name, description or agents. *Changes data.* | Create and edit agents |
+| `superflow_estimate_run`<br/>Estimate a run | What a run would cost in AI credits, and whether the balance covers it. Charges nothing. *Reads only.* | Read agents |
+| `superflow_run_agents`<br/>Run agents | Start a run on a site, a page or a list of pages (spends credits; estimate first, then confirm). *Changes data, asks first, spends AI credits.* | Read agents, Run agents |
+| `superflow_get_run`<br/>Get a run | A run's live status per agent. *Reads only.* | Read agents |
+| `superflow_list_runs`<br/>List runs | Every agent run of the workspace, newest first, with what started it: the API or MCP, a schedule, the portal or Always-on Monitoring. An import is not a run and is not listed. *Reads only.* | Read agents |
+| `superflow_list_findings`<br/>List a run's findings | What a run found, with severity and confidence. Also takes an import's run id. *Reads only.* | Read comments |
+| `superflow_set_schedule`<br/>Create or change a schedule | Create or change a scheduled run (cron, at most hourly; each run spends credits; the agents are fixed when it is saved). Needs `confirm: true`, except to pause or move the time zone; without it the tool shows the price of one run. *Changes data, asks first, spends AI credits.* | Run agents |
+| `superflow_list_schedules`<br/>List schedules | Scheduled runs, their agents, the next run and how the last one went (started, skipped and why, or failed to start). *Reads only.* | Read agents |
+| `superflow_delete_schedule`<br/>Delete a schedule | Delete a schedule (needs confirm). *Changes data, asks first.* | Run agents |
+
+## Integrations
+
+Your connected Slack, Jira, Asana, ClickUp and Monday.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_list_integrations`<br/>List integrations | Connected tools: Slack, Jira, Asana, ClickUp, Monday. *Reads only.* | Read integrations |
+| `superflow_get_integration`<br/>Get an integration | One connection and whether it still works. *Reads only.* | Read integrations |
+| `superflow_connect_integration`<br/>Connect a tool | A link the user opens to connect a tool. The assistant cannot finish the sign-in. *Reads only.* | Use integrations |
+| `superflow_push_comment`<br/>Push a comment to a tracker | Create a Jira issue or a task from a comment, and link it on the comment. Needs `project_key`; a comment already in that tool returns its link and creates nothing. *Changes data, posts outside Superflow.* | Use integrations |
+| `superflow_post_to_slack`<br/>Post to Slack | Post a message, with comments, to a Slack channel (needs confirm). *Changes data, asks first, posts outside Superflow.* | Read comments, Read integrations, Use integrations |
+
+## Import findings
+
+Bring the results of your own review, from your own prompts or agent, into Superflow.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_import_findings`<br/>Import findings from your own agent | Pushes the findings of your own review (your prompts, your agent) into Superflow. Each becomes an agent comment pinned on its page under your agent's name, and merges with the same finding next time. They are not checks: the failing checks and the fix list do not include them. Up to 500 per call, 5,000 per project per day. Needs the `ingest` scope. *Changes data.* | Import findings |
+
+## Analytics
+
+Team and people activity. Analytics are computed once a day.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_get_team_analytics`<br/>Team analytics | Comments added and resolved, and the active projects, over 1, 7, 14 or 30 days. *Reads only.* | Read analytics |
+| `superflow_get_people_analytics`<br/>People analytics | Who commented, who resolved, who has work waiting, over the same windows. *Reads only.* | Read analytics |
+| `superflow_get_all_time_analytics`<br/>All-time analytics | The workspace's all-time rollup. *Reads only.* | Read analytics |
+
+## Billing
+
+Your plan, invoices and where to change them. Nothing is ever charged from a tool.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_get_billing`<br/>Billing | Plan, whether it is active, when the period or trial ends, the billing interval, and the portal page to change it. *Reads only.* | Read workspace |
+| `superflow_get_payment_link`<br/>Payment link | The portal page where a person picks a plan and pays, or changes seats. Nothing is charged from a tool, and a workspace that already pays is never offered a second subscription. *Reads only.* | Read workspace |
+| `superflow_get_invoices`<br/>Invoices | The workspace's invoices, newest first, with Stripe's links to view, pay or download each. Owner only. *Reads only.* | Read workspace |
+
+## API keys
+
+Keys for CI or other tools. The token is shown once.
+
+| Tool | What it does | Permission |
+| --- | --- | --- |
+| `superflow_list_api_keys`<br/>List API keys | Your own keys and app sign-ins in this workspace. Never the tokens. *Reads only.* | Read workspace |
+| `superflow_create_api_key`<br/>Create an API key | A new key for CI or another tool. Needs an API key with `workspace:write` (a sign-in cannot create keys); scopes must be ones the current key has, and it cannot outlive it. Needs `confirm: true`; the preview says first when the key cannot be created. The token is shown once, in the conversation. *Changes data, asks first.* | Manage workspace settings |
+| `superflow_revoke_api_key`<br/>Revoke an API key | Revoke a key or sign-in. Needs `confirm: true`. *Changes data, asks first.* | Read workspace, Manage workspace settings |

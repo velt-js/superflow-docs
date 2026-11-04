@@ -1,0 +1,46 @@
+---
+title: "Safety and limits"
+description: "What the Superflow MCP server asks you before it acts, and the limits on calls, bulk changes and runs."
+icon: "shield-check"
+---
+
+## What asks you first
+
+The tools are built so the assistant cannot surprise you. These actions show a preview and wait for your yes.
+
+| Action | What happens before it runs |
+| --- | --- |
+| Running agents, schedules, care mode, marking a check fixed | The assistant prices it in AI credits with an estimate and asks. Nothing starts without your confirm. If the balance is too low, it says how to add credits. |
+| Deleting a comment, reply, page or project | A preview of what goes. Deletes are permanent: nothing can be restored. |
+| Bulk changes to comments | A dry run first: how many would change and how many already match. Up to 200 at once. |
+| Inviting people | Invites send real email. The assistant asks first. |
+| Pushing to Jira, Asana, ClickUp, Monday or Slack | These land in your team's own tools. The assistant asks first, and a Slack post needs your confirm. |
+| Turning on a form test | Each test lands in the client's inbox as a lead, so it needs your confirm. |
+| Rejecting an agent finding, excluding a check | A preview of the finding or check. A reject cannot be undone. |
+| Merging or deleting tags, removing people, revoking keys or review links | A preview of what would change, then your confirm. |
+
+<Note>
+  **Resolving a finding is a claim.** When you resolve an agent finding or mark a check fixed, a rescan checks it, and a problem that is still there comes back as an open finding. Findings you imported from your own agent are simply resolved, with no rescan and no credit spent, and the assistant says so.
+</Note>
+
+<Note>
+  **Rejecting a finding.** A finding you reject as wrong or not applicable keeps its status but no longer counts as open: it leaves the open list, and reading it shows who rejected it, when and why. Ask for comments with the status "rejected" to see them all.
+</Note>
+
+<Warning>
+  **Comment text comes from your site's visitors.** Superflow marks it as data, not instructions, so text in a comment cannot steer the assistant. Tags are visible to everyone who can see the comment, clients included, so keep private notes out of tags.
+</Warning>
+
+## Limits and what is not available yet
+
+| Area | What to know |
+| --- | --- |
+| Rate | Up to 600 tool calls a minute. An assistant that goes over it is asked to wait a moment and try again. |
+| Bulk updates | Up to 200 comments a call. |
+| Imports | Up to 500 findings a call and 5,000 per project a day. |
+| Priorities | You can set critical (P0), high (P1) and medium (P2). Clearing a priority or removing an assignee is done in the Superflow toolbar for now; filters still find unassigned and low priority comments. |
+| Projects | A project's site URL cannot change (add extra domains instead). While a review link is active, archiving, install checks and settings changes wait until it is revoked. |
+| Runs and schedules | A run cannot be cancelled once started. Schedules run on a set time, at most hourly, with the agents fixed when the schedule is saved. |
+| Integrations | Connecting or disconnecting a tool happens in the Superflow app; the assistant gives you a link. Pushing a comment needs the target project or list each time. |
+| Tags | Renaming, recoloring, merging or deleting a tag rewrites up to 500 comments a call, and the assistant continues until done. |
+| API keys | A sign-in cannot create API keys. Only an API key with Manage workspace settings can, and the new key cannot have more permissions or a later expiry than the one creating it. |
